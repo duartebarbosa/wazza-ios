@@ -1,13 +1,26 @@
 //
-//  Sdk.h
-//  Sdk
+//  SDK.h
+//  SDK
 //
-//  Created by Joao Vasques on 25/02/14.
+//  Created by Joao Vasques on 18/02/14.
 //  Copyright (c) 2014 Wazza. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "Item.h"
+#import "Purchase.h"
 
-@interface Sdk : NSObject
+@interface SDK : NSObject
+
+-(id)initWithCredentials:(NSString *)name
+                        :(NSString *)secretKey;
+
+-(NSDictionary *)getItems:(int)offset;
+
+-(Item *)getItemDetails:(NSString *)id;
+
+//-(NSArray *)fetchMoreItems;
+
+-(void)makePurchase:(NSString *)itemId;
 
 @end
