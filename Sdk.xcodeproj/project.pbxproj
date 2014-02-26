@@ -22,6 +22,13 @@
 		460F8E4F18BD5AFC003CCC12 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E4E18BD5AFC003CCC12 /* Currency.m */; };
 		460F8E5218BD5B14003CCC12 /* NetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E5118BD5B14003CCC12 /* NetworkService.m */; };
 		460F8E5518BD5B7F003CCC12 /* LocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E5418BD5B7F003CCC12 /* LocationInfo.m */; };
+		460F8E5E18BD5E80003CCC12 /* Item.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E4418BD5AD9003CCC12 /* Item.h */; };
+		460F8E6A18BD5ED6003CCC12 /* ImageInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E4A18BD5AF4003CCC12 /* ImageInfo.h */; };
+		460F8E6B18BD5EDB003CCC12 /* Currency.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E4D18BD5AFC003CCC12 /* Currency.h */; };
+		460F8E7B18BD5F1B003CCC12 /* Purchase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E4718BD5AEB003CCC12 /* Purchase.h */; };
+		460F8E8418BD5F5A003CCC12 /* LocationInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E5318BD5B7F003CCC12 /* LocationInfo.h */; };
+		460F8E8518BD5F5E003CCC12 /* NetworkService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E5018BD5B14003CCC12 /* NetworkService.h */; };
+		460F8E9C18BE45C3003CCC12 /* SecurityService.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E9B18BE45C3003CCC12 /* SecurityService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +48,12 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				460F8E8518BD5F5E003CCC12 /* NetworkService.h in CopyFiles */,
+				460F8E8418BD5F5A003CCC12 /* LocationInfo.h in CopyFiles */,
+				460F8E7B18BD5F1B003CCC12 /* Purchase.h in CopyFiles */,
+				460F8E6B18BD5EDB003CCC12 /* Currency.h in CopyFiles */,
+				460F8E6A18BD5ED6003CCC12 /* ImageInfo.h in CopyFiles */,
+				460F8E5E18BD5E80003CCC12 /* Item.h in CopyFiles */,
 				460F8E2218BD5A3E003CCC12 /* Sdk.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +84,8 @@
 		460F8E5118BD5B14003CCC12 /* NetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkService.m; sourceTree = "<group>"; };
 		460F8E5318BD5B7F003CCC12 /* LocationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationInfo.h; sourceTree = "<group>"; };
 		460F8E5418BD5B7F003CCC12 /* LocationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationInfo.m; sourceTree = "<group>"; };
+		460F8E9A18BE45C3003CCC12 /* SecurityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityService.h; sourceTree = "<group>"; };
+		460F8E9B18BE45C3003CCC12 /* SecurityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +200,8 @@
 			children = (
 				460F8E5018BD5B14003CCC12 /* NetworkService.h */,
 				460F8E5118BD5B14003CCC12 /* NetworkService.m */,
+				460F8E9A18BE45C3003CCC12 /* SecurityService.h */,
+				460F8E9B18BE45C3003CCC12 /* SecurityService.m */,
 			);
 			name = services;
 			sourceTree = "<group>";
@@ -275,6 +292,7 @@
 				460F8E4918BD5AEB003CCC12 /* Purchase.m in Sources */,
 				460F8E2418BD5A3E003CCC12 /* Sdk.m in Sources */,
 				460F8E5218BD5B14003CCC12 /* NetworkService.m in Sources */,
+				460F8E9C18BE45C3003CCC12 /* SecurityService.m in Sources */,
 				460F8E4F18BD5AFC003CCC12 /* Currency.m in Sources */,
 				460F8E5518BD5B7F003CCC12 /* LocationInfo.m in Sources */,
 			);
@@ -389,6 +407,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -401,6 +420,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;
 		};

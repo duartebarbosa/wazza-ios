@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "Sdk.h"
 
 @interface SdkTests : XCTestCase
 
@@ -28,6 +29,8 @@
 
 - (void)testExample
 {
+    SDK *sdk = [[SDK alloc] initWithCredentials:@"wazza" :@"d7b7e2f5280e89236ed45474"];
+//    [sdk getItems:0];
     XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 }
 

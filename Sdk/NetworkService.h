@@ -20,6 +20,8 @@
                   :(NSString *)url
                   :(NSString *)httpMethod
                   :(NSDictionary *)params
+                  :(NSDictionary *)headers
+                  :(NSData *)data
    completionBlock:(void (^)(NSArray *data, NSError *error))block;
 
 @end

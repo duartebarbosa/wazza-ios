@@ -24,14 +24,47 @@
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
 
+-(NSMutableURLRequest *)buildRequest:(NSString *)url
+                               :(NSString *)httpMethod
+                               :(NSDictionary *)params
+                               :(NSDictionary *)headers
+                               :(NSData *)data {
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self escapeURL:url]]];
+    [request setHTTPMethod:httpMethod];
+
+    if ([httpMethod isEqualToString:HTTP_POST]) {
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:[NSString stringWithFormat:@"%d", [data length]] forHTTPHeaderField:@"Content-Length"];
+        [request setHTTPBody: data];
+    }
+
+    void(^addHeaders)(NSDictionary *) = ^(NSDictionary *h) {
+        if (h) {
+            NSMutableArray *keys = [[h allKeys] mutableCopy];
+            for (NSString *key in keys) {
+                [request setValue:[h objectForKey:key] forHTTPHeaderField:key];
+            }
+        }
+    };
+
+    addHeaders(params);
+    addHeaders(headers);
+
+    return request;
+}
+
 -(void)httpRequest:(int)reqType
                   :(NSString *)url
                   :(NSString *)httpMethod
                   :(NSDictionary *)params
+                  :(NSDictionary *)headers
+                  :(NSData *)data
    completionBlock:(void (^)(NSArray *data, NSError *error)) callback {
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self escapeURL:url]]];
-    
+
+    NSMutableURLRequest *request = [self buildRequest:url :httpMethod :params :headers :data];
+
     switch (reqType) {
         case SYNC: {
             NSURLResponse * response = nil;
@@ -40,6 +73,7 @@
                                                   returningResponse:&response
                                                               error:&error];
             if (!error) {
+                NSLog(@"data -- %@", [self parseResponse:data :error]);
                 callback([self parseResponse:data :error], nil);
             } else {
                 callback(nil, error);
