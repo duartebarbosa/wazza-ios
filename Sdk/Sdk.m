@@ -45,58 +45,93 @@
         self.secret = secretKey;
         self.networkService = [[NetworkService alloc] init];
         self.securityService = [[SecurityService alloc] init];
-        [self authenticateTest];
+        if (![self authenticateTest]) {
+            self = nil;
+        } else {
+            [self fetchItems:0];
+        }
     }
     
     return self;
 }
 
--(void)authenticateTest {
-    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_AUTH];
-    NSString *content = @"hello world";
-//    NSData *cipheredContent = [self.securityService AES256EncryptWithKey:[self secret] :content];
-//    NSString *b64Encoded = [cipheredContent base64EncodedStringWithOptions:0];
-//    NSString *someString = [[NSString alloc] initWithData:cipheredContent encoding:NSASCIIStringEncoding];
-
-    NSString *digest = [self.securityService hashContent:content];
-    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
-    NSDictionary *headers = [[NSDictionary alloc] initWithObjectsAndKeys:[self applicationName], @"AppName", digest, @"Digest",nil];
-    NSDictionary *params = nil;
-    NSError *error = nil;
-    NSData *requestData = [NSJSONSerialization dataWithJSONObject:body
-                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
-                                                         error:&error];
-    [self.networkService httpRequest:SYNC :requestUrl :HTTP_POST :params :headers :requestData completionBlock:^(NSArray *data, NSError *error) {
-        if (!error) {
-            NSLog(@"DATA %@", data);
-        } else {
-            NSLog(@"has error: %@", error);
-        }
-    }];
-}
 
 -(NSDictionary *)getItems:(int)offset {
-    
-    NSString *requestUrl = [NSString stringWithFormat: @"%@%@%@", URL, ENDPOINT_ITEM_LIST, self.applicationName];;
-    [self.networkService httpRequest:SYNC :requestUrl :HTTP_GET :nil :nil: nil completionBlock:^(NSArray *data, NSError *error){
-        if (!error) {
-            NSLog(@"DATA %@", data);
-        } else {
-            NSLog(@"has error: %@", error);
-        }
-    }];
-    
-    return Nil;
+    return nil;
 }
+
 
 -(Item *)getItemDetails:(NSString *)id {
     return nil;
 }
 
-//-(NSArray *)fetchMoreItems;
 
 -(void)makePurchase:(NSString *)itemId {
 }
 
+/********** PRIVATE FUNCTIONS ********/
+
+-(NSDictionary *)addSecurityInformation:(NSString *)content {
+    NSMutableDictionary *securityHeaders = [NSMutableDictionary dictionaryWithObjectsAndKeys:[self applicationName],@"AppName", nil];
+
+    if (content) {
+        [securityHeaders setValue:[self.securityService hashContent:content] forKey:@"Digest"];
+    }
+    return securityHeaders;
+}
+
+//just for test now..
+-(BOOL)authenticateTest {
+    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_AUTH];
+    NSString *content = @"hello world";
+    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
+    NSDictionary *headers = [self addSecurityInformation:content];
+    NSDictionary *params = nil;
+    NSError *error = nil;
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:body
+                                                          options:NSJSONWritingPrettyPrinted
+                                                            error:&error];
+    __block BOOL retVal = NO;
+    
+    [self.networkService
+     httpRequest:
+     SYNC:
+     requestUrl:
+     HTTP_POST:
+     params:
+     headers:
+     requestData:
+     ^(NSArray *result){
+         retVal = YES;
+     }:
+     ^(NSError *result){
+         retVal = NO;
+     }
+     ];
+    
+    return retVal;
+}
+
+-(void)fetchItems:(int)offset {
+    NSString *requestUrl = [NSString stringWithFormat: @"%@%@%@", URL, ENDPOINT_ITEM_LIST, self.applicationName];
+    NSDictionary *headers = [self addSecurityInformation:nil];
+    
+    [self.networkService
+     httpRequest:
+     SYNC:
+     requestUrl:
+     HTTP_GET:
+     nil:
+     headers:
+     nil:
+     ^(NSArray *result){
+         NSLog(@"add items to memory");
+         NSLog(@"%@", result);
+     }:
+     ^(NSError *result){
+         NSLog(@"oops.. something went wrong");
+     }
+     ];
+}
 
 @end

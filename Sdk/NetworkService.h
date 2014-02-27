@@ -14,6 +14,9 @@
 #define HTTP_GET @"GET"
 #define HTTP_POST @"POST"
 
+typedef void (^OnSuccess)(NSArray *);
+typedef void (^OnFailure)(NSError *);
+
 @interface NetworkService : NSObject
 
 -(void)httpRequest:(int)reqType
@@ -22,6 +25,6 @@
                   :(NSDictionary *)params
                   :(NSDictionary *)headers
                   :(NSData *)data
-   completionBlock:(void (^)(NSArray *data, NSError *error))block;
-
+                  :(OnSuccess)success
+                  :(OnFailure)failure;
 @end

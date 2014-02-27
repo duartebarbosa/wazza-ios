@@ -61,7 +61,9 @@
                   :(NSDictionary *)params
                   :(NSDictionary *)headers
                   :(NSData *)data
-   completionBlock:(void (^)(NSArray *data, NSError *error)) callback {
+                  :(OnSuccess)success
+                  :(OnFailure)failure
+{
 
     NSMutableURLRequest *request = [self buildRequest:url :httpMethod :params :headers :data];
 
@@ -73,26 +75,24 @@
                                                   returningResponse:&response
                                                               error:&error];
             if (!error) {
-                NSLog(@"data -- %@", [self parseResponse:data :error]);
-                callback([self parseResponse:data :error], nil);
+                success([self parseResponse:data :error]);
             } else {
-                callback(nil, error);
+                failure(error);
             }
         }
             break;
         case ASYNC:
-            [NSURLConnection sendAsynchronousRequest:request
-                                               queue:[NSOperationQueue mainQueue]
-                                   completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                       if (!error) {
-                                           NSLog(@"no error");
-                                           callback([self parseResponse:data :error], nil);
-                                       } else {
-                                           NSLog(@"error");
-                                           callback(nil, error);
-                                       }
-                                       
-                                   }];
+            [NSURLConnection sendAsynchronousRequest
+             :request
+             queue:[NSOperationQueue mainQueue]
+             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                 if (!error) {
+                     success([self parseResponse:data :error]);
+                 } else {
+                     failure(error);
+                 }
+                 
+             }];
             break;
     }
 }

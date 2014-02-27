@@ -19,8 +19,6 @@
 
 -(Item *)getItemDetails:(NSString *)id;
 
-//-(NSArray *)fetchMoreItems;
-
 -(void)makePurchase:(NSString *)itemId;
 
 @end
