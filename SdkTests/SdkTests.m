@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "Sdk.h"
+#import <CoreData/CoreData.h>
 
 @interface SdkTests : XCTestCase
 
@@ -29,7 +30,7 @@
 
 - (void)testExample
 {
-    SDK *sdk = [[SDK alloc] initWithCredentials:@"wazza" :@"d7b7e2f5280e89236ed45474"];
+    SDK *sdk = [[SDK alloc] initWithCredentials:@"App" :@"d7b7e2f5280e89236ed45474"];
     XCTAssertTrue(true == true);
 }
 

@@ -17,8 +17,6 @@
 
 -(NSDictionary *)getItems:(int)offset;
 
--(Item *)getItemDetails:(NSString *)id;
-
 -(void)makePurchase:(NSString *)itemId;
 
 @end

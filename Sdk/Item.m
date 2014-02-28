@@ -1,34 +1,38 @@
 //
 //  Item.m
-//  SDK
+//  Sdk
 //
-//  Created by Joao Vasques on 18/02/14.
+//  Created by Joao Vasques on 28/02/14.
 //  Copyright (c) 2014 Wazza. All rights reserved.
 //
 
 #import "Item.h"
-#import "ImageInfo.h"
-#import "Currency.h"
 
 @implementation Item
 
--(id)initFromJson: (NSDictionary *)json {
+#pragma mark - NSCoding
+
+- (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
+    if (!self) {
+        return nil;
+    }
     
-    self.title = [json valueForKey:@"name"];
-    self.description = [json valueForKey:@"description"];
+    self._id = [decoder decodeObjectForKey:@"id"];
+    self.name = [decoder decodeObjectForKey:@"name"];
+    self.description = [decoder decodeObjectForKey:@"description"];
+    self.image = [decoder decodeObjectForKey:@"image"];
+    self.currency = [decoder decodeObjectForKey:@"currency"];
     
-    NSString *imageName = [[json valueForKey:@"imageInfo"] valueForKey:@"name"];
-    NSString *imageUrl = [[json valueForKey:@"imageInfo"] valueForKey:@"url"];
-    self.imageInfo = [[ImageInfo alloc] initWithData:imageName :imageUrl];
-    
-    int currencyType = [[[json valueForKey:@"currency"] valueForKey:@"typeOf"] integerValue];
-    double value = [[[json valueForKey:@"currency"] valueForKey:@"value"] doubleValue];
-    NSString *currency = [[json valueForKey:@"currency"] valueForKey:@"virtualCurrency"];
-    
-    self.currency = [[Currency alloc] initWithData:currencyType :value :currency];
     return self;
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:self._id forKey:@"id"];
+    [encoder encodeObject:self.name forKey:@"name"];
+    [encoder encodeObject:self.description forKey:@"description"];
+    [encoder encodeObject:self.image forKey:@"image"];
+    [encoder encodeObject:self.currency forKey:@"currency"];
+}
 
 @end

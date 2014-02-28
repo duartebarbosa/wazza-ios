@@ -1,8 +1,8 @@
 //
 //  Item.h
-//  SDK
+//  Sdk
 //
-//  Created by Joao Vasques on 18/02/14.
+//  Created by Joao Vasques on 28/02/14.
 //  Copyright (c) 2014 Wazza. All rights reserved.
 //
 
@@ -10,13 +10,15 @@
 #import "ImageInfo.h"
 #import "Currency.h"
 
-@interface Item : NSObject
+@interface Item : NSObject <NSCoding>
 
-@property(nonatomic) NSString *title;
-@property(nonatomic) NSString *description;
-@property(nonatomic, strong) ImageInfo *imageInfo;
-@property(nonatomic, strong) Currency *currency;
+@property(nonatomic, retain) NSString *_id;
+@property(nonatomic, retain) NSString *name;
+@property(nonatomic, retain) NSString *description;
+@property(nonatomic, retain) ImageInfo *image;
+@property(nonatomic, retain) Currency *currency;
 
--(id)initFromJson: (NSDictionary *)json;
+- (id)initWithCoder:(NSCoder *)decoder;
+- (void)encodeWithCoder:(NSCoder *)encoder;
 
 @end

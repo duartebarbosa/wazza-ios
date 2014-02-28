@@ -1,8 +1,8 @@
 //
 //  Currency.h
-//  SDK
+//  Sdk
 //
-//  Created by Joao Vasques on 21/02/14.
+//  Created by Joao Vasques on 28/02/14.
 //  Copyright (c) 2014 Wazza. All rights reserved.
 //
 
@@ -15,5 +15,7 @@
 @property(nonatomic) NSString *currency;
 
 -(id)initWithData:(int)type :(double)value :(NSString *)currency;
+-(id)initWithCoder:(NSCoder *)decoder;
+-(void)encodeWithCoder:(NSCoder *)encoder;
 
 @end

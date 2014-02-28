@@ -9,6 +9,7 @@
 #import "SDK.h"
 #import "NetworkService.h"
 #import "SecurityService.h"
+#import "PersistenceService.h"
 
 #define ITEMS_LIST @"ITEMS LIST"
 #define DETAILS @"DETAIILS"
@@ -21,6 +22,7 @@
 //Server endpoints
 #define ENDPOINT_AUTH @"auth"
 #define ENDPOINT_ITEM_LIST @"items/"
+#define ENDPOINT_ITEM_DETAILED_LIST @"items/details/"
 #define ENDPOINT_DETAILS @"item/"
 #define ENDPOINT_PURCHASE @"purchase/"
 
@@ -30,6 +32,7 @@
 @property(nonatomic) NSString *secret;
 @property(nonatomic, strong) NetworkService *networkService;
 @property(nonatomic, strong) SecurityService *securityService;
+@property(nonatomic, strong) PersistenceService *persistenceService;
 
 @end
 
@@ -45,10 +48,11 @@
         self.secret = secretKey;
         self.networkService = [[NetworkService alloc] init];
         self.securityService = [[SecurityService alloc] init];
+        self.persistenceService = [[PersistenceService alloc] initPersistence];
         if (![self authenticateTest]) {
             self = nil;
         } else {
-            [self fetchItems:0];
+            [self bootstrap];
         }
     }
     
@@ -61,9 +65,9 @@
 }
 
 
--(Item *)getItemDetails:(NSString *)id {
-    return nil;
-}
+//-(Item *)getItemDetails:(NSString *)id {
+//    return nil;
+//}
 
 
 -(void)makePurchase:(NSString *)itemId {
@@ -112,8 +116,12 @@
     return retVal;
 }
 
+-(void)bootstrap {
+    [self fetchItems:0];
+}
+
 -(void)fetchItems:(int)offset {
-    NSString *requestUrl = [NSString stringWithFormat: @"%@%@%@", URL, ENDPOINT_ITEM_LIST, self.applicationName];
+    NSString *requestUrl = [NSString stringWithFormat: @"%@%@%@", URL, ENDPOINT_ITEM_DETAILED_LIST, self.applicationName];
     NSDictionary *headers = [self addSecurityInformation:nil];
     
     [self.networkService
@@ -125,8 +133,9 @@
      headers:
      nil:
      ^(NSArray *result){
-         NSLog(@"add items to memory");
-         NSLog(@"%@", result);
+         for (id item in result) {
+             [self.persistenceService createItemFromJson:item];
+         }
      }:
      ^(NSError *result){
          NSLog(@"oops.. something went wrong");
