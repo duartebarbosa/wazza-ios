@@ -28,10 +28,10 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testSDKBootstrap
 {
     SDK *sdk = [[SDK alloc] initWithCredentials:@"App" :@"d7b7e2f5280e89236ed45474"];
-    XCTAssertTrue(true == true);
+    XCTAssertTrue(sdk != nil);
 }
 
 @end
