@@ -68,7 +68,7 @@
 }
 
 
--(void)makePurchase:(NSString *)itemId {
+-(void)makePurchase:(Item *)item {
 }
 
 /********** PRIVATE FUNCTIONS ********/

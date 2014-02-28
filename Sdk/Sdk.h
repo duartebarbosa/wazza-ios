@@ -19,6 +19,6 @@
 
 -(NSArray *)getItems:(int)offset;
 
--(void)makePurchase:(NSString *)itemId;
+-(void)makePurchase:(Item *)item;
 
 @end
