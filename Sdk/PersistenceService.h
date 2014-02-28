@@ -12,7 +12,11 @@
 @interface PersistenceService : NSObject
 
 -(id)initPersistence;
+
 -(void)createItemFromJson:(NSDictionary *)json;
+
 -(Item *)getItem:(NSString *)name;
+
+-(NSArray *)getItems:(int)offset;
 
 @end

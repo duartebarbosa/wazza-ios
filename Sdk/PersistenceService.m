@@ -61,6 +61,19 @@
     }
 }
 
+-(NSArray *)getItems:(int)_offset {
+    NSArray *ids = [self getIdsList];
+    int offset = ([ids count] < _offset) ? [ids count]: _offset;
+    NSArray *idsSubArray = [ids subarrayWithRange:NSMakeRange(0, offset)];
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    
+    for (id itemName in idsSubArray) {
+        [items addObject:[self getItem:itemName]];
+    }
+    
+    return items;
+}
+
 -(void)createItemFromJson:(NSDictionary *)json {
 
     Item *item = [[Item alloc] init];

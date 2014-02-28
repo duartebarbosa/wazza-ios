@@ -15,7 +15,9 @@
 -(id)initWithCredentials:(NSString *)name
                         :(NSString *)secretKey;
 
--(NSDictionary *)getItems:(int)offset;
+-(Item *)getItem:(NSString *)name;
+
+-(NSArray *)getItems:(int)offset;
 
 -(void)makePurchase:(NSString *)itemId;
 

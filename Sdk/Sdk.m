@@ -59,15 +59,13 @@
     return self;
 }
 
-
--(NSDictionary *)getItems:(int)offset {
-    return nil;
+-(Item *)getItem:(NSString *)name {
+    return [self.persistenceService getItem:name];
 }
 
-
-//-(Item *)getItemDetails:(NSString *)id {
-//    return nil;
-//}
+-(NSArray *)getItems:(int)offset {
+    return[self.persistenceService getItems:offset];
+}
 
 
 -(void)makePurchase:(NSString *)itemId {
