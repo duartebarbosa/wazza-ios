@@ -12,7 +12,7 @@
 		460F8E2418BD5A3E003CCC12 /* Sdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E2318BD5A3E003CCC12 /* Sdk.m */; };
 		460F8E2B18BD5A3E003CCC12 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460F8E2A18BD5A3E003CCC12 /* XCTest.framework */; };
 		460F8E2C18BD5A3E003CCC12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460F8E1C18BD5A3E003CCC12 /* Foundation.framework */; };
-		460F8E3118BD5A3E003CCC12 /* libSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 460F8E1918BD5A3D003CCC12 /* libSdk.a */; };
+		460F8E3118BD5A3E003CCC12 /* libSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 460F8E1918BD5A3D003CCC12 /* libSdk.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		460F8E3718BD5A3E003CCC12 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 460F8E3518BD5A3E003CCC12 /* InfoPlist.strings */; };
 		460F8E3918BD5A3E003CCC12 /* SdkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E3818BD5A3E003CCC12 /* SdkTests.m */; };
 		460F8E4918BD5AEB003CCC12 /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E4818BD5AEB003CCC12 /* Purchase.m */; };
@@ -365,7 +365,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
