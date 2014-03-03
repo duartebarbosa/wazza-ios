@@ -11,6 +11,7 @@
 
 @interface Purchase : NSObject
 
+@property(nonatomic) NSString *_id;
 @property(nonatomic) NSString *applicationName;
 @property(nonatomic) NSString *itemId;
 @property(nonatomic) double price;
@@ -18,5 +19,6 @@
 @property(nonatomic, strong) LocationInfo *location;
 
 -(id)initWithData:(NSString *)name :(NSString *)itemId : (double)price;
+-(NSDictionary *)toJson;
 
 @end

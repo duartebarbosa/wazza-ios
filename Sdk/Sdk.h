@@ -19,6 +19,6 @@
 
 -(NSArray *)getItems:(int)offset;
 
--(void)makePurchase:(Item *)item;
+-(BOOL)makePurchase:(Item *)item;
 
 @end

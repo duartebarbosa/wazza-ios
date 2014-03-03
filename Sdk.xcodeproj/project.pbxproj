@@ -26,6 +26,7 @@
 		465DC98518C0E53B000B91D7 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98418C0E53B000B91D7 /* Item.m */; };
 		465DC98818C0F75A000B91D7 /* ImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98718C0F75A000B91D7 /* ImageInfo.m */; };
 		465DC98B18C0FA25000B91D7 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98A18C0FA25000B91D7 /* Currency.m */; };
+		465DC98E18C48EB0000B91D7 /* HttpCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98D18C48EB0000B91D7 /* HttpCodes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		465DC98718C0F75A000B91D7 /* ImageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageInfo.m; sourceTree = "<group>"; };
 		465DC98918C0FA25000B91D7 /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
 		465DC98A18C0FA25000B91D7 /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
+		465DC98C18C48EB0000B91D7 /* HttpCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpCodes.h; sourceTree = "<group>"; };
+		465DC98D18C48EB0000B91D7 /* HttpCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpCodes.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +202,8 @@
 				460F8E9B18BE45C3003CCC12 /* SecurityService.m */,
 				465DC93318C0A8D6000B91D7 /* PersistenceService.h */,
 				465DC93418C0A8D6000B91D7 /* PersistenceService.m */,
+				465DC98C18C48EB0000B91D7 /* HttpCodes.h */,
+				465DC98D18C48EB0000B91D7 /* HttpCodes.m */,
 			);
 			name = services;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 				460F8E2418BD5A3E003CCC12 /* Sdk.m in Sources */,
 				465DC98B18C0FA25000B91D7 /* Currency.m in Sources */,
 				460F8E5218BD5B14003CCC12 /* NetworkService.m in Sources */,
+				465DC98E18C48EB0000B91D7 /* HttpCodes.m in Sources */,
 				460F8E9C18BE45C3003CCC12 /* SecurityService.m in Sources */,
 				460F8E5518BD5B7F003CCC12 /* LocationInfo.m in Sources */,
 				465DC98818C0F75A000B91D7 /* ImageInfo.m in Sources */,

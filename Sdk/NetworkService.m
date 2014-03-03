@@ -7,6 +7,7 @@
 //
 
 #import "NetworkService.h"
+#import "HttpCodes.h"
 
 @implementation NetworkService
 
@@ -74,9 +75,12 @@
             NSData * data = [NSURLConnection sendSynchronousRequest:request
                                                   returningResponse:&response
                                                               error:&error];
-            if (!error) {
+
+            int responseCode = [(NSHTTPURLResponse*)response statusCode];
+            if (![HttpCodes isError: responseCode]) {
                 success([self parseResponse:data :error]);
             } else {
+                error = [NSError errorWithDomain:[NSHTTPURLResponse localizedStringForStatusCode:responseCode] code:responseCode userInfo:nil];
                 failure(error);
             }
         }

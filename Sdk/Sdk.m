@@ -24,7 +24,7 @@
 #define ENDPOINT_ITEM_LIST @"items/"
 #define ENDPOINT_ITEM_DETAILED_LIST @"items/details/"
 #define ENDPOINT_DETAILS @"item/"
-#define ENDPOINT_PURCHASE @"purchase/"
+#define ENDPOINT_PURCHASE @"purchase"
 
 @interface SDK()
 
@@ -68,7 +68,60 @@
 }
 
 
--(void)makePurchase:(Item *)item {
+-(BOOL)makePurchase:(Item *)item {
+    Purchase *purchase = [[Purchase alloc] initWithData:self.applicationName :item.name :item.currency.value];
+    NSDictionary *json = [purchase toJson];
+    
+    NSString *(^toJSONString)(NSDictionary *) = ^NSString *(NSDictionary * dic) {
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
+                                                           options:0
+                                                             error:&error];
+        
+        if (!jsonData) {
+            NSLog(@"Got an error: %@", error);
+            return nil;
+        } else {
+            return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        }
+    };
+    
+    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_PURCHASE];
+    NSString *content = toJSONString(json);
+    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
+    NSDictionary *headers = [self addSecurityInformation:content];
+    NSDictionary *params = nil;
+    NSError *error = nil;
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:body
+                                                          options:0
+                                                            error:&error];
+    __block BOOL retVal = NO;
+    
+    [self.networkService
+     httpRequest:
+     SYNC:
+     requestUrl:
+     HTTP_POST:
+     params:
+     headers:
+     requestData:
+     ^(NSArray *result){
+         retVal = YES;
+     }:
+     ^(NSError *result){
+         retVal = NO;
+     }
+     ];
+    
+    /**
+    TODO:
+     - integracao com biblioteca da Apple (so help me god)
+     - validacao do resultado da comunicacao com Apple
+     - Enviar dados de compra (recolhidos pela Apple mais os nossos) para o backend
+     - Finalizar transacção
+     - Dar input ao developer (success or fail)
+    **/
+    return retVal;
 }
 
 /********** PRIVATE FUNCTIONS ********/
