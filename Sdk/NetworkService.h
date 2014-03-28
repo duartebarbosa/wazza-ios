@@ -14,12 +14,17 @@
 #define HTTP_GET @"GET"
 #define HTTP_POST @"POST"
 
+typedef void (^OnSuccess)(NSArray *);
+typedef void (^OnFailure)(NSError *);
+
 @interface NetworkService : NSObject
 
 -(void)httpRequest:(int)reqType
                   :(NSString *)url
                   :(NSString *)httpMethod
                   :(NSDictionary *)params
-   completionBlock:(void (^)(NSArray *data, NSError *error))block;
-
+                  :(NSDictionary *)headers
+                  :(NSData *)data
+                  :(OnSuccess)success
+                  :(OnFailure)failure;
 @end

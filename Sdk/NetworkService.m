@@ -7,6 +7,7 @@
 //
 
 #import "NetworkService.h"
+#import "HttpCodes.h"
 
 @implementation NetworkService
 
@@ -24,14 +25,49 @@
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
 
+-(NSMutableURLRequest *)buildRequest:(NSString *)url
+                               :(NSString *)httpMethod
+                               :(NSDictionary *)params
+                               :(NSDictionary *)headers
+                               :(NSData *)data {
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self escapeURL:url]]];
+    [request setHTTPMethod:httpMethod];
+
+    if ([httpMethod isEqualToString:HTTP_POST]) {
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:[NSString stringWithFormat:@"%d", [data length]] forHTTPHeaderField:@"Content-Length"];
+        [request setHTTPBody: data];
+    }
+
+    void(^addHeaders)(NSDictionary *) = ^(NSDictionary *h) {
+        if (h) {
+            NSMutableArray *keys = [[h allKeys] mutableCopy];
+            for (NSString *key in keys) {
+                [request setValue:[h objectForKey:key] forHTTPHeaderField:key];
+            }
+        }
+    };
+
+    addHeaders(params);
+    addHeaders(headers);
+
+    return request;
+}
+
 -(void)httpRequest:(int)reqType
                   :(NSString *)url
                   :(NSString *)httpMethod
                   :(NSDictionary *)params
-   completionBlock:(void (^)(NSArray *data, NSError *error)) callback {
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self escapeURL:url]]];
-    
+                  :(NSDictionary *)headers
+                  :(NSData *)data
+                  :(OnSuccess)success
+                  :(OnFailure)failure
+{
+
+    NSMutableURLRequest *request = [self buildRequest:url :httpMethod :params :headers :data];
+
     switch (reqType) {
         case SYNC: {
             NSURLResponse * response = nil;
@@ -39,26 +75,28 @@
             NSData * data = [NSURLConnection sendSynchronousRequest:request
                                                   returningResponse:&response
                                                               error:&error];
-            if (!error) {
-                callback([self parseResponse:data :error], nil);
+
+            int responseCode = [(NSHTTPURLResponse*)response statusCode];
+            if (![HttpCodes isError: responseCode]) {
+                success([self parseResponse:data :error]);
             } else {
-                callback(nil, error);
+                error = [NSError errorWithDomain:[NSHTTPURLResponse localizedStringForStatusCode:responseCode] code:responseCode userInfo:nil];
+                failure(error);
             }
         }
             break;
         case ASYNC:
-            [NSURLConnection sendAsynchronousRequest:request
-                                               queue:[NSOperationQueue mainQueue]
-                                   completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                       if (!error) {
-                                           NSLog(@"no error");
-                                           callback([self parseResponse:data :error], nil);
-                                       } else {
-                                           NSLog(@"error");
-                                           callback(nil, error);
-                                       }
-                                       
-                                   }];
+            [NSURLConnection sendAsynchronousRequest
+             :request
+             queue:[NSOperationQueue mainQueue]
+             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                 if (!error) {
+                     success([self parseResponse:data :error]);
+                 } else {
+                     failure(error);
+                 }
+                 
+             }];
             break;
     }
 }

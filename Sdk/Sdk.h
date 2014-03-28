@@ -15,12 +15,10 @@
 -(id)initWithCredentials:(NSString *)name
                         :(NSString *)secretKey;
 
--(NSDictionary *)getItems:(int)offset;
+-(Item *)getItem:(NSString *)name;
 
--(Item *)getItemDetails:(NSString *)id;
+-(NSArray *)getItems:(int)offset;
 
-//-(NSArray *)fetchMoreItems;
-
--(void)makePurchase:(NSString *)itemId;
+-(BOOL)makePurchase:(Item *)item;
 
 @end

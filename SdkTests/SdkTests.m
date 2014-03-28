@@ -7,8 +7,12 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "Sdk.h"
+#import <CoreData/CoreData.h>
 
 @interface SdkTests : XCTestCase
+
+@property(nonatomic, strong) SDK *sdk;
 
 @end
 
@@ -17,6 +21,7 @@
 - (void)setUp
 {
     [super setUp];
+    self.sdk = [[SDK alloc] initWithCredentials:@"App" :@"d7b7e2f5280e89236ed45474"];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -26,9 +31,21 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testSDKBootstrap
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(self.sdk != nil);
+}
+
+-(void)testPurchase {
+    NSArray *items = [self.sdk getItems:1];
+    if (items == nil) {
+        XCTFail("list of items is null");
+    }
+    Item *item = items[0];
+    if (item == nil) {
+        XCTFail("Item is null");
+    }
+    XCTAssertTrue([self.sdk makePurchase:item] == YES);
 }
 
 @end
