@@ -48,4 +48,9 @@
     XCTAssertTrue([self.sdk makePurchase:item] == YES);
 }
 
+-(void)testTerminate {
+    [self.sdk terminate];
+    XCTAssertTrue(1==1);
+}
+
 @end
