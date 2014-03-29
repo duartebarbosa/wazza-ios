@@ -71,14 +71,12 @@
     NSData *requestData = [self createContentForHttpPost:content :requestUrl];
     NSDictionary *headers = [self addSecurityInformation:content];
     NSDictionary *params = nil;
-    [self.networkService
-     httpRequest:
-     ASYNC:
-     requestUrl:
-     HTTP_POST:
-     params:
-     headers:
-     requestData:
+    [self.networkService httpRequest:ASYNC:
+                          requestUrl:
+                           HTTP_POST:
+                              params:
+                             headers:
+                         requestData:
      ^(NSArray *result){
          NSLog(@"worked..");
      }:
@@ -101,39 +99,21 @@
     Purchase *purchase = [[Purchase alloc] initWithData:self.applicationName :item.name :item.currency.value];
     NSDictionary *json = [purchase toJson];
     
-    NSString *(^toJSONString)(NSDictionary *) = ^NSString *(NSDictionary * dic) {
-        NSError *error;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
-                                                           options:0
-                                                             error:&error];
-        
-        if (!jsonData) {
-            NSLog(@"Got an error: %@", error);
-            return nil;
-        } else {
-            return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        }
-    };
-    
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_PURCHASE];
-    NSString *content = toJSONString(json);
-    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
+    NSString *content = [self createStringFromJSON:json];
     NSDictionary *headers = [self addSecurityInformation:content];
     NSDictionary *params = nil;
-    NSError *error = nil;
-    NSData *requestData = [NSJSONSerialization dataWithJSONObject:body
-                                                          options:0
-                                                            error:&error];
+    NSData *requestData = [self createContentForHttpPost:content :requestUrl];
+    
     __block BOOL retVal = NO;
     
-    [self.networkService
-     httpRequest:
-     ASYNC:
-     requestUrl:
-     HTTP_POST:
-     params:
-     headers:
-     requestData:
+    [self.networkService httpRequest:
+                               ASYNC:
+                          requestUrl:
+                           HTTP_POST:
+                              params:
+                             headers:
+                         requestData:
      ^(NSArray *result){
          retVal = YES;
      }:
