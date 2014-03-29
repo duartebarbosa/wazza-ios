@@ -66,30 +66,11 @@
     [info calculateSessionLength];
     NSDictionary *json = [info toJson];
     
-    NSString *(^toJSONString)(NSDictionary *) = ^NSString *(NSDictionary * dic) {
-        NSError *error;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
-                                                           options:0
-                                                             error:&error];
-        
-        if (!jsonData) {
-            NSLog(@"Got an error: %@", error);
-            return nil;
-        } else {
-            return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        }
-    };
-    
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_SESSION_UPDATE];
-    NSString *content = toJSONString(json);
-    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
+    NSString *content = [self createStringFromJSON:json];
+    NSData *requestData = [self createContentForHttpPost:content :requestUrl];
     NSDictionary *headers = [self addSecurityInformation:content];
     NSDictionary *params = nil;
-    NSError *error = nil;
-    NSData *requestData = [NSJSONSerialization dataWithJSONObject:body
-                                                          options:0
-                                                            error:&error];
-    
     [self.networkService
      httpRequest:
      ASYNC:
@@ -173,6 +154,28 @@
 }
 
 /********** PRIVATE FUNCTIONS ********/
+
+-(NSString *)createStringFromJSON:(NSDictionary *)dic {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
+                                                       options:0
+                                                         error:&error];
+    if (!jsonData) {
+        NSLog(@"Got an error: %@", error);
+        return nil;
+    } else {
+        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+}
+
+-(NSData *)createContentForHttpPost:(NSString *)content :(NSString *)requestUrl {
+    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
+    NSError *error = nil;
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:body
+                                                          options:0
+                                                            error:&error];
+    return requestData;
+}
 
 -(NSDictionary *)addSecurityInformation:(NSString *)content {
     NSMutableDictionary *securityHeaders = [NSMutableDictionary dictionaryWithObjectsAndKeys:[self applicationName],@"AppName", nil];
