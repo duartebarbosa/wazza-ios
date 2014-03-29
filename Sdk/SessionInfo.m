@@ -25,7 +25,10 @@
 -(NSDictionary *)toJson {
     NSMutableDictionary *json = [[NSMutableDictionary alloc] init];
     [json setObject:self.userId forKey:@"userId"];
-    [json setObject:self.startTime forKey:@"startTime"];
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:self.startTime
+                                                         dateStyle:NSDateFormatterShortStyle
+                                                         timeStyle:NSDateFormatterFullStyle];
+    [json setObject:dateString forKey:@"startTime"];
     [json setObject:[[NSNumber alloc] initWithDouble:self.sessionLenght] forKey:@"sessionLenght"];
     return json;
 }
