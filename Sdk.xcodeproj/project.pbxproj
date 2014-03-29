@@ -22,6 +22,7 @@
 		460F8E8418BD5F5A003CCC12 /* LocationInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E5318BD5B7F003CCC12 /* LocationInfo.h */; };
 		460F8E8518BD5F5E003CCC12 /* NetworkService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E5018BD5B14003CCC12 /* NetworkService.h */; };
 		460F8E9C18BE45C3003CCC12 /* SecurityService.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E9B18BE45C3003CCC12 /* SecurityService.m */; };
+		46169CEE18E6418F008E745A /* SessionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 46169CED18E6418F008E745A /* SessionInfo.m */; };
 		465DC93518C0A8D6000B91D7 /* PersistenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC93418C0A8D6000B91D7 /* PersistenceService.m */; };
 		465DC98518C0E53B000B91D7 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98418C0E53B000B91D7 /* Item.m */; };
 		465DC98818C0F75A000B91D7 /* ImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98718C0F75A000B91D7 /* ImageInfo.m */; };
@@ -74,6 +75,8 @@
 		460F8E5418BD5B7F003CCC12 /* LocationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationInfo.m; sourceTree = "<group>"; };
 		460F8E9A18BE45C3003CCC12 /* SecurityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityService.h; sourceTree = "<group>"; };
 		460F8E9B18BE45C3003CCC12 /* SecurityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityService.m; sourceTree = "<group>"; };
+		46169CEC18E6418F008E745A /* SessionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionInfo.h; sourceTree = "<group>"; };
+		46169CED18E6418F008E745A /* SessionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionInfo.m; sourceTree = "<group>"; };
 		465DC93318C0A8D6000B91D7 /* PersistenceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceService.h; sourceTree = "<group>"; };
 		465DC93418C0A8D6000B91D7 /* PersistenceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistenceService.m; sourceTree = "<group>"; };
 		465DC93D18C0BF04000B91D7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -189,6 +192,8 @@
 				465DC98718C0F75A000B91D7 /* ImageInfo.m */,
 				465DC98918C0FA25000B91D7 /* Currency.h */,
 				465DC98A18C0FA25000B91D7 /* Currency.m */,
+				46169CEC18E6418F008E745A /* SessionInfo.h */,
+				46169CED18E6418F008E745A /* SessionInfo.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				460F8E2418BD5A3E003CCC12 /* Sdk.m in Sources */,
 				465DC98B18C0FA25000B91D7 /* Currency.m in Sources */,
 				460F8E5218BD5B14003CCC12 /* NetworkService.m in Sources */,
+				46169CEE18E6418F008E745A /* SessionInfo.m in Sources */,
 				465DC98E18C48EB0000B91D7 /* HttpCodes.m in Sources */,
 				460F8E9C18BE45C3003CCC12 /* SecurityService.m in Sources */,
 				460F8E5518BD5B7F003CCC12 /* LocationInfo.m in Sources */,

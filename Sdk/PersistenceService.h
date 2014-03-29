@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "Item.h"
+#import "SessionInfo.h"
 
 @interface PersistenceService : NSObject
 
 -(id)initPersistence;
+
+-(void)saveSessionInfo:(SessionInfo *)info;
+
+-(SessionInfo *)getSessionInfo;
 
 -(void)createItemFromJson:(NSDictionary *)json;
 
