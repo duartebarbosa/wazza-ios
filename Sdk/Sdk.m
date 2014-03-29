@@ -10,6 +10,7 @@
 #import "NetworkService.h"
 #import "SecurityService.h"
 #import "PersistenceService.h"
+#import "SessionInfo.h"
 
 #define ITEMS_LIST @"ITEMS LIST"
 #define DETAILS @"DETAIILS"
@@ -25,6 +26,7 @@
 #define ENDPOINT_ITEM_DETAILED_LIST @"items/details/"
 #define ENDPOINT_DETAILS @"item/"
 #define ENDPOINT_PURCHASE @"purchase"
+#define ENDPOINT_SESSION_UPDATE @"session"
 
 @interface SDK()
 
@@ -57,6 +59,52 @@
     }
     
     return self;
+}
+
+-(void)terminate {
+    SessionInfo *info = [self.persistenceService getSessionInfo];
+    [info calculateSessionLength];
+    NSDictionary *json = [info toJson];
+    
+    NSString *(^toJSONString)(NSDictionary *) = ^NSString *(NSDictionary * dic) {
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
+                                                           options:0
+                                                             error:&error];
+        
+        if (!jsonData) {
+            NSLog(@"Got an error: %@", error);
+            return nil;
+        } else {
+            return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        }
+    };
+    
+    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_SESSION_UPDATE];
+    NSString *content = toJSONString(json);
+    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
+    NSDictionary *headers = [self addSecurityInformation:content];
+    NSDictionary *params = nil;
+    NSError *error = nil;
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:body
+                                                          options:0
+                                                            error:&error];
+    
+    [self.networkService
+     httpRequest:
+     ASYNC:
+     requestUrl:
+     HTTP_POST:
+     params:
+     headers:
+     requestData:
+     ^(NSArray *result){
+         NSLog(@"worked..");
+     }:
+     ^(NSError *result){
+         NSLog(@"not worked..");
+     }
+     ];
 }
 
 -(Item *)getItem:(NSString *)name {
@@ -99,7 +147,7 @@
     
     [self.networkService
      httpRequest:
-     SYNC:
+     ASYNC:
      requestUrl:
      HTTP_POST:
      params:
@@ -168,6 +216,8 @@
 }
 
 -(void)bootstrap {
+    SessionInfo *info = [[SessionInfo alloc] initWithoutLocation];
+    [self.persistenceService saveSessionInfo:info];
     [self fetchItems:0];
 }
 

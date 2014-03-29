@@ -17,7 +17,10 @@
 //@property(nonatomic, strong) LocationInfo *location;
 
 //-(id)initWithLocation:(NSString *)userId :(NSDate *)start :(LocationInfo *)location;
--(id)initWithoutLocation: (NSString *)userId :(NSDate *)start;
+-(id)initWithoutLocation;
+
 -(NSDictionary *)toJson;
+
+-(void)calculateSessionLength;
 
 @end

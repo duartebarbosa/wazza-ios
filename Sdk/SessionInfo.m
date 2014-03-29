@@ -11,7 +11,7 @@
 
 @implementation SessionInfo
 
--(id)initWithoutLocation: (NSString *)userId :(NSDate *)start {
+-(id)initWithoutLocation {
     self = [super init];
 
     if (self) {
@@ -20,6 +20,19 @@
     }
     
     return self;
+}
+
+-(NSDictionary *)toJson {
+    NSMutableDictionary *json = [[NSMutableDictionary alloc] init];
+    [json setObject:self.userId forKey:@"userId"];
+    [json setObject:self.startTime forKey:@"startTime"];
+    [json setObject:[[NSNumber alloc] initWithDouble:self.sessionLenght] forKey:@"sessionLenght"];
+    return json;
+}
+
+-(void)calculateSessionLength {
+    NSDate *now = [NSDate date];
+    self.sessionLenght = [now timeIntervalSinceDate:self.startTime];
 }
 
 #pragma mark - NSCoding
@@ -40,14 +53,6 @@
     [encoder encodeObject:self.userId forKey:@"userId"];
     [encoder encodeObject:self.startTime forKey:@"startTime"];
     [encoder encodeDouble:self.sessionLenght forKey:@"sessionLenght"];
-}
-
--(NSDictionary *)toJson {
-    NSMutableDictionary *json = [[NSMutableDictionary alloc] init];
-    [json setObject:self.userId forKey:@"userId"];
-    [json setObject:self.startTime forKey:@"startTime"];
-    [json setObject:[[NSNumber alloc] initWithDouble:self.sessionLenght] forKey:@"sessionLenght"];
-    return json;
 }
 
 @end
