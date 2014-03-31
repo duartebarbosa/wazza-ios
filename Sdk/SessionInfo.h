@@ -14,7 +14,7 @@
 @property(nonatomic, strong) NSString *userId;
 @property(nonatomic) NSDate *startTime;
 @property(nonatomic) double sessionLenght;
-//@property(nonatomic, strong) LocationInfo *location;
+@property(nonatomic, strong) LocationInfo *location;
 
 //-(id)initWithLocation:(NSString *)userId :(NSDate *)start :(LocationInfo *)location;
 -(id)initWithoutLocation;
@@ -22,5 +22,7 @@
 -(NSDictionary *)toJson;
 
 -(void)calculateSessionLength;
+
+-(void)updateLocationInfo:(double)latitude :(double)longitude;
 
 @end

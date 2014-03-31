@@ -6,11 +6,13 @@
 //  Copyright (c) 2014 Wazza. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "SDK.h"
 #import "NetworkService.h"
 #import "SecurityService.h"
 #import "PersistenceService.h"
 #import "SessionInfo.h"
+#import "LocationInfo.h"
 
 #define ITEMS_LIST @"ITEMS LIST"
 #define DETAILS @"DETAIILS"
@@ -28,13 +30,16 @@
 #define ENDPOINT_PURCHASE @"purchase"
 #define ENDPOINT_SESSION_UPDATE @"session"
 
-@interface SDK()
+@interface SDK() <CLLocationManagerDelegate>
 
 @property(nonatomic) NSString *applicationName;
 @property(nonatomic) NSString *secret;
 @property(nonatomic, strong) NetworkService *networkService;
 @property(nonatomic, strong) SecurityService *securityService;
 @property(nonatomic, strong) PersistenceService *persistenceService;
+@property(nonatomic, strong) CLLocationManager *manager;
+@property(nonatomic, strong) CLGeocoder *geocoder;
+@property(nonatomic, strong) LocationInfo *currentLocation;
 
 @end
 
@@ -51,11 +56,14 @@
         self.networkService = [[NetworkService alloc] init];
         self.securityService = [[SecurityService alloc] init];
         self.persistenceService = [[PersistenceService alloc] initPersistence];
-        if (![self authenticateTest]) {
-            self = nil;
-        } else {
-            [self bootstrap];
+        self.currentLocation = nil;
+        if ([self isLocationServiceAvailable]) {
+            self.manager = [[CLLocationManager alloc] init];
+            self.manager.delegate = self;
+            self.manager.desiredAccuracy = kCLLocationAccuracyBest;
+            [self.manager startUpdatingLocation];
         }
+        [self bootstrap];
     }
     
     return self;
@@ -64,6 +72,11 @@
 -(void)terminate {
     SessionInfo *info = [self.persistenceService getSessionInfo];
     [info calculateSessionLength];
+
+    if (self.currentLocation != nil) {
+        [info updateLocationInfo:self.currentLocation.latitude :self.currentLocation.longitude];
+    }
+
     NSDictionary *json = [info toJson];
     
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_SESSION_UPDATE];
@@ -133,7 +146,7 @@
     return retVal;
 }
 
-/********** PRIVATE FUNCTIONS ********/
+#pragma mark HTTP private methods
 
 -(NSString *)createStringFromJSON:(NSDictionary *)dic {
     NSError *error;
@@ -166,42 +179,11 @@
     return securityHeaders;
 }
 
-//just for test now..
--(BOOL)authenticateTest {
-    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_AUTH];
-    NSString *content = @"hello world";
-    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
-    NSDictionary *headers = [self addSecurityInformation:content];
-    NSDictionary *params = nil;
-    NSError *error = nil;
-    NSData *requestData = [NSJSONSerialization dataWithJSONObject:body
-                                                          options:NSJSONWritingPrettyPrinted
-                                                            error:&error];
-    __block BOOL retVal = NO;
-    
-    [self.networkService
-     httpRequest:
-     SYNC:
-     requestUrl:
-     HTTP_POST:
-     params:
-     headers:
-     requestData:
-     ^(NSArray *result){
-         retVal = YES;
-     }:
-     ^(NSError *result){
-         retVal = NO;
-     }
-     ];
-    
-    return retVal;
-}
+#pragma mark Init methods
 
 -(void)bootstrap {
     SessionInfo *info = [[SessionInfo alloc] initWithoutLocation];
     [self.persistenceService saveSessionInfo:info];
-    [self fetchItems:0];
 }
 
 -(void)fetchItems:(int)offset {
@@ -225,6 +207,35 @@
          NSLog(@"oops.. something went wrong");
      }
      ];
+}
+
+#pragma mark LocationManager
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Cannot get location: %@", error);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+
+    CLLocation *loc = newLocation;
+    
+    if (loc != nil) {
+        NSNumber *latitude = [[NSNumber alloc] initWithDouble:loc.coordinate.latitude];
+        NSNumber *longitude = [[NSNumber alloc] initWithDouble:loc.coordinate.longitude];
+        self.currentLocation = [[LocationInfo alloc] initWithLocationData:[latitude doubleValue] :[longitude doubleValue]];
+    }
+    
+}
+
+-(BOOL)isLocationServiceAvailable
+{
+    if([CLLocationManager locationServicesEnabled]==NO ||
+       [CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied ||
+       [CLLocationManager authorizationStatus]==kCLAuthorizationStatusRestricted){
+        return NO;
+    }else{
+        return YES;
+    }
 }
 
 @end

@@ -17,9 +17,14 @@
     if (self) {
         self.userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
         self.startTime = [NSDate date];
+        self.location = nil;
     }
     
     return self;
+}
+
+-(void)updateLocationInfo:(double)latitude :(double)longitude {
+    self.location = [[LocationInfo alloc] initWithLocationData:latitude :longitude];
 }
 
 -(NSDictionary *)toJson {
@@ -30,6 +35,12 @@
                                                          timeStyle:NSDateFormatterFullStyle];
     [json setObject:dateString forKey:@"startTime"];
     [json setObject:[[NSNumber alloc] initWithDouble:self.sessionLenght] forKey:@"sessionLenght"];
+    
+    if (self.location != nil) {
+        [json setObject:[[NSNumber alloc] initWithDouble:self.location.latitude] forKey:@"latitude"];
+        [json setObject:[[NSNumber alloc] initWithDouble:self.location.longitude] forKey:@"longitude"];
+    }
+    
     return json;
 }
 
