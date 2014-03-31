@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LocationInfo.h"
+#import "DeviceInfo.h"
 
 @interface SessionInfo : NSObject
 
@@ -15,8 +16,8 @@
 @property(nonatomic) NSDate *startTime;
 @property(nonatomic) double sessionLenght;
 @property(nonatomic, strong) LocationInfo *location;
+@property(nonatomic, strong) DeviceInfo *device;
 
-//-(id)initWithLocation:(NSString *)userId :(NSDate *)start :(LocationInfo *)location;
 -(id)initWithoutLocation;
 
 -(NSDictionary *)toJson;

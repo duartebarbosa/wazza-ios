@@ -8,6 +8,7 @@
 
 #import <UIKit/UIDevice.h>
 #import "SessionInfo.h"
+#import "DeviceInfo.h"
 
 @implementation SessionInfo
 
@@ -18,6 +19,7 @@
         self.userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
         self.startTime = [NSDate date];
         self.location = nil;
+        self.device = [[DeviceInfo alloc] initDeviceInfo];
     }
     
     return self;
@@ -41,6 +43,10 @@
         [json setObject:[[NSNumber alloc] initWithDouble:self.location.longitude] forKey:@"longitude"];
     }
     
+    if (self.device != nil) {
+        [json setObject:[self.device toJson] forKey:@"deviceInfo"];
+    }
+    
     return json;
 }
 
@@ -60,6 +66,12 @@
     self.userId = [decoder decodeObjectForKey:@"userId"];
     self.startTime = [decoder decodeObjectForKey:@"startTime"];
     self.sessionLenght = [decoder decodeDoubleForKey:@"sessionLength"];
+    
+    self.device = [[DeviceInfo alloc] initWithData:
+                   [decoder decodeObjectForKey:@"osName"]:
+                   [decoder decodeObjectForKey:@"osVersion"]:
+                   [decoder decodeObjectForKey:@"deviceModel"]];
+
     return self;
 }
 
@@ -67,6 +79,11 @@
     [encoder encodeObject:self.userId forKey:@"userId"];
     [encoder encodeObject:self.startTime forKey:@"startTime"];
     [encoder encodeDouble:self.sessionLenght forKey:@"sessionLenght"];
+    
+    //Device Info
+    [encoder encodeObject:self.device.osName forKey:@"osName"];
+    [encoder encodeObject:self.device.osVersion forKey:@"osVersion"];
+    [encoder encodeObject:self.device.deviceModel forKey:@"deviceModel"];
 }
 
 @end
