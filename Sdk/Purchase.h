@@ -8,15 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "LocationInfo.h"
+#import "DeviceInfo.h"
 
 @interface Purchase : NSObject
 
 @property(nonatomic) NSString *_id;
+@property(nonatomic) NSString *userId;
 @property(nonatomic) NSString *applicationName;
 @property(nonatomic) NSString *itemId;
 @property(nonatomic) double price;
 @property(nonatomic) NSDate *time;
 @property(nonatomic, strong) LocationInfo *location;
+@property(nonatomic, strong) DeviceInfo *deviceInfo;
 
 -(id)initWithData:(NSString *)name :(NSString *)itemId : (double)price;
 -(NSDictionary *)toJson;

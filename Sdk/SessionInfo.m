@@ -36,7 +36,7 @@
                                                          dateStyle:NSDateFormatterShortStyle
                                                          timeStyle:NSDateFormatterFullStyle];
     [json setObject:dateString forKey:@"startTime"];
-    [json setObject:[[NSNumber alloc] initWithDouble:self.sessionLenght] forKey:@"sessionLenght"];
+    [json setObject:[[NSNumber alloc] initWithDouble:self.sessionLenght] forKey:@"sessionLength"];
     
     if (self.location != nil) {
         [json setObject:[[NSNumber alloc] initWithDouble:self.location.latitude] forKey:@"latitude"];
@@ -78,7 +78,7 @@
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:self.userId forKey:@"userId"];
     [encoder encodeObject:self.startTime forKey:@"startTime"];
-    [encoder encodeDouble:self.sessionLenght forKey:@"sessionLenght"];
+    [encoder encodeDouble:self.sessionLenght forKey:@"sessionLength"];
     
     //Device Info
     [encoder encodeObject:self.device.osName forKey:@"osName"];

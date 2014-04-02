@@ -38,6 +38,12 @@
 		460F8E9C18BE45C3003CCC12 /* SecurityService.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E9B18BE45C3003CCC12 /* SecurityService.m */; };
 		46169CEE18E6418F008E745A /* SessionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 46169CED18E6418F008E745A /* SessionInfo.m */; };
 		46169D2F18E73386008E745A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46169D2E18E73386008E745A /* UIKit.framework */; };
+		464D61C018E7606B00549CFC /* Item.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 465DC98318C0E53B000B91D7 /* Item.h */; };
+		464D61C118E7607100549CFC /* Currency.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 465DC98918C0FA25000B91D7 /* Currency.h */; };
+		464D61C218E7607600549CFC /* ImageInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 465DC98618C0F75A000B91D7 /* ImageInfo.h */; };
+		464D61CC18E760BE00549CFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46169D2E18E73386008E745A /* UIKit.framework */; };
+		464D61CE18E983C200549CFC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464D61CD18E983C200549CFC /* CoreLocation.framework */; };
+		464D623E18E9BA3600549CFC /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 464D623D18E9BA3600549CFC /* DeviceInfo.m */; };
 		465DC93518C0A8D6000B91D7 /* PersistenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC93418C0A8D6000B91D7 /* PersistenceService.m */; };
 		465DC98518C0E53B000B91D7 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98418C0E53B000B91D7 /* Item.m */; };
 		465DC98818C0F75A000B91D7 /* ImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98718C0F75A000B91D7 /* ImageInfo.m */; };
@@ -62,6 +68,9 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				464D61C218E7607600549CFC /* ImageInfo.h in CopyFiles */,
+				464D61C118E7607100549CFC /* Currency.h in CopyFiles */,
+				464D61C018E7606B00549CFC /* Item.h in CopyFiles */,
 				460F8E8518BD5F5E003CCC12 /* NetworkService.h in CopyFiles */,
 				460F8E8418BD5F5A003CCC12 /* LocationInfo.h in CopyFiles */,
 				460F8E7B18BD5F1B003CCC12 /* Purchase.h in CopyFiles */,
@@ -93,6 +102,9 @@
 		46169CEC18E6418F008E745A /* SessionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionInfo.h; sourceTree = "<group>"; };
 		46169CED18E6418F008E745A /* SessionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionInfo.m; sourceTree = "<group>"; };
 		46169D2E18E73386008E745A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		464D61CD18E983C200549CFC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		464D623C18E9BA3600549CFC /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
+		464D623D18E9BA3600549CFC /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
 		465DC93318C0A8D6000B91D7 /* PersistenceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceService.h; sourceTree = "<group>"; };
 		465DC93418C0A8D6000B91D7 /* PersistenceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistenceService.m; sourceTree = "<group>"; };
 		465DC93D18C0BF04000B91D7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -120,6 +132,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				464D61CE18E983C200549CFC /* CoreLocation.framework in Frameworks */,
+				464D61CC18E760BE00549CFC /* UIKit.framework in Frameworks */,
 				460F8E3118BD5A3E003CCC12 /* libSdk.a in Frameworks */,
 				460F8E2B18BD5A3E003CCC12 /* XCTest.framework in Frameworks */,
 				460F8E2C18BD5A3E003CCC12 /* Foundation.framework in Frameworks */,
@@ -151,6 +165,7 @@
 		460F8E1B18BD5A3E003CCC12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				464D61CD18E983C200549CFC /* CoreLocation.framework */,
 				46169D2E18E73386008E745A /* UIKit.framework */,
 				460F8E1C18BD5A3E003CCC12 /* Foundation.framework */,
 				460F8E2A18BD5A3E003CCC12 /* XCTest.framework */,
@@ -200,18 +215,14 @@
 		460F8E4218BD5A98003CCC12 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				460F8E4718BD5AEB003CCC12 /* Purchase.h */,
-				460F8E4818BD5AEB003CCC12 /* Purchase.m */,
+				464D624118E9BA8C00549CFC /* Items */,
+				464D624018E9BA7300549CFC /* Purchase */,
 				460F8E5318BD5B7F003CCC12 /* LocationInfo.h */,
 				460F8E5418BD5B7F003CCC12 /* LocationInfo.m */,
-				465DC98318C0E53B000B91D7 /* Item.h */,
-				465DC98418C0E53B000B91D7 /* Item.m */,
-				465DC98618C0F75A000B91D7 /* ImageInfo.h */,
-				465DC98718C0F75A000B91D7 /* ImageInfo.m */,
-				465DC98918C0FA25000B91D7 /* Currency.h */,
-				465DC98A18C0FA25000B91D7 /* Currency.m */,
 				46169CEC18E6418F008E745A /* SessionInfo.h */,
 				46169CED18E6418F008E745A /* SessionInfo.m */,
+				464D623C18E9BA3600549CFC /* DeviceInfo.h */,
+				464D623D18E9BA3600549CFC /* DeviceInfo.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -229,6 +240,28 @@
 				465DC98D18C48EB0000B91D7 /* HttpCodes.m */,
 			);
 			name = services;
+			sourceTree = "<group>";
+		};
+		464D624018E9BA7300549CFC /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				465DC98918C0FA25000B91D7 /* Currency.h */,
+				465DC98A18C0FA25000B91D7 /* Currency.m */,
+				460F8E4718BD5AEB003CCC12 /* Purchase.h */,
+				460F8E4818BD5AEB003CCC12 /* Purchase.m */,
+			);
+			name = Purchase;
+			sourceTree = "<group>";
+		};
+		464D624118E9BA8C00549CFC /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				465DC98318C0E53B000B91D7 /* Item.h */,
+				465DC98418C0E53B000B91D7 /* Item.m */,
+				465DC98618C0F75A000B91D7 /* ImageInfo.h */,
+				465DC98718C0F75A000B91D7 /* ImageInfo.m */,
+			);
+			name = Items;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,7 +353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# define output folder environment variable\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target ImageFilters ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target ImageFilters -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\"\n\n# Last touch. copy the header files. Just for convenience\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/include\" \"${UNIVERSAL_OUTPUTFOLDER}/\"";
+			shellScript = "# define output folder environment variable\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target ImageFilters ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target ImageFilters -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/a${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\"\n\n# Last touch. copy the header files. Just for convenience\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/include\" \"${UNIVERSAL_OUTPUTFOLDER}/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -332,6 +365,7 @@
 				460F8E4918BD5AEB003CCC12 /* Purchase.m in Sources */,
 				460F8E2418BD5A3E003CCC12 /* Sdk.m in Sources */,
 				465DC98B18C0FA25000B91D7 /* Currency.m in Sources */,
+				464D623E18E9BA3600549CFC /* DeviceInfo.m in Sources */,
 				460F8E5218BD5B14003CCC12 /* NetworkService.m in Sources */,
 				46169CEE18E6418F008E745A /* SessionInfo.m in Sources */,
 				465DC98E18C48EB0000B91D7 /* HttpCodes.m in Sources */,
@@ -444,6 +478,7 @@
 		460F8E3D18BD5A3E003CCC12 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				DSTROOT = /tmp/Sdk.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sdk/Sdk-Prefix.pch";
@@ -453,13 +488,14 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
 		460F8E3E18BD5A3E003CCC12 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				DSTROOT = /tmp/Sdk.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sdk/Sdk-Prefix.pch";
@@ -469,13 +505,18 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
+				VALID_ARCHS = "arm64 armv7 armv7s";
+				"VALID_ARCHS[sdk=*]" = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
 		460F8E4018BD5A3E003CCC12 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					i386,
+				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -497,6 +538,10 @@
 		460F8E4118BD5A3E003CCC12 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					i386,
+				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

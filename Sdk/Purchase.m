@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Wazza. All rights reserved.
 //
 
+#import <UIKit/UIDevice.h>
 #import "Purchase.h"
 #import "LocationInfo.h"
 #import "SecurityService.h"
@@ -28,8 +29,10 @@
     self.itemId = itemId;
     self.price = price;
     self.time = [NSDate date];
+    self.userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     self.location = Nil; //TODO
     self._id = generateID();
+    self.deviceInfo = [[DeviceInfo alloc] initDeviceInfo];
     return self;
 }
 
@@ -45,10 +48,12 @@
     NSString *time = [self dateToString];
     
     [json setObject:self._id forKey:@"id"];
+    [json setObject:self.userId forKey:@"userId"];
     [json setObject:self.applicationName forKey:@"name"];
     [json setObject:self.itemId forKey:@"itemId"];
     [json setObject:[[NSNumber alloc] initWithDouble:self.price] forKey:@"price"];
     [json setObject:time forKey:@"time"];
+    [json setObject:[self.deviceInfo toJson] forKey:@"deviceInfo"];
     
     return json;
 }

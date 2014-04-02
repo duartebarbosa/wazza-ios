@@ -40,6 +40,7 @@
     [json setObject:self.osName forKey:@"osName"];
     [json setObject:self.osVersion forKey:@"osVersion"];
     [json setObject:self.deviceModel forKey:@"deviceModel"];
+    [json setObject:@"iOS" forKey:@"osType"];
     return json;
 }
 
