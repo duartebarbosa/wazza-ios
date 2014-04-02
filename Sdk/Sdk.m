@@ -11,6 +11,8 @@
 #import "NetworkService.h"
 #import "SecurityService.h"
 #import "PersistenceService.h"
+#import "PurchaseService.h"
+#import "ItemService.h"
 #import "SessionInfo.h"
 #import "LocationInfo.h"
 
@@ -40,6 +42,8 @@
 @property(nonatomic, strong) CLLocationManager *manager;
 @property(nonatomic, strong) CLGeocoder *geocoder;
 @property(nonatomic, strong) LocationInfo *currentLocation;
+@property(nonatomic, strong) PurchaseService *purchaseService;
+@property(nonatomic, strong) ItemService *itemService;
 
 @end
 
@@ -84,7 +88,7 @@
     NSData *requestData = [self createContentForHttpPost:content :requestUrl];
     NSDictionary *headers = [self addSecurityInformation:content];
     NSDictionary *params = nil;
-    [self.networkService httpRequest:ASYNC:
+    [self.networkService httpRequest:SYNC:
                           requestUrl:
                            HTTP_POST:
                               params:
@@ -121,7 +125,7 @@
     __block BOOL retVal = NO;
     
     [self.networkService httpRequest:
-                               ASYNC:
+                               SYNC:
                           requestUrl:
                            HTTP_POST:
                               params:
@@ -184,6 +188,7 @@
 -(void)bootstrap {
     SessionInfo *info = [[SessionInfo alloc] initWithoutLocation];
     [self.persistenceService saveSessionInfo:info];
+    [self fetchItems:1];
 }
 
 -(void)fetchItems:(int)offset {
