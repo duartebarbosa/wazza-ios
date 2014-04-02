@@ -44,6 +44,9 @@
 		464D61CC18E760BE00549CFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46169D2E18E73386008E745A /* UIKit.framework */; };
 		464D61CE18E983C200549CFC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464D61CD18E983C200549CFC /* CoreLocation.framework */; };
 		464D623E18E9BA3600549CFC /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 464D623D18E9BA3600549CFC /* DeviceInfo.m */; };
+		464E205C18EC1EDE00C8F075 /* PurchaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 464E205B18EC1EDE00C8F075 /* PurchaseService.m */; };
+		464E205E18EC236E00C8F075 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464E205D18EC236E00C8F075 /* StoreKit.framework */; };
+		464E206318EC5E9300C8F075 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = 464E206218EC5E9300C8F075 /* ItemService.m */; };
 		465DC93518C0A8D6000B91D7 /* PersistenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC93418C0A8D6000B91D7 /* PersistenceService.m */; };
 		465DC98518C0E53B000B91D7 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98418C0E53B000B91D7 /* Item.m */; };
 		465DC98818C0F75A000B91D7 /* ImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98718C0F75A000B91D7 /* ImageInfo.m */; };
@@ -105,6 +108,11 @@
 		464D61CD18E983C200549CFC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		464D623C18E9BA3600549CFC /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
 		464D623D18E9BA3600549CFC /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
+		464E205A18EC1EDE00C8F075 /* PurchaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseService.h; sourceTree = "<group>"; };
+		464E205B18EC1EDE00C8F075 /* PurchaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseService.m; sourceTree = "<group>"; };
+		464E205D18EC236E00C8F075 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		464E206118EC5E9300C8F075 /* ItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemService.h; sourceTree = "<group>"; };
+		464E206218EC5E9300C8F075 /* ItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemService.m; sourceTree = "<group>"; };
 		465DC93318C0A8D6000B91D7 /* PersistenceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceService.h; sourceTree = "<group>"; };
 		465DC93418C0A8D6000B91D7 /* PersistenceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistenceService.m; sourceTree = "<group>"; };
 		465DC93D18C0BF04000B91D7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -123,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				464E205E18EC236E00C8F075 /* StoreKit.framework in Frameworks */,
 				46169D2F18E73386008E745A /* UIKit.framework in Frameworks */,
 				460F8E1D18BD5A3E003CCC12 /* Foundation.framework in Frameworks */,
 			);
@@ -165,6 +174,7 @@
 		460F8E1B18BD5A3E003CCC12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				464E205D18EC236E00C8F075 /* StoreKit.framework */,
 				464D61CD18E983C200549CFC /* CoreLocation.framework */,
 				46169D2E18E73386008E745A /* UIKit.framework */,
 				460F8E1C18BD5A3E003CCC12 /* Foundation.framework */,
@@ -230,14 +240,10 @@
 		460F8E4318BD5A9E003CCC12 /* services */ = {
 			isa = PBXGroup;
 			children = (
-				460F8E5018BD5B14003CCC12 /* NetworkService.h */,
-				460F8E5118BD5B14003CCC12 /* NetworkService.m */,
-				460F8E9A18BE45C3003CCC12 /* SecurityService.h */,
-				460F8E9B18BE45C3003CCC12 /* SecurityService.m */,
-				465DC93318C0A8D6000B91D7 /* PersistenceService.h */,
-				465DC93418C0A8D6000B91D7 /* PersistenceService.m */,
-				465DC98C18C48EB0000B91D7 /* HttpCodes.h */,
-				465DC98D18C48EB0000B91D7 /* HttpCodes.m */,
+				464E205F18EC5E7800C8F075 /* Items */,
+				464E205918EC1EB100C8F075 /* Purchases */,
+				464E205818EC1E9000C8F075 /* LocalStorage */,
+				464E205718EC1E5E00C8F075 /* Network */,
 			);
 			name = services;
 			sourceTree = "<group>";
@@ -260,6 +266,46 @@
 				465DC98418C0E53B000B91D7 /* Item.m */,
 				465DC98618C0F75A000B91D7 /* ImageInfo.h */,
 				465DC98718C0F75A000B91D7 /* ImageInfo.m */,
+			);
+			name = Items;
+			sourceTree = "<group>";
+		};
+		464E205718EC1E5E00C8F075 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				465DC98C18C48EB0000B91D7 /* HttpCodes.h */,
+				465DC98D18C48EB0000B91D7 /* HttpCodes.m */,
+				460F8E5018BD5B14003CCC12 /* NetworkService.h */,
+				460F8E5118BD5B14003CCC12 /* NetworkService.m */,
+				460F8E9A18BE45C3003CCC12 /* SecurityService.h */,
+				460F8E9B18BE45C3003CCC12 /* SecurityService.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		464E205818EC1E9000C8F075 /* LocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				465DC93318C0A8D6000B91D7 /* PersistenceService.h */,
+				465DC93418C0A8D6000B91D7 /* PersistenceService.m */,
+			);
+			name = LocalStorage;
+			sourceTree = "<group>";
+		};
+		464E205918EC1EB100C8F075 /* Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				464E205A18EC1EDE00C8F075 /* PurchaseService.h */,
+				464E205B18EC1EDE00C8F075 /* PurchaseService.m */,
+			);
+			name = Purchases;
+			sourceTree = "<group>";
+		};
+		464E205F18EC5E7800C8F075 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				464E206118EC5E9300C8F075 /* ItemService.h */,
+				464E206218EC5E9300C8F075 /* ItemService.m */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -368,9 +414,11 @@
 				464D623E18E9BA3600549CFC /* DeviceInfo.m in Sources */,
 				460F8E5218BD5B14003CCC12 /* NetworkService.m in Sources */,
 				46169CEE18E6418F008E745A /* SessionInfo.m in Sources */,
+				464E206318EC5E9300C8F075 /* ItemService.m in Sources */,
 				465DC98E18C48EB0000B91D7 /* HttpCodes.m in Sources */,
 				460F8E9C18BE45C3003CCC12 /* SecurityService.m in Sources */,
 				460F8E5518BD5B7F003CCC12 /* LocationInfo.m in Sources */,
+				464E205C18EC1EDE00C8F075 /* PurchaseService.m in Sources */,
 				465DC98818C0F75A000B91D7 /* ImageInfo.m in Sources */,
 				465DC98518C0E53B000B91D7 /* Item.m in Sources */,
 				465DC93518C0A8D6000B91D7 /* PersistenceService.m in Sources */,
