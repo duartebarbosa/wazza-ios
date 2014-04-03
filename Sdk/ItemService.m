@@ -26,7 +26,7 @@
 @property(nonatomic, strong) NetworkService *networkService;
 @property(nonatomic, strong) SecurityService *securityService;
 @property(nonatomic, strong) PersistenceService *persistenceService;
-@property(nonatomic) NSArray *validSKProducts;
+@property(nonatomic, strong) NSArray *validSKProducts;
 
 @end
 
@@ -65,8 +65,7 @@
              [self.persistenceService createItemFromJson:item];
              [productsId addObject:[self getItemIdFromJson:item]];
          }
-         //Don't do it for now..
-         //[self checkValidity:productsId];
+         [self checkValidity:productsId];
      }:
      ^(NSError *result){
          WazzaError *error = [[WazzaError alloc] initWithMessage:@"error"]; //TODO
@@ -117,6 +116,11 @@
     }
     
     [self.delegate onItemFetchComplete:response.products :nil];
+}
+
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
+    WazzaError *err = [[WazzaError alloc] initWithMessage:[[error userInfo] objectForKey:@"NSLocalizedDescription"]];
+    [self.delegate onItemFetchComplete:nil :err];
 }
 
 @end

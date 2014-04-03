@@ -36,13 +36,17 @@
 }
 
 -(void)purchaseItem:(SKProduct *)item {
-    if ([self canMakePurchase]) {
+    if ([self canMakePurchase] && item != nil) {
         SKPayment *payment = [SKPayment paymentWithProduct:item];
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
         [[SKPaymentQueue defaultQueue] addPayment:payment];
         
     } else {
-        WazzaError *error = [[WazzaError alloc] initWithMessage:@"Purchases disabled"];
+        NSString *errorMsg = [[NSString alloc] initWithFormat:@"%@",
+                              (item == nil ?
+                               @"Item is null" :
+                               ([self canMakePurchase] ? nil: @"Purchases disabled"))];
+        WazzaError *error = [[WazzaError alloc] initWithMessage:errorMsg];
         [self.delegate onPurchaseFailure:error];
     }
 }
