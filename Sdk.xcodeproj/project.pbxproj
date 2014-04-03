@@ -6,22 +6,9 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		46D00A7818E7366C00EF1701 /* UniversalLib */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 46D00A7918E7366C00EF1701 /* Build configuration list for PBXAggregateTarget "UniversalLib" */;
-			buildPhases = (
-				46D00A7C18E7369E00EF1701 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = UniversalLib;
-			productName = UniversalLib;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		460A01CF18ECDFEF00657CEE /* DeviceInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464D623C18E9BA3600549CFC /* DeviceInfo.h */; };
+		460A027A18ED9FE100657CEE /* WazzaSDKDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460A01C218ECDCCC00657CEE /* WazzaSDKDelegate.h */; };
 		460F8E1D18BD5A3E003CCC12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460F8E1C18BD5A3E003CCC12 /* Foundation.framework */; };
 		460F8E2218BD5A3E003CCC12 /* Sdk.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E2118BD5A3E003CCC12 /* Sdk.h */; };
 		460F8E2418BD5A3E003CCC12 /* Sdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E2318BD5A3E003CCC12 /* Sdk.m */; };
@@ -74,6 +61,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				460A027A18ED9FE100657CEE /* WazzaSDKDelegate.h in CopyFiles */,
 				460A01CF18ECDFEF00657CEE /* DeviceInfo.h in CopyFiles */,
 				464D61C218E7607600549CFC /* ImageInfo.h in CopyFiles */,
 				464D61C118E7607100549CFC /* Currency.h in CopyFiles */,
@@ -394,7 +382,6 @@
 			targets = (
 				460F8E1818BD5A3D003CCC12 /* Sdk */,
 				460F8E2818BD5A3E003CCC12 /* SdkTests */,
-				46D00A7818E7366C00EF1701 /* UniversalLib */,
 			);
 		};
 /* End PBXProject section */
@@ -409,22 +396,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		46D00A7C18E7369E00EF1701 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# define output folder environment variable\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target ImageFilters ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target ImageFilters -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/a${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\"\n\n# Last touch. copy the header files. Just for convenience\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/include\" \"${UNIVERSAL_OUTPUTFOLDER}/\"";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		460F8E1518BD5A3D003CCC12 /* Sources */ = {
@@ -511,8 +482,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = iphoneos;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos7.1;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -542,8 +514,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				SDKROOT = iphoneos;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos7.1;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -554,7 +528,11 @@
 				DSTROOT = /tmp/Sdk.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sdk/Sdk-Prefix.pch";
-				ONLY_ACTIVE_ARCH = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/underscore",
+				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -572,6 +550,11 @@
 				DSTROOT = /tmp/Sdk.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sdk/Sdk-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/underscore",
+				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -602,6 +585,10 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "SdkTests/SdkTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/underscore",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 				WRAPPER_EXTENSION = xctest;
@@ -623,25 +610,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sdk/Sdk-Prefix.pch";
 				INFOPLIST_FILE = "SdkTests/SdkTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/underscore",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-		46D00A7A18E7366C00EF1701 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
-			};
-			name = Debug;
-		};
-		46D00A7B18E7366C00EF1701 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;
 		};
@@ -671,15 +646,6 @@
 			buildConfigurations = (
 				460F8E4018BD5A3E003CCC12 /* Debug */,
 				460F8E4118BD5A3E003CCC12 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		46D00A7918E7366C00EF1701 /* Build configuration list for PBXAggregateTarget "UniversalLib" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				46D00A7A18E7366C00EF1701 /* Debug */,
-				46D00A7B18E7366C00EF1701 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
