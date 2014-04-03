@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Item.h"
-#import "Purchase.h"
+#import "PurchaseInfo.h"
 
 @interface SDK : NSObject
 

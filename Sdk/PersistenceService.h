@@ -22,6 +22,8 @@
 
 -(Item *)getItem:(NSString *)name;
 
+-(void)removeItem:(NSString *)itemId;
+
 -(NSArray *)getItems:(int)offset;
 
 @end

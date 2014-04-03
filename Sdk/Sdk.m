@@ -15,6 +15,7 @@
 #import "ItemService.h"
 #import "SessionInfo.h"
 #import "LocationInfo.h"
+#import "PurchaseDelegate.h"
 
 #define ITEMS_LIST @"ITEMS LIST"
 #define DETAILS @"DETAIILS"
@@ -32,7 +33,7 @@
 #define ENDPOINT_PURCHASE @"purchase"
 #define ENDPOINT_SESSION_UPDATE @"session"
 
-@interface SDK() <CLLocationManagerDelegate>
+@interface SDK() <CLLocationManagerDelegate, ItemDelegate, PurchaseDelegate>
 
 @property(nonatomic) NSString *applicationName;
 @property(nonatomic) NSString *secret;
@@ -60,6 +61,10 @@
         self.networkService = [[NetworkService alloc] init];
         self.securityService = [[SecurityService alloc] init];
         self.persistenceService = [[PersistenceService alloc] initPersistence];
+        self.itemService = [[ItemService alloc] initWithAppName:name];
+        self.purchaseService = [[PurchaseService alloc] initWithAppName:name];
+        self.itemService.delegate = self;
+        self.purchaseService.delegate = self;
         self.currentLocation = nil;
         if ([self isLocationServiceAvailable]) {
             self.manager = [[CLLocationManager alloc] init];
@@ -104,16 +109,16 @@
 }
 
 -(Item *)getItem:(NSString *)name {
-    return [self.persistenceService getItem:name];
+    return [self.itemService getItem:name];
 }
 
 -(NSArray *)getItems:(int)offset {
-    return[self.persistenceService getItems:offset];
+    return[self.itemService getItems:offset];
 }
 
 
 -(BOOL)makePurchase:(Item *)item {
-    Purchase *purchase = [[Purchase alloc] initWithData:self.applicationName :item.name :item.currency.value];
+    PurchaseInfo *purchase = [[PurchaseInfo alloc] initWithData:self.applicationName :item.name :item.currency.value];
     NSDictionary *json = [purchase toJson];
     
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_PURCHASE];
@@ -188,31 +193,9 @@
 -(void)bootstrap {
     SessionInfo *info = [[SessionInfo alloc] initWithoutLocation];
     [self.persistenceService saveSessionInfo:info];
-    [self fetchItems:1];
+    [self.itemService fetchItems:1];
 }
 
--(void)fetchItems:(int)offset {
-    NSString *requestUrl = [NSString stringWithFormat: @"%@%@%@", URL, ENDPOINT_ITEM_DETAILED_LIST, self.applicationName];
-    NSDictionary *headers = [self addSecurityInformation:nil];
-    
-    [self.networkService
-     httpRequest:
-     SYNC:
-     requestUrl:
-     HTTP_GET:
-     nil:
-     headers:
-     nil:
-     ^(NSArray *result){
-         for (id item in result) {
-             [self.persistenceService createItemFromJson:item];
-         }
-     }:
-     ^(NSError *result){
-         NSLog(@"oops.. something went wrong");
-     }
-     ];
-}
 
 #pragma mark LocationManager
 
@@ -241,6 +224,24 @@
     }else{
         return YES;
     }
+}
+
+#pragma ItemDelegate
+
+-(void)onItemFetchComplete:(NSArray *)items :(WazzaError *)error {
+    NSLog(@"onItemFetchComplete");
+    NSLog(@"%@", items);
+}
+
+#pragma PurchaseDelegate
+
+-(void)onPurchaseFailure:(WazzaError *)error {
+    NSLog(@"received error...");
+}
+
+
+-(void)onPurchaseSuccess:(PurchaseInfo *)purchaseInfo {
+    NSLog(@"PURCHASE SUCCESS! %@", purchaseInfo);
 }
 
 @end
