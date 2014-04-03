@@ -9,11 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "Item.h"
 #import "PurchaseInfo.h"
+#import "WazzaSDKDelegate.h"
 
 @interface SDK : NSObject
 
+@property (nonatomic, weak) id<WazzaSDKDelegate> delegate;
+
 -(id)initWithCredentials:(NSString *)name
                         :(NSString *)secretKey;
+
+-(void)allowGeoLocation;
 
 -(void)terminate;
 
@@ -21,6 +26,6 @@
 
 -(NSArray *)getItems:(int)offset;
 
--(BOOL)makePurchase:(Item *)item;
+-(void)makePurchase:(Item *)item;
 
 @end
