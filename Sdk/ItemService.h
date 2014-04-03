@@ -8,10 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "Item.h"
+#import "Sdk.h"
+#import "ItemDelegate.h"
 
 @interface ItemService : NSObject
 
+@property (nonatomic, weak) id<ItemDelegate> delegate;
+
+-(id)initWithAppName:(NSString *)applicationName;
+
 -(void)fetchItems:(int)offset;
+
+-(NSString *)getItemIdFromJson:(NSDictionary *) jsonItem;
 
 -(Item *)getItem:(NSString *)name;
 

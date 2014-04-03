@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ImageInfo.h"
 #import "Currency.h"
+#import <StoreKit/StoreKit.h>
 
 @interface Item : NSObject <NSCoding>
 
