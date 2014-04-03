@@ -10,7 +10,7 @@
 #import "LocationInfo.h"
 #import "DeviceInfo.h"
 
-@interface Purchase : NSObject
+@interface PurchaseInfo : NSObject
 
 @property(nonatomic) NSString *_id;
 @property(nonatomic) NSString *userId;

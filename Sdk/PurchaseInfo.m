@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIDevice.h>
-#import "Purchase.h"
+#import "PurchaseInfo.h"
 #import "LocationInfo.h"
 #import "SecurityService.h"
 
-@implementation Purchase
+@implementation PurchaseInfo
 
 -(id)initWithData:(NSString *)name :(NSString *)itemId : (double)price {
     self = [self init];

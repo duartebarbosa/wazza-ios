@@ -7,15 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Item.h"
-#import "Purchase.h"
+#import <StoreKit/StoreKit.h>
+#import "PurchaseDelegate.h"
 
 @interface PurchaseService : NSObject
 
-typedef void (^PurchaseSuccess)(Purchase *);
-typedef void (^PurchaseFailure)(NSError *);
+@property (nonatomic, weak) id<PurchaseDelegate> delegate;
 
--(NSArray *)availableForPurchase:(NSArray *)items;
--(void)purchaseItem:(Item *)item :(PurchaseSuccess)success :(PurchaseFailure)failure;
+
+-(id)initWithAppName:(NSString *)appName;
+
+-(BOOL)canMakePurchase;
+
+-(void)purchaseItem:(SKProduct *)item;
 
 @end
