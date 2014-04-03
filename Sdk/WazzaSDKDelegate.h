@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PurchaseInfo.h"
 
 @protocol WazzaSDKDelegate <NSObject>
 
-//@required
-//-(void)purchaseSuccess:()
+@required
+-(void)purchaseSuccess:(PurchaseInfo *)info;
+
+@required
+-(void)PurchaseFailure:(NSError *)error;
 
 @end
