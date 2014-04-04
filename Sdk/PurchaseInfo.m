@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIDevice.h>
+#import <StoreKit/StoreKit.h>
 #import "PurchaseInfo.h"
 #import "LocationInfo.h"
 #import "SecurityService.h"
 
 @implementation PurchaseInfo
 
--(id)initWithData:(NSString *)name :(NSString *)itemId : (double)price {
-    self = [self init];
+-(id)initCommon {
+    self = [super init];
     
     /**
      Purchase Id format: Hash(appName + itemID + time + device)
@@ -25,14 +26,43 @@
         return [securityService hashContent:idValue];
     };
     
-    self.applicationName = name;
-    self.itemId = itemId;
-    self.price = price;
-    self.time = [NSDate date];
-    self.userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    self.location = Nil; //TODO
-    self._id = generateID();
-    self.deviceInfo = [[DeviceInfo alloc] initDeviceInfo];
+    if (self) {
+        self.time = [NSDate date];
+        self.userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+        self.location = Nil; //TODO
+        self._id = generateID();
+        self.deviceInfo = [[DeviceInfo alloc] initDeviceInfo];
+    }
+    return self;
+}
+
+-(id)initWithData:(NSString *)name :(NSString *)itemId : (double)price {
+    self = [self initCommon];
+    
+    if (self) {
+        self.applicationName = name;
+        self.itemId = itemId;
+        self.price = price;
+    }
+    
+    return self;
+}
+
+-(id)initFromTransaction:(SKPaymentTransaction *)transaction
+                 appName:(NSString *)name
+               itemPrice: (double)price {
+    self = [self initCommon];
+    
+    if (self) {
+        self.applicationName = name;
+        self.itemId = transaction.payment.productIdentifier;
+        self.price = price;
+        self.time = transaction.transactionDate;
+        self.transactionId = transaction.transactionIdentifier;
+        self.transactionReceipt = nil; //transaction.transactionReceipt;
+        self.quantity = transaction.payment.quantity;
+    }
+    
     return self;
 }
 

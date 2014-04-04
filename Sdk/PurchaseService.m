@@ -16,6 +16,7 @@
 
 @property(nonatomic, strong) SKProductsRequest *productRequest;
 @property(nonatomic, strong) ItemService *itemService;
+@property(nonatomic, strong) NSMutableArray *items;
 
 @end
 
@@ -27,6 +28,7 @@
     self = [super init];
     if (self) {
         self.itemService = [[ItemService alloc] initWithAppName:appName];
+        self.items = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -40,6 +42,7 @@
         SKPayment *payment = [SKPayment paymentWithProduct:item];
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
         [[SKPaymentQueue defaultQueue] addPayment:payment];
+        [self.items addObject:item];
         
     } else {
         NSString *errorMsg = [[NSString alloc] initWithFormat:@"%@",
@@ -53,9 +56,20 @@
 
 #pragma mark StoreKit Delegate
 
--(PurchaseInfo *)createPurchaseInfoFromTransaction:(SKPaymentTransaction *)transaction {
-    PurchaseInfo *p = [[PurchaseInfo alloc] init];
-    return p;
+-(void)handleTransactionSuccess:(SKPaymentTransaction *)transaction {
+    [[SKPaymentQueue defaultQueue ] finishTransaction:transaction];
+    
+    double price = 0;
+    for (SKProduct *item in self.items) {
+        if (item.productIdentifier == transaction.payment.productIdentifier) {
+            price = [item.price doubleValue];
+            break;
+        }
+    }
+    
+    [self.delegate onPurchaseSuccess:
+     [[PurchaseInfo alloc] initFromTransaction:transaction appName:self.itemService.applicationName itemPrice:price]
+     ];
 }
 
 -(void)paymentQueue:(SKPaymentQueue *)queue
@@ -72,10 +86,10 @@
                 break;
             case SKPaymentTransactionStateFailed:
                 NSLog(@"ERROR %@", transaction.error);
-                [self.delegate onPurchaseFailure:nil];
+                [self.delegate onPurchaseFailure:[[WazzaError alloc] initWithMessage:transaction.error.localizedDescription]];
                 break;
             case SKPaymentTransactionStatePurchased:
-                [self.delegate onPurchaseSuccess:[self createPurchaseInfoFromTransaction:transaction]];
+                [self handleTransactionSuccess:transaction];
                 break;
             default:
                 break;
