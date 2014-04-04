@@ -10,6 +10,7 @@
 #import "Item.h"
 
 #define LIST_OF_ITEMS_IDS @"ids"
+#define SESSION_INFO @"session_info"
 
 @implementation PersistenceService
 
@@ -22,6 +23,15 @@
     NSData *ids = [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] init]];
     [[NSUserDefaults standardUserDefaults] setObject:ids forKey:LIST_OF_ITEMS_IDS];
     return self;
+}
+
+-(void)saveSessionInfo:(SessionInfo *)info {
+    NSData *_savedData = [NSKeyedArchiver archivedDataWithRootObject:info];
+    [[NSUserDefaults standardUserDefaults] setObject:_savedData forKey:SESSION_INFO];
+}
+
+-(SessionInfo *)getSessionInfo {
+    return [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:SESSION_INFO]];
 }
 
 -(NSMutableArray *)getIdsList {

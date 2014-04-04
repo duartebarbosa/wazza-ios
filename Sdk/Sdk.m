@@ -6,10 +6,13 @@
 //  Copyright (c) 2014 Wazza. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "SDK.h"
 #import "NetworkService.h"
 #import "SecurityService.h"
 #import "PersistenceService.h"
+#import "SessionInfo.h"
+#import "LocationInfo.h"
 
 #define ITEMS_LIST @"ITEMS LIST"
 #define DETAILS @"DETAIILS"
@@ -25,14 +28,18 @@
 #define ENDPOINT_ITEM_DETAILED_LIST @"items/details/"
 #define ENDPOINT_DETAILS @"item/"
 #define ENDPOINT_PURCHASE @"purchase"
+#define ENDPOINT_SESSION_UPDATE @"session"
 
-@interface SDK()
+@interface SDK() <CLLocationManagerDelegate>
 
 @property(nonatomic) NSString *applicationName;
 @property(nonatomic) NSString *secret;
 @property(nonatomic, strong) NetworkService *networkService;
 @property(nonatomic, strong) SecurityService *securityService;
 @property(nonatomic, strong) PersistenceService *persistenceService;
+@property(nonatomic, strong) CLLocationManager *manager;
+@property(nonatomic, strong) CLGeocoder *geocoder;
+@property(nonatomic, strong) LocationInfo *currentLocation;
 
 @end
 
@@ -49,14 +56,47 @@
         self.networkService = [[NetworkService alloc] init];
         self.securityService = [[SecurityService alloc] init];
         self.persistenceService = [[PersistenceService alloc] initPersistence];
-        if (![self authenticateTest]) {
-            self = nil;
-        } else {
-            [self bootstrap];
+        self.currentLocation = nil;
+        if ([self isLocationServiceAvailable]) {
+            self.manager = [[CLLocationManager alloc] init];
+            self.manager.delegate = self;
+            self.manager.desiredAccuracy = kCLLocationAccuracyBest;
+            [self.manager startUpdatingLocation];
         }
+        [self bootstrap];
     }
     
     return self;
+}
+
+-(void)terminate {
+    SessionInfo *info = [self.persistenceService getSessionInfo];
+    [info calculateSessionLength];
+
+    if (self.currentLocation != nil) {
+        [info updateLocationInfo:self.currentLocation.latitude :self.currentLocation.longitude];
+    }
+
+    NSDictionary *json = [info toJson];
+    
+    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_SESSION_UPDATE];
+    NSString *content = [self createStringFromJSON:json];
+    NSData *requestData = [self createContentForHttpPost:content :requestUrl];
+    NSDictionary *headers = [self addSecurityInformation:content];
+    NSDictionary *params = nil;
+    [self.networkService httpRequest:ASYNC:
+                          requestUrl:
+                           HTTP_POST:
+                              params:
+                             headers:
+                         requestData:
+     ^(NSArray *result){
+         NSLog(@"worked..");
+     }:
+     ^(NSError *result){
+         NSLog(@"not worked..");
+     }
+     ];
 }
 
 -(Item *)getItem:(NSString *)name {
@@ -72,39 +112,21 @@
     Purchase *purchase = [[Purchase alloc] initWithData:self.applicationName :item.name :item.currency.value];
     NSDictionary *json = [purchase toJson];
     
-    NSString *(^toJSONString)(NSDictionary *) = ^NSString *(NSDictionary * dic) {
-        NSError *error;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
-                                                           options:0
-                                                             error:&error];
-        
-        if (!jsonData) {
-            NSLog(@"Got an error: %@", error);
-            return nil;
-        } else {
-            return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        }
-    };
-    
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_PURCHASE];
-    NSString *content = toJSONString(json);
-    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
+    NSString *content = [self createStringFromJSON:json];
     NSDictionary *headers = [self addSecurityInformation:content];
     NSDictionary *params = nil;
-    NSError *error = nil;
-    NSData *requestData = [NSJSONSerialization dataWithJSONObject:body
-                                                          options:0
-                                                            error:&error];
+    NSData *requestData = [self createContentForHttpPost:content :requestUrl];
+    
     __block BOOL retVal = NO;
     
-    [self.networkService
-     httpRequest:
-     SYNC:
-     requestUrl:
-     HTTP_POST:
-     params:
-     headers:
-     requestData:
+    [self.networkService httpRequest:
+                               ASYNC:
+                          requestUrl:
+                           HTTP_POST:
+                              params:
+                             headers:
+                         requestData:
      ^(NSArray *result){
          retVal = YES;
      }:
@@ -124,7 +146,29 @@
     return retVal;
 }
 
-/********** PRIVATE FUNCTIONS ********/
+#pragma mark HTTP private methods
+
+-(NSString *)createStringFromJSON:(NSDictionary *)dic {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
+                                                       options:0
+                                                         error:&error];
+    if (!jsonData) {
+        NSLog(@"Got an error: %@", error);
+        return nil;
+    } else {
+        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+}
+
+-(NSData *)createContentForHttpPost:(NSString *)content :(NSString *)requestUrl {
+    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
+    NSError *error = nil;
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:body
+                                                          options:0
+                                                            error:&error];
+    return requestData;
+}
 
 -(NSDictionary *)addSecurityInformation:(NSString *)content {
     NSMutableDictionary *securityHeaders = [NSMutableDictionary dictionaryWithObjectsAndKeys:[self applicationName],@"AppName", nil];
@@ -135,40 +179,11 @@
     return securityHeaders;
 }
 
-//just for test now..
--(BOOL)authenticateTest {
-    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_AUTH];
-    NSString *content = @"hello world";
-    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
-    NSDictionary *headers = [self addSecurityInformation:content];
-    NSDictionary *params = nil;
-    NSError *error = nil;
-    NSData *requestData = [NSJSONSerialization dataWithJSONObject:body
-                                                          options:NSJSONWritingPrettyPrinted
-                                                            error:&error];
-    __block BOOL retVal = NO;
-    
-    [self.networkService
-     httpRequest:
-     SYNC:
-     requestUrl:
-     HTTP_POST:
-     params:
-     headers:
-     requestData:
-     ^(NSArray *result){
-         retVal = YES;
-     }:
-     ^(NSError *result){
-         retVal = NO;
-     }
-     ];
-    
-    return retVal;
-}
+#pragma mark Init methods
 
 -(void)bootstrap {
-    [self fetchItems:0];
+    SessionInfo *info = [[SessionInfo alloc] initWithoutLocation];
+    [self.persistenceService saveSessionInfo:info];
 }
 
 -(void)fetchItems:(int)offset {
@@ -192,6 +207,35 @@
          NSLog(@"oops.. something went wrong");
      }
      ];
+}
+
+#pragma mark LocationManager
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Cannot get location: %@", error);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+
+    CLLocation *loc = newLocation;
+    
+    if (loc != nil) {
+        NSNumber *latitude = [[NSNumber alloc] initWithDouble:loc.coordinate.latitude];
+        NSNumber *longitude = [[NSNumber alloc] initWithDouble:loc.coordinate.longitude];
+        self.currentLocation = [[LocationInfo alloc] initWithLocationData:[latitude doubleValue] :[longitude doubleValue]];
+    }
+    
+}
+
+-(BOOL)isLocationServiceAvailable
+{
+    if([CLLocationManager locationServicesEnabled]==NO ||
+       [CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied ||
+       [CLLocationManager authorizationStatus]==kCLAuthorizationStatusRestricted){
+        return NO;
+    }else{
+        return YES;
+    }
 }
 
 @end

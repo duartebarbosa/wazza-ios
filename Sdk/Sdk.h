@@ -15,6 +15,8 @@
 -(id)initWithCredentials:(NSString *)name
                         :(NSString *)secretKey;
 
+-(void)terminate;
+
 -(Item *)getItem:(NSString *)name;
 
 -(NSArray *)getItems:(int)offset;

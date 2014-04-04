@@ -36,16 +36,9 @@
     XCTAssertTrue(self.sdk != nil);
 }
 
--(void)testPurchase {
-    NSArray *items = [self.sdk getItems:1];
-    if (items == nil) {
-        XCTFail("list of items is null");
-    }
-    Item *item = items[0];
-    if (item == nil) {
-        XCTFail("Item is null");
-    }
-    XCTAssertTrue([self.sdk makePurchase:item] == YES);
+-(void)testTerminate {
+    [self.sdk terminate];
+    XCTAssertTrue(1==1);
 }
 
 @end
