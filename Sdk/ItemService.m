@@ -22,7 +22,6 @@
 @interface ItemService () <SKProductsRequestDelegate>
 
 @property(nonatomic, strong) SKProductsRequest *productRequest;
-@property(nonatomic) NSString *applicationName;
 @property(nonatomic, strong) NetworkService *networkService;
 @property(nonatomic, strong) SecurityService *securityService;
 @property(nonatomic, strong) PersistenceService *persistenceService;

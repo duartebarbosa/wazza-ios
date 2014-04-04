@@ -68,6 +68,13 @@
         self.purchaseService = [[PurchaseService alloc] initWithAppName:name];
         self.itemService.delegate = self;
         self.purchaseService.delegate = self;
+        self.currentLocation = nil;
+        if ([self isLocationServiceAvailable]) {
+            self.manager = [[CLLocationManager alloc] init];
+            self.manager.delegate = self;
+            self.manager.desiredAccuracy = kCLLocationAccuracyBest;
+            [self.manager startUpdatingLocation];
+        }
         [self bootstrap];
     }
     
@@ -227,33 +234,29 @@
 
 
 -(void)onPurchaseSuccess:(PurchaseInfo *)purchaseInfo {
-    //    PurchaseInfo *purchase = [[PurchaseInfo alloc] initWithData:self.applicationName :item.name :item.currency.value];
-    //    NSDictionary *json = [purchase toJson];
-    //
-    //    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_PURCHASE];
-    //    NSString *content = [self createStringFromJSON:json];
-    //    NSDictionary *headers = [self addSecurityInformation:content];
-    //    NSDictionary *params = nil;
-    //    NSData *requestData = [self createContentForHttpPost:content :requestUrl];
-    //
-    //    __block BOOL retVal = NO;
-    //
-    //    [self.networkService httpRequest:
-    //                               SYNC:
-    //                          requestUrl:
-    //                           HTTP_POST:
-    //                              params:
-    //                             headers:
-    //                         requestData:
-    //     ^(NSArray *result){
-    //         retVal = YES;
-    //     }:
-    //     ^(NSError *result){
-    //         retVal = NO;
-    //     }
-    //     ];
-    NSLog(@"PURCHASE SUCCESS! %@", purchaseInfo);
-    [self.delegate purchaseSuccess:purchaseInfo];
+    NSDictionary *json = [purchaseInfo toJson];
+    
+    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_PURCHASE];
+    NSString *content = [self createStringFromJSON:json];
+    NSDictionary *headers = [self addSecurityInformation:content];
+    NSDictionary *params = nil;
+    NSData *requestData = [self createContentForHttpPost:content :requestUrl];
+
+    [self.networkService httpRequest:
+                              ASYNC :
+                          requestUrl:
+                           HTTP_POST:
+                              params:
+                             headers:
+                         requestData:
+     ^(NSArray *result){
+        NSLog(@"PURCHASE SUCCESS! %@", purchaseInfo);
+        [self.delegate purchaseSuccess:purchaseInfo];
+     }:
+     ^(NSError *error){
+        [self.delegate PurchaseFailure:error];
+     }
+     ];
 }
 
 @end

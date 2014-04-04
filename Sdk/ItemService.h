@@ -13,6 +13,7 @@
 
 @interface ItemService : NSObject
 
+@property (nonatomic) NSString *applicationName;
 @property (nonatomic, weak) id<ItemDelegate> delegate;
 
 -(id)initWithAppName:(NSString *)applicationName;
