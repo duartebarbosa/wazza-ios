@@ -52,7 +52,6 @@
     
     [self.networkService
      httpRequest:
-     SYNC:
      requestUrl:
      HTTP_GET:
      nil:
@@ -69,7 +68,6 @@
      ^(NSError *result){
          WazzaError *error = [[WazzaError alloc] initWithMessage:@"error"]; //TODO
          [self.delegate onItemFetchComplete:nil :error];
-         NSLog(@"oops.. something went wrong");
      }
      ];
 }

@@ -13,8 +13,7 @@
 
 @implementation NetworkService
 
--(void)httpRequest:(int)reqType
-                  :(NSString *)url
+-(void)httpRequest:(NSString *)url
                   :(NSString *)httpMethod
                   :(NSDictionary *)params
                   :(NSDictionary *)headers
@@ -22,40 +21,18 @@
                   :(OnSuccess)success
                   :(OnFailure)failure
 {
-
     NSMutableURLRequest *request = [self buildRequest:url :httpMethod :params :headers :data];
-
-    switch (reqType) {
-        case SYNC: {
-            NSURLResponse * response = nil;
-            NSError * error = nil;
-            NSData * data = [NSURLConnection sendSynchronousRequest:request
-                                                  returningResponse:&response
-                                                              error:&error];
-
-            int responseCode = [(NSHTTPURLResponse*)response statusCode];
-            if (![HttpCodes isError: responseCode]) {
-                success([self parseResponse:data :error]);
-            } else {
-                error = [NSError errorWithDomain:[NSHTTPURLResponse localizedStringForStatusCode:responseCode] code:responseCode userInfo:nil];
-                failure(error);
-            }
-        }
-            break;
-        case ASYNC:
-            [NSURLConnection sendAsynchronousRequest
-             :request
-             queue:[NSOperationQueue mainQueue]
-             completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                 if (!error) {
-                     success([self parseResponse:data :error]);
-                 } else {
-                     failure(error);
-                 }
-                 
-             }];
-            break;
-    }
+    [NSURLConnection sendAsynchronousRequest
+     :request
+     queue:[NSOperationQueue mainQueue]
+     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+         if (!error) {
+             success([self parseResponse:data :error]);
+         } else {
+             failure(error);
+         }
+         
+     }];
 }
 
 #pragma mark Private Functions

@@ -38,6 +38,7 @@
 		460F8E8418BD5F5A003CCC12 /* LocationInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E5318BD5B7F003CCC12 /* LocationInfo.h */; };
 		460F8E8518BD5F5E003CCC12 /* NetworkService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E5018BD5B14003CCC12 /* NetworkService.h */; };
 		460F8E9C18BE45C3003CCC12 /* SecurityService.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E9B18BE45C3003CCC12 /* SecurityService.m */; };
+		46120F51190B3675009CA751 /* SessionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 46120F50190B3675009CA751 /* SessionService.m */; };
 		46169CEE18E6418F008E745A /* SessionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 46169CED18E6418F008E745A /* SessionInfo.m */; };
 		46169D2F18E73386008E745A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46169D2E18E73386008E745A /* UIKit.framework */; };
 		464D61C018E7606B00549CFC /* Item.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 465DC98318C0E53B000B91D7 /* Item.h */; };
@@ -109,6 +110,8 @@
 		460F8E5418BD5B7F003CCC12 /* LocationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationInfo.m; sourceTree = "<group>"; };
 		460F8E9A18BE45C3003CCC12 /* SecurityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityService.h; sourceTree = "<group>"; };
 		460F8E9B18BE45C3003CCC12 /* SecurityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityService.m; sourceTree = "<group>"; };
+		46120F4F190B3675009CA751 /* SessionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionService.h; sourceTree = "<group>"; };
+		46120F50190B3675009CA751 /* SessionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionService.m; sourceTree = "<group>"; };
 		46169CEC18E6418F008E745A /* SessionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionInfo.h; sourceTree = "<group>"; };
 		46169CED18E6418F008E745A /* SessionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionInfo.m; sourceTree = "<group>"; };
 		46169D2E18E73386008E745A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -254,12 +257,22 @@
 		460F8E4318BD5A9E003CCC12 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				46120F4D190B3654009CA751 /* Sessions */,
 				464E205F18EC5E7800C8F075 /* Items */,
 				464E205918EC1EB100C8F075 /* Purchases */,
 				464E205818EC1E9000C8F075 /* LocalStorage */,
 				464E205718EC1E5E00C8F075 /* Network */,
 			);
 			name = services;
+			sourceTree = "<group>";
+		};
+		46120F4D190B3654009CA751 /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				46120F4F190B3675009CA751 /* SessionService.h */,
+				46120F50190B3675009CA751 /* SessionService.m */,
+			);
+			name = Sessions;
 			sourceTree = "<group>";
 		};
 		464D624018E9BA7300549CFC /* Purchase */ = {
@@ -433,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46120F51190B3675009CA751 /* SessionService.m in Sources */,
 				460F8E4918BD5AEB003CCC12 /* PurchaseInfo.m in Sources */,
 				460F8E2418BD5A3E003CCC12 /* Sdk.m in Sources */,
 				465DC98B18C0FA25000B91D7 /* Currency.m in Sources */,
@@ -515,6 +529,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				"VALID_ARCHS[sdk=*]" = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
 		};
