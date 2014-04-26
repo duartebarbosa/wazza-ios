@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define SYNC 0
-#define ASYNC 1
-
 #define HTTP_GET @"GET"
 #define HTTP_POST @"POST"
 
@@ -19,8 +16,7 @@ typedef void (^OnFailure)(NSError *);
 
 @interface NetworkService : NSObject
 
--(void)httpRequest:(int)reqType
-                  :(NSString *)url
+-(void)httpRequest:(NSString *)url
                   :(NSString *)httpMethod
                   :(NSDictionary *)params
                   :(NSDictionary *)headers

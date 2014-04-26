@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "LocationInfo.h"
 #import "DeviceInfo.h"
+#import <StoreKit/StoreKit.h>
 
-@interface Purchase : NSObject
+@interface PurchaseInfo : NSObject
 
 @property(nonatomic) NSString *_id;
 @property(nonatomic) NSString *userId;
@@ -20,8 +21,16 @@
 @property(nonatomic) NSDate *time;
 @property(nonatomic, strong) LocationInfo *location;
 @property(nonatomic, strong) DeviceInfo *deviceInfo;
+@property(nonatomic) NSString *transactionId;
+@property(nonatomic) NSData *transactionReceipt;
+@property(nonatomic) NSInteger quantity;
 
 -(id)initWithData:(NSString *)name :(NSString *)itemId : (double)price;
+
+-(id)initFromTransaction:(SKPaymentTransaction *)transaction
+                 appName:(NSString *)name
+               itemPrice: (double)price;
+
 -(NSDictionary *)toJson;
 
 @end

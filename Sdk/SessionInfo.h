@@ -13,16 +13,19 @@
 @interface SessionInfo : NSObject
 
 @property(nonatomic, strong) NSString *userId;
+@property(nonatomic, strong) NSString *sessionHash;
+@property(nonatomic, strong) NSString *applicationName;
+@property(nonatomic, strong) NSString *companyName;
 @property(nonatomic) NSDate *startTime;
-@property(nonatomic) double sessionLenght;
 @property(nonatomic, strong) LocationInfo *location;
 @property(nonatomic, strong) DeviceInfo *device;
 
--(id)initWithoutLocation;
+-(id)initSessionInfo:(NSString *)appName
+                    :(NSString *)companyName;
 
 -(NSDictionary *)toJson;
 
--(void)calculateSessionLength;
+-(NSString *)sessionHash;
 
 -(void)updateLocationInfo:(double)latitude :(double)longitude;
 

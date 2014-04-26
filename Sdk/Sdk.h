@@ -8,19 +8,30 @@
 
 #import <Foundation/Foundation.h>
 #import "Item.h"
-#import "Purchase.h"
+#import "PurchaseInfo.h"
+#import "WazzaSDKDelegate.h"
 
 @interface SDK : NSObject
+
+@property (nonatomic, weak) id<WazzaSDKDelegate> delegate;
 
 -(id)initWithCredentials:(NSString *)name
                         :(NSString *)secretKey;
 
--(void)terminate;
+-(void)allowGeoLocation;
+
+#pragma Session functions
+
+// -(void)resumeSession;
+
+-(void)endSession;
+
+#pragma Items and purchases
 
 -(Item *)getItem:(NSString *)name;
 
 -(NSArray *)getItems:(int)offset;
 
--(BOOL)makePurchase:(Item *)item;
+-(void)makePurchase:(Item *)item;
 
 @end

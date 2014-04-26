@@ -43,13 +43,13 @@
     }
 }
 
--(BOOL)existsInDatabase:(NSString *)name {
+-(BOOL)existsInDatabase:(NSString *)itemId {
     BOOL exists = NO;
     NSArray *ids = [self getIdsList];
     if (ids == nil) {
         return exists;
     } else {
-        exists = [ids containsObject:name];
+        exists = [ids containsObject:itemId];
     }
     
     return exists;
@@ -62,13 +62,17 @@
     [[NSUserDefaults standardUserDefaults] setObject:updated forKey:LIST_OF_ITEMS_IDS];
 }
 
--(Item *)getItem:(NSString *)name {
+-(Item *)getItem:(NSString *)itemId {
     
-    if ([self existsInDatabase:name]) {
-        return [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:name]];
+    if ([self existsInDatabase:itemId]) {
+        return [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:itemId]];
     } else {
         return nil;
     }
+}
+
+-(void)removeItem:(NSString *)itemName {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:itemName];
 }
 
 -(NSArray *)getItems:(int)_offset {
@@ -77,8 +81,8 @@
     NSArray *idsSubArray = [ids subarrayWithRange:NSMakeRange(0, offset)];
     NSMutableArray *items = [[NSMutableArray alloc] init];
     
-    for (id itemName in idsSubArray) {
-        [items addObject:[self getItem:itemName]];
+    for (id itemId in idsSubArray) {
+        [items addObject:[self getItem:itemId]];
     }
     
     return items;
@@ -101,8 +105,8 @@
     item.currency = [[Currency alloc] initWithData:currencyType :value :currency];
     
     NSData *_savedData = [NSKeyedArchiver archivedDataWithRootObject:item];
-    [[NSUserDefaults standardUserDefaults] setObject:_savedData forKey:item.name];
-    [self updateIdsList:item.name];
+    [[NSUserDefaults standardUserDefaults] setObject:_savedData forKey:item._id];
+    [self updateIdsList:item._id];
 }
 
 @end

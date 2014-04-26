@@ -9,17 +9,28 @@
 #import <UIKit/UIDevice.h>
 #import "SessionInfo.h"
 #import "DeviceInfo.h"
+#import "SecurityService.h"
+
+@interface SessionInfo ()
+
+@property(nonatomic, strong) SecurityService *securityService;
+
+@end
 
 @implementation SessionInfo
 
--(id)initWithoutLocation {
+-(id)initSessionInfo:(NSString *)appName
+                    :(NSString *)companyName {
     self = [super init];
-
+    
     if (self) {
         self.userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+        self.applicationName = appName;
+        self.companyName = companyName;
         self.startTime = [NSDate date];
         self.location = nil;
         self.device = [[DeviceInfo alloc] initDeviceInfo];
+        self.securityService = [[SecurityService alloc] init];
     }
     
     return self;
@@ -29,6 +40,22 @@
     self.location = [[LocationInfo alloc] initWithLocationData:latitude :longitude];
 }
 
+-(NSString *)sessionHash {
+    NSDictionary *json = self.toJson;
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json
+                                                       options:0
+                                                         error:&error];
+    
+    if (! jsonData) {
+        NSLog(@"bv_jsonStringWithPrettyPrint: error: %@", error.localizedDescription);
+        return nil;
+    } else {
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return [self.securityService hashContent:jsonString];
+    }
+}
+
 -(NSDictionary *)toJson {
     NSMutableDictionary *json = [[NSMutableDictionary alloc] init];
     [json setObject:self.userId forKey:@"userId"];
@@ -36,7 +63,11 @@
                                                          dateStyle:NSDateFormatterShortStyle
                                                          timeStyle:NSDateFormatterFullStyle];
     [json setObject:dateString forKey:@"startTime"];
-    [json setObject:[[NSNumber alloc] initWithDouble:self.sessionLenght] forKey:@"sessionLength"];
+    [json setObject:self.applicationName forKey:@"applicationName"];
+    [json setObject:self.companyName forKey:@"companyName"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+    [json setObject:[dateFormatter stringFromDate:self.startTime] forKey:@"startTime"];
     
     if (self.location != nil) {
         [json setObject:[[NSNumber alloc] initWithDouble:self.location.latitude] forKey:@"latitude"];
@@ -50,11 +81,6 @@
     return json;
 }
 
--(void)calculateSessionLength {
-    NSDate *now = [NSDate date];
-    self.sessionLenght = [now timeIntervalSinceDate:self.startTime];
-}
-
 #pragma mark - NSCoding
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -62,28 +88,16 @@
     if (!self) {
         return nil;
     }
-
-    self.userId = [decoder decodeObjectForKey:@"userId"];
-    self.startTime = [decoder decodeObjectForKey:@"startTime"];
-    self.sessionLenght = [decoder decodeDoubleForKey:@"sessionLength"];
     
-    self.device = [[DeviceInfo alloc] initWithData:
-                   [decoder decodeObjectForKey:@"osName"]:
-                   [decoder decodeObjectForKey:@"osVersion"]:
-                   [decoder decodeObjectForKey:@"deviceModel"]];
-
+    self.startTime = [decoder decodeObjectForKey:@"startTime"];
+    self.sessionHash = [decoder decodeObjectForKey:@"sessionHash"];
+    
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
-    [encoder encodeObject:self.userId forKey:@"userId"];
     [encoder encodeObject:self.startTime forKey:@"startTime"];
-    [encoder encodeDouble:self.sessionLenght forKey:@"sessionLength"];
-    
-    //Device Info
-    [encoder encodeObject:self.device.osName forKey:@"osName"];
-    [encoder encodeObject:self.device.osVersion forKey:@"osVersion"];
-    [encoder encodeObject:self.device.deviceModel forKey:@"deviceModel"];
+    [encoder encodeObject:[self sessionHash] forKey:@"sessionHash"];
 }
 
 @end

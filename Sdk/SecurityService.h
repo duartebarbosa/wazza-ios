@@ -16,4 +16,6 @@
 
 - (NSString *)hashContent:(NSString *)input;
 
+-(NSDictionary *)addSecurityInformation:(NSString *)content;
+
 @end

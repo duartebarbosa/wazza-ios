@@ -11,8 +11,12 @@
 #import "NetworkService.h"
 #import "SecurityService.h"
 #import "PersistenceService.h"
+#import "PurchaseService.h"
+#import "ItemService.h"
 #import "SessionInfo.h"
 #import "LocationInfo.h"
+#import "PurchaseDelegate.h"
+#import "SessionService.h"
 
 #define ITEMS_LIST @"ITEMS LIST"
 #define DETAILS @"DETAIILS"
@@ -28,9 +32,8 @@
 #define ENDPOINT_ITEM_DETAILED_LIST @"items/details/"
 #define ENDPOINT_DETAILS @"item/"
 #define ENDPOINT_PURCHASE @"purchase"
-#define ENDPOINT_SESSION_UPDATE @"session"
 
-@interface SDK() <CLLocationManagerDelegate>
+@interface SDK() <CLLocationManagerDelegate, ItemDelegate, PurchaseDelegate>
 
 @property(nonatomic) NSString *applicationName;
 @property(nonatomic) NSString *secret;
@@ -40,10 +43,16 @@
 @property(nonatomic, strong) CLLocationManager *manager;
 @property(nonatomic, strong) CLGeocoder *geocoder;
 @property(nonatomic, strong) LocationInfo *currentLocation;
+@property(nonatomic, strong) PurchaseService *purchaseService;
+@property(nonatomic, strong) ItemService *itemService;
+@property(nonatomic, strong) SessionService *sessionService;
+@property(nonatomic, strong) NSArray *skInfo;
 
 @end
 
 @implementation SDK
+
+@synthesize delegate;
 
 -(id)initWithCredentials:(NSString *)name
                         :(NSString *)secretKey {
@@ -56,94 +65,64 @@
         self.networkService = [[NetworkService alloc] init];
         self.securityService = [[SecurityService alloc] init];
         self.persistenceService = [[PersistenceService alloc] initPersistence];
+        self.itemService = [[ItemService alloc] initWithAppName:name];
+        self.purchaseService = [[PurchaseService alloc] initWithAppName:name];
+        self.sessionService = [[SessionService alloc] initService:@"companyName" :name];
+        self.itemService.delegate = self;
+        self.purchaseService.delegate = self;
         self.currentLocation = nil;
-        if ([self isLocationServiceAvailable]) {
-            self.manager = [[CLLocationManager alloc] init];
-            self.manager.delegate = self;
-            self.manager.desiredAccuracy = kCLLocationAccuracyBest;
-            [self.manager startUpdatingLocation];
-        }
         [self bootstrap];
     }
     
     return self;
 }
 
--(void)terminate {
-    SessionInfo *info = [self.persistenceService getSessionInfo];
-    [info calculateSessionLength];
-
-    if (self.currentLocation != nil) {
-        [info updateLocationInfo:self.currentLocation.latitude :self.currentLocation.longitude];
+-(void)allowGeoLocation {
+    self.currentLocation = nil;
+    if ([self isLocationServiceAvailable]) {
+        self.manager = [[CLLocationManager alloc] init];
+        self.manager.delegate = self;
+        self.manager.desiredAccuracy = kCLLocationAccuracyBest;
+        [self.manager startUpdatingLocation];
     }
-
-    NSDictionary *json = [info toJson];
-    
-    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_SESSION_UPDATE];
-    NSString *content = [self createStringFromJSON:json];
-    NSData *requestData = [self createContentForHttpPost:content :requestUrl];
-    NSDictionary *headers = [self addSecurityInformation:content];
-    NSDictionary *params = nil;
-    [self.networkService httpRequest:ASYNC:
-                          requestUrl:
-                           HTTP_POST:
-                              params:
-                             headers:
-                         requestData:
-     ^(NSArray *result){
-         NSLog(@"worked..");
-     }:
-     ^(NSError *result){
-         NSLog(@"not worked..");
-     }
-     ];
 }
 
+#pragma Session functions
+
+-(void)newSession {
+    [self.sessionService initSession];
+}
+
+//TODO: service's function is to be done
+-(void)resumeSession {
+    [self.sessionService resumeSession];
+}
+
+-(void)endSession {
+    [self.sessionService endSession];
+}
+
+#pragma Items and purchases
+
 -(Item *)getItem:(NSString *)name {
-    return [self.persistenceService getItem:name];
+    return [self.itemService getItem:name];
 }
 
 -(NSArray *)getItems:(int)offset {
-    return[self.persistenceService getItems:offset];
+    return[self.itemService getItems:offset];
 }
 
+-(void)makePurchase:(Item *)item {
 
--(BOOL)makePurchase:(Item *)item {
-    Purchase *purchase = [[Purchase alloc] initWithData:self.applicationName :item.name :item.currency.value];
-    NSDictionary *json = [purchase toJson];
+    SKProduct *i = nil;
+    for (SKProduct *p in self.skInfo) {
+        if (p.productIdentifier == item._id) {
+            i = p;
+            break;
+        }
+    }
     
-    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_PURCHASE];
-    NSString *content = [self createStringFromJSON:json];
-    NSDictionary *headers = [self addSecurityInformation:content];
-    NSDictionary *params = nil;
-    NSData *requestData = [self createContentForHttpPost:content :requestUrl];
-    
-    __block BOOL retVal = NO;
-    
-    [self.networkService httpRequest:
-                               ASYNC:
-                          requestUrl:
-                           HTTP_POST:
-                              params:
-                             headers:
-                         requestData:
-     ^(NSArray *result){
-         retVal = YES;
-     }:
-     ^(NSError *result){
-         retVal = NO;
-     }
-     ];
-    
-    /**
-    TODO:
-     - integracao com biblioteca da Apple (so help me god)
-     - validacao do resultado da comunicacao com Apple
-     - Enviar dados de compra (recolhidos pela Apple mais os nossos) para o backend
-     - Finalizar transacção
-     - Dar input ao developer (success or fail)
-    **/
-    return retVal;
+    [self.purchaseService purchaseItem:i];
 }
 
 #pragma mark HTTP private methods
@@ -182,31 +161,7 @@
 #pragma mark Init methods
 
 -(void)bootstrap {
-    SessionInfo *info = [[SessionInfo alloc] initWithoutLocation];
-    [self.persistenceService saveSessionInfo:info];
-}
-
--(void)fetchItems:(int)offset {
-    NSString *requestUrl = [NSString stringWithFormat: @"%@%@%@", URL, ENDPOINT_ITEM_DETAILED_LIST, self.applicationName];
-    NSDictionary *headers = [self addSecurityInformation:nil];
-    
-    [self.networkService
-     httpRequest:
-     SYNC:
-     requestUrl:
-     HTTP_GET:
-     nil:
-     headers:
-     nil:
-     ^(NSArray *result){
-         for (id item in result) {
-             [self.persistenceService createItemFromJson:item];
-         }
-     }:
-     ^(NSError *result){
-         NSLog(@"oops.. something went wrong");
-     }
-     ];
+    [self newSession];
 }
 
 #pragma mark LocationManager
@@ -236,6 +191,50 @@
     }else{
         return YES;
     }
+}
+
+#pragma ItemDelegate
+
+-(void)onItemFetchComplete:(NSArray *)items :(WazzaError *)error {
+    if (!error) {
+        self.skInfo = items;
+    } else {
+        NSLog(@"ERROR %@", error.errorMessage);
+    }
+}
+
+#pragma PurchaseDelegate
+
+-(void)onPurchaseFailure:(WazzaError *)error {
+    NSLog(@"received error...");
+    NSError *err = nil;
+    [self.delegate PurchaseFailure:err];
+}
+
+
+-(void)onPurchaseSuccess:(PurchaseInfo *)purchaseInfo {
+    NSDictionary *json = [purchaseInfo toJson];
+    
+    NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_PURCHASE];
+    NSString *content = [self createStringFromJSON:json];
+    NSDictionary *headers = [self addSecurityInformation:content];
+    NSDictionary *params = nil;
+    NSData *requestData = [self createContentForHttpPost:content :requestUrl];
+
+    [self.networkService httpRequest:
+                          requestUrl:
+                           HTTP_POST:
+                              params:
+                             headers:
+                         requestData:
+     ^(NSArray *result){
+        NSLog(@"PURCHASE SUCCESS! %@", purchaseInfo);
+        [self.delegate purchaseSuccess:purchaseInfo];
+     }:
+     ^(NSError *error){
+        [self.delegate PurchaseFailure:error];
+     }
+     ];
 }
 
 @end

@@ -93,4 +93,13 @@
     return ret;
 }
 
+-(NSDictionary *)addSecurityInformation:(NSString *)content :(NSString *)applicationName{
+    NSMutableDictionary *securityHeaders = [NSMutableDictionary dictionaryWithObjectsAndKeys: applicationName,@"AppName", nil];
+    
+    if (content) {
+        [securityHeaders setValue:[self hashContent:content] forKey:@"Digest"];
+    }
+    return securityHeaders;
+}
+
 @end

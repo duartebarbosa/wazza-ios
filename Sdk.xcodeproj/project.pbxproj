@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		460A01CF18ECDFEF00657CEE /* DeviceInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 464D623C18E9BA3600549CFC /* DeviceInfo.h */; };
+		460A035A18EF248900657CEE /* WazzaSDKDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460A01C218ECDCCC00657CEE /* WazzaSDKDelegate.h */; };
 		460F8E1D18BD5A3E003CCC12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460F8E1C18BD5A3E003CCC12 /* Foundation.framework */; };
 		460F8E2218BD5A3E003CCC12 /* Sdk.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E2118BD5A3E003CCC12 /* Sdk.h */; };
 		460F8E2418BD5A3E003CCC12 /* Sdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E2318BD5A3E003CCC12 /* Sdk.m */; };
@@ -29,13 +31,14 @@
 		460F8E3118BD5A3E003CCC12 /* libSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 460F8E1918BD5A3D003CCC12 /* libSdk.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		460F8E3718BD5A3E003CCC12 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 460F8E3518BD5A3E003CCC12 /* InfoPlist.strings */; };
 		460F8E3918BD5A3E003CCC12 /* SdkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E3818BD5A3E003CCC12 /* SdkTests.m */; };
-		460F8E4918BD5AEB003CCC12 /* Purchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E4818BD5AEB003CCC12 /* Purchase.m */; };
+		460F8E4918BD5AEB003CCC12 /* PurchaseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E4818BD5AEB003CCC12 /* PurchaseInfo.m */; };
 		460F8E5218BD5B14003CCC12 /* NetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E5118BD5B14003CCC12 /* NetworkService.m */; };
 		460F8E5518BD5B7F003CCC12 /* LocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E5418BD5B7F003CCC12 /* LocationInfo.m */; };
-		460F8E7B18BD5F1B003CCC12 /* Purchase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E4718BD5AEB003CCC12 /* Purchase.h */; };
+		460F8E7B18BD5F1B003CCC12 /* PurchaseInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E4718BD5AEB003CCC12 /* PurchaseInfo.h */; };
 		460F8E8418BD5F5A003CCC12 /* LocationInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E5318BD5B7F003CCC12 /* LocationInfo.h */; };
 		460F8E8518BD5F5E003CCC12 /* NetworkService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 460F8E5018BD5B14003CCC12 /* NetworkService.h */; };
 		460F8E9C18BE45C3003CCC12 /* SecurityService.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F8E9B18BE45C3003CCC12 /* SecurityService.m */; };
+		46120F51190B3675009CA751 /* SessionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 46120F50190B3675009CA751 /* SessionService.m */; };
 		46169CEE18E6418F008E745A /* SessionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 46169CED18E6418F008E745A /* SessionInfo.m */; };
 		46169D2F18E73386008E745A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46169D2E18E73386008E745A /* UIKit.framework */; };
 		464D61C018E7606B00549CFC /* Item.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 465DC98318C0E53B000B91D7 /* Item.h */; };
@@ -44,6 +47,11 @@
 		464D61CC18E760BE00549CFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46169D2E18E73386008E745A /* UIKit.framework */; };
 		464D61CE18E983C200549CFC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464D61CD18E983C200549CFC /* CoreLocation.framework */; };
 		464D623E18E9BA3600549CFC /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 464D623D18E9BA3600549CFC /* DeviceInfo.m */; };
+		464E205C18EC1EDE00C8F075 /* PurchaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 464E205B18EC1EDE00C8F075 /* PurchaseService.m */; };
+		464E205E18EC236E00C8F075 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464E205D18EC236E00C8F075 /* StoreKit.framework */; };
+		464E206318EC5E9300C8F075 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = 464E206218EC5E9300C8F075 /* ItemService.m */; };
+		464E206418EC697400C8F075 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464E205D18EC236E00C8F075 /* StoreKit.framework */; };
+		464E206918EC735500C8F075 /* WazzaError.m in Sources */ = {isa = PBXBuildFile; fileRef = 464E206818EC735500C8F075 /* WazzaError.m */; };
 		465DC93518C0A8D6000B91D7 /* PersistenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC93418C0A8D6000B91D7 /* PersistenceService.m */; };
 		465DC98518C0E53B000B91D7 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98418C0E53B000B91D7 /* Item.m */; };
 		465DC98818C0F75A000B91D7 /* ImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 465DC98718C0F75A000B91D7 /* ImageInfo.m */; };
@@ -68,12 +76,14 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				460A035A18EF248900657CEE /* WazzaSDKDelegate.h in CopyFiles */,
+				460A01CF18ECDFEF00657CEE /* DeviceInfo.h in CopyFiles */,
 				464D61C218E7607600549CFC /* ImageInfo.h in CopyFiles */,
 				464D61C118E7607100549CFC /* Currency.h in CopyFiles */,
 				464D61C018E7606B00549CFC /* Item.h in CopyFiles */,
 				460F8E8518BD5F5E003CCC12 /* NetworkService.h in CopyFiles */,
 				460F8E8418BD5F5A003CCC12 /* LocationInfo.h in CopyFiles */,
-				460F8E7B18BD5F1B003CCC12 /* Purchase.h in CopyFiles */,
+				460F8E7B18BD5F1B003CCC12 /* PurchaseInfo.h in CopyFiles */,
 				460F8E2218BD5A3E003CCC12 /* Sdk.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +91,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		460A01C218ECDCCC00657CEE /* WazzaSDKDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WazzaSDKDelegate.h; sourceTree = "<group>"; };
 		460F8E1918BD5A3D003CCC12 /* libSdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSdk.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		460F8E1C18BD5A3E003CCC12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		460F8E2018BD5A3E003CCC12 /* Sdk-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sdk-Prefix.pch"; sourceTree = "<group>"; };
@@ -91,20 +102,31 @@
 		460F8E3418BD5A3E003CCC12 /* SdkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SdkTests-Info.plist"; sourceTree = "<group>"; };
 		460F8E3618BD5A3E003CCC12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		460F8E3818BD5A3E003CCC12 /* SdkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SdkTests.m; sourceTree = "<group>"; };
-		460F8E4718BD5AEB003CCC12 /* Purchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchase.h; sourceTree = "<group>"; };
-		460F8E4818BD5AEB003CCC12 /* Purchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchase.m; sourceTree = "<group>"; };
+		460F8E4718BD5AEB003CCC12 /* PurchaseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseInfo.h; sourceTree = "<group>"; };
+		460F8E4818BD5AEB003CCC12 /* PurchaseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseInfo.m; sourceTree = "<group>"; };
 		460F8E5018BD5B14003CCC12 /* NetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
 		460F8E5118BD5B14003CCC12 /* NetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkService.m; sourceTree = "<group>"; };
 		460F8E5318BD5B7F003CCC12 /* LocationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationInfo.h; sourceTree = "<group>"; };
 		460F8E5418BD5B7F003CCC12 /* LocationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationInfo.m; sourceTree = "<group>"; };
 		460F8E9A18BE45C3003CCC12 /* SecurityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityService.h; sourceTree = "<group>"; };
 		460F8E9B18BE45C3003CCC12 /* SecurityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityService.m; sourceTree = "<group>"; };
+		46120F4F190B3675009CA751 /* SessionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionService.h; sourceTree = "<group>"; };
+		46120F50190B3675009CA751 /* SessionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionService.m; sourceTree = "<group>"; };
 		46169CEC18E6418F008E745A /* SessionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionInfo.h; sourceTree = "<group>"; };
 		46169CED18E6418F008E745A /* SessionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionInfo.m; sourceTree = "<group>"; };
 		46169D2E18E73386008E745A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		464D61CD18E983C200549CFC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		464D623C18E9BA3600549CFC /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
 		464D623D18E9BA3600549CFC /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
+		464E205A18EC1EDE00C8F075 /* PurchaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseService.h; sourceTree = "<group>"; };
+		464E205B18EC1EDE00C8F075 /* PurchaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseService.m; sourceTree = "<group>"; };
+		464E205D18EC236E00C8F075 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		464E206118EC5E9300C8F075 /* ItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemService.h; sourceTree = "<group>"; };
+		464E206218EC5E9300C8F075 /* ItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemService.m; sourceTree = "<group>"; };
+		464E206718EC735500C8F075 /* WazzaError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WazzaError.h; sourceTree = "<group>"; };
+		464E206818EC735500C8F075 /* WazzaError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WazzaError.m; sourceTree = "<group>"; };
+		464E206A18EC756200C8F075 /* PurchaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseDelegate.h; sourceTree = "<group>"; };
+		464E206B18EC7E2E00C8F075 /* ItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDelegate.h; sourceTree = "<group>"; };
 		465DC93318C0A8D6000B91D7 /* PersistenceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceService.h; sourceTree = "<group>"; };
 		465DC93418C0A8D6000B91D7 /* PersistenceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistenceService.m; sourceTree = "<group>"; };
 		465DC93D18C0BF04000B91D7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -123,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				464E205E18EC236E00C8F075 /* StoreKit.framework in Frameworks */,
 				46169D2F18E73386008E745A /* UIKit.framework in Frameworks */,
 				460F8E1D18BD5A3E003CCC12 /* Foundation.framework in Frameworks */,
 			);
@@ -132,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				464E206418EC697400C8F075 /* StoreKit.framework in Frameworks */,
 				464D61CE18E983C200549CFC /* CoreLocation.framework in Frameworks */,
 				464D61CC18E760BE00549CFC /* UIKit.framework in Frameworks */,
 				460F8E3118BD5A3E003CCC12 /* libSdk.a in Frameworks */,
@@ -165,6 +189,7 @@
 		460F8E1B18BD5A3E003CCC12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				464E205D18EC236E00C8F075 /* StoreKit.framework */,
 				464D61CD18E983C200549CFC /* CoreLocation.framework */,
 				46169D2E18E73386008E745A /* UIKit.framework */,
 				460F8E1C18BD5A3E003CCC12 /* Foundation.framework */,
@@ -180,6 +205,7 @@
 				460F8E4318BD5A9E003CCC12 /* services */,
 				460F8E4218BD5A98003CCC12 /* models */,
 				460F8E2118BD5A3E003CCC12 /* Sdk.h */,
+				460A01C218ECDCCC00657CEE /* WazzaSDKDelegate.h */,
 				460F8E2318BD5A3E003CCC12 /* Sdk.m */,
 				460F8E1F18BD5A3E003CCC12 /* Supporting Files */,
 			);
@@ -215,6 +241,7 @@
 		460F8E4218BD5A98003CCC12 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				464E206518EC732900C8F075 /* Error */,
 				464D624118E9BA8C00549CFC /* Items */,
 				464D624018E9BA7300549CFC /* Purchase */,
 				460F8E5318BD5B7F003CCC12 /* LocationInfo.h */,
@@ -230,16 +257,22 @@
 		460F8E4318BD5A9E003CCC12 /* services */ = {
 			isa = PBXGroup;
 			children = (
-				460F8E5018BD5B14003CCC12 /* NetworkService.h */,
-				460F8E5118BD5B14003CCC12 /* NetworkService.m */,
-				460F8E9A18BE45C3003CCC12 /* SecurityService.h */,
-				460F8E9B18BE45C3003CCC12 /* SecurityService.m */,
-				465DC93318C0A8D6000B91D7 /* PersistenceService.h */,
-				465DC93418C0A8D6000B91D7 /* PersistenceService.m */,
-				465DC98C18C48EB0000B91D7 /* HttpCodes.h */,
-				465DC98D18C48EB0000B91D7 /* HttpCodes.m */,
+				46120F4D190B3654009CA751 /* Sessions */,
+				464E205F18EC5E7800C8F075 /* Items */,
+				464E205918EC1EB100C8F075 /* Purchases */,
+				464E205818EC1E9000C8F075 /* LocalStorage */,
+				464E205718EC1E5E00C8F075 /* Network */,
 			);
 			name = services;
+			sourceTree = "<group>";
+		};
+		46120F4D190B3654009CA751 /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				46120F4F190B3675009CA751 /* SessionService.h */,
+				46120F50190B3675009CA751 /* SessionService.m */,
+			);
+			name = Sessions;
 			sourceTree = "<group>";
 		};
 		464D624018E9BA7300549CFC /* Purchase */ = {
@@ -247,8 +280,8 @@
 			children = (
 				465DC98918C0FA25000B91D7 /* Currency.h */,
 				465DC98A18C0FA25000B91D7 /* Currency.m */,
-				460F8E4718BD5AEB003CCC12 /* Purchase.h */,
-				460F8E4818BD5AEB003CCC12 /* Purchase.m */,
+				460F8E4718BD5AEB003CCC12 /* PurchaseInfo.h */,
+				460F8E4818BD5AEB003CCC12 /* PurchaseInfo.m */,
 			);
 			name = Purchase;
 			sourceTree = "<group>";
@@ -262,6 +295,57 @@
 				465DC98718C0F75A000B91D7 /* ImageInfo.m */,
 			);
 			name = Items;
+			sourceTree = "<group>";
+		};
+		464E205718EC1E5E00C8F075 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				465DC98C18C48EB0000B91D7 /* HttpCodes.h */,
+				465DC98D18C48EB0000B91D7 /* HttpCodes.m */,
+				460F8E5018BD5B14003CCC12 /* NetworkService.h */,
+				460F8E5118BD5B14003CCC12 /* NetworkService.m */,
+				460F8E9A18BE45C3003CCC12 /* SecurityService.h */,
+				460F8E9B18BE45C3003CCC12 /* SecurityService.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		464E205818EC1E9000C8F075 /* LocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				465DC93318C0A8D6000B91D7 /* PersistenceService.h */,
+				465DC93418C0A8D6000B91D7 /* PersistenceService.m */,
+			);
+			name = LocalStorage;
+			sourceTree = "<group>";
+		};
+		464E205918EC1EB100C8F075 /* Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				464E205A18EC1EDE00C8F075 /* PurchaseService.h */,
+				464E206A18EC756200C8F075 /* PurchaseDelegate.h */,
+				464E205B18EC1EDE00C8F075 /* PurchaseService.m */,
+			);
+			name = Purchases;
+			sourceTree = "<group>";
+		};
+		464E205F18EC5E7800C8F075 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				464E206118EC5E9300C8F075 /* ItemService.h */,
+				464E206218EC5E9300C8F075 /* ItemService.m */,
+				464E206B18EC7E2E00C8F075 /* ItemDelegate.h */,
+			);
+			name = Items;
+			sourceTree = "<group>";
+		};
+		464E206518EC732900C8F075 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				464E206718EC735500C8F075 /* WazzaError.h */,
+				464E206818EC735500C8F075 /* WazzaError.m */,
+			);
+			name = Error;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,16 +446,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				460F8E4918BD5AEB003CCC12 /* Purchase.m in Sources */,
+				46120F51190B3675009CA751 /* SessionService.m in Sources */,
+				460F8E4918BD5AEB003CCC12 /* PurchaseInfo.m in Sources */,
 				460F8E2418BD5A3E003CCC12 /* Sdk.m in Sources */,
 				465DC98B18C0FA25000B91D7 /* Currency.m in Sources */,
 				464D623E18E9BA3600549CFC /* DeviceInfo.m in Sources */,
 				460F8E5218BD5B14003CCC12 /* NetworkService.m in Sources */,
 				46169CEE18E6418F008E745A /* SessionInfo.m in Sources */,
+				464E206318EC5E9300C8F075 /* ItemService.m in Sources */,
 				465DC98E18C48EB0000B91D7 /* HttpCodes.m in Sources */,
 				460F8E9C18BE45C3003CCC12 /* SecurityService.m in Sources */,
 				460F8E5518BD5B7F003CCC12 /* LocationInfo.m in Sources */,
+				464E205C18EC1EDE00C8F075 /* PurchaseService.m in Sources */,
 				465DC98818C0F75A000B91D7 /* ImageInfo.m in Sources */,
+				464E206918EC735500C8F075 /* WazzaError.m in Sources */,
 				465DC98518C0E53B000B91D7 /* Item.m in Sources */,
 				465DC93518C0A8D6000B91D7 /* PersistenceService.m in Sources */,
 			);
@@ -439,8 +527,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				"VALID_ARCHS[sdk=*]" = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -482,13 +571,14 @@
 				DSTROOT = /tmp/Sdk.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sdk/Sdk-Prefix.pch";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -505,7 +595,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 				"VALID_ARCHS[sdk=*]" = "arm64 armv7 armv7s";
 			};
 			name = Release;
