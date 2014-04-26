@@ -84,6 +84,7 @@
     [json setObject:[[NSNumber alloc] initWithDouble:self.price] forKey:@"price"];
     [json setObject:time forKey:@"time"];
     [json setObject:[self.deviceInfo toJson] forKey:@"deviceInfo"];
+    [json setObject:self.sessionHash forKey:@"sessionHash"];
     
     return json;
 }

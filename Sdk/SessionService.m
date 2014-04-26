@@ -104,6 +104,10 @@
      ];
 }
 
+-(NSString *)getCurrentSessionHash {
+    return self.currentSession.sessionHash;
+}
+
 #pragma mark HTTP private methods
 
 -(NSString *)createStringFromJSON:(NSDictionary *)dic {

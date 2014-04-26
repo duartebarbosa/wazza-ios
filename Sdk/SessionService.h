@@ -21,4 +21,6 @@
 
 -(void)endSession;
 
+-(NSString *)getCurrentSessionHash;
+
 @end

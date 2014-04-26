@@ -24,6 +24,7 @@
 @property(nonatomic) NSString *transactionId;
 @property(nonatomic) NSData *transactionReceipt;
 @property(nonatomic) NSInteger quantity;
+@property(nonatomic) NSString *sessionHash;
 
 -(id)initWithData:(NSString *)name :(NSString *)itemId : (double)price;
 
