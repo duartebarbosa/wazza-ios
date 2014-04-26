@@ -213,6 +213,7 @@
 
 
 -(void)onPurchaseSuccess:(PurchaseInfo *)purchaseInfo {
+    purchaseInfo.sessionHash = [self.sessionService getCurrentSessionHash];
     NSDictionary *json = [purchaseInfo toJson];
     
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@", URL, ENDPOINT_PURCHASE];
