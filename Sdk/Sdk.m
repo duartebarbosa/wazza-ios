@@ -107,8 +107,14 @@
 
 #pragma Items and purchases
 
--(NSArray *)getRecommendedItems:(int)limit {
-    return [self.itemService getRecommendedItems:limit];
+-(void)getRecommendedItems:(int)limit {
+    [self.itemService getRecommendedItems:limit :
+     ^(NSArray * result) {
+         [self.delegate OnRecommendedItemsResult:result :nil];
+     }:
+     ^(NSError *error) {
+         [self.delegate OnRecommendedItemsResult:nil :error];
+     }];
 }
 
 -(Item *)getItem:(NSString *)name {

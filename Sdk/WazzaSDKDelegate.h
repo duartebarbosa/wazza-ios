@@ -17,4 +17,7 @@
 @required
 -(void)PurchaseFailure:(NSError *)error;
 
+@optional
+-(void)OnRecommendedItemsResult:(NSArray *)items :(NSError *)error;
+
 @end

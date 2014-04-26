@@ -11,6 +11,9 @@
 #import "Sdk.h"
 #import "ItemDelegate.h"
 
+typedef void (^OnSuccess)(NSArray *);
+typedef void (^OnFailure)(NSError *);
+
 @interface ItemService : NSObject
 
 @property (nonatomic) NSString *companyName;
@@ -19,7 +22,9 @@
 
 -(id)initWithAppName:(NSString *)companyName :(NSString *)applicationName;
 
--(NSArray *)getRecommendedItems:(int)limit;
+-(NSArray *)getRecommendedItems:(int)limit
+                               :(OnSuccess)success
+                               :(OnFailure)failure;
 
 -(void)fetchItems:(int)offset;
 

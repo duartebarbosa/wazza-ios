@@ -29,7 +29,7 @@
 
 #pragma Items and purchases
 
--(NSArray *)getRecommendedItems:(int)limit;
+-(void)getRecommendedItems:(int)limit;
 
 -(Item *)getItem:(NSString *)name;
 

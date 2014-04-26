@@ -47,7 +47,9 @@
     return self;
 }
 
--(NSArray *)getRecommendedItems:(int)limit {
+-(NSArray *)getRecommendedItems:(int)limit
+                               :(OnSuccess)success
+                               :(OnFailure)failure {
     NSString *userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     NSString *requestUrl = [NSString stringWithFormat: @"%@%@%@/%@/%@/%d",
                             URL,
@@ -67,11 +69,10 @@
      headers:
      nil:
      ^(NSArray *result){
-         NSLog(@"recommendation result - %@", result);
+         success(result);
      }:
-     ^(NSError *result){
-         WazzaError *error = [[WazzaError alloc] initWithMessage:@"error"];
-         NSLog(@"recommendation error - %@", error);
+     ^(NSError *error){
+         failure(error);
      }
      ];
     
