@@ -20,7 +20,13 @@
 
 -(void)allowGeoLocation;
 
--(void)terminate;
+#pragma Session functions
+
+// -(void)resumeSession;
+
+-(void)endSession;
+
+#pragma Items and purchases
 
 -(Item *)getItem:(NSString *)name;
 
