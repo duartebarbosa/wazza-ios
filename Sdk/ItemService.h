@@ -13,10 +13,13 @@
 
 @interface ItemService : NSObject
 
+@property (nonatomic) NSString *companyName;
 @property (nonatomic) NSString *applicationName;
 @property (nonatomic, weak) id<ItemDelegate> delegate;
 
--(id)initWithAppName:(NSString *)applicationName;
+-(id)initWithAppName:(NSString *)companyName :(NSString *)applicationName;
+
+-(NSArray *)getRecommendedItems:(int)limit;
 
 -(void)fetchItems:(int)offset;
 

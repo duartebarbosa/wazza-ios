@@ -18,6 +18,7 @@
 #define ENDPOINT_AUTH @"auth"
 #define ENDPOINT_ITEM_LIST @"items/"
 #define ENDPOINT_ITEM_DETAILED_LIST @"items/details/"
+#define ENDPOINT_RECOMMENDATION @"rec/user/items/"
 
 @interface ItemService () <SKProductsRequestDelegate>
 
@@ -33,9 +34,10 @@
 
 @synthesize delegate;
 
--(id)initWithAppName:(NSString *)applicationName{
+-(id)initWithAppName:(NSString *)companyName :(NSString *)applicationName {
     self = [super init];
     if (self) {
+        self.companyName = companyName;
         self.applicationName = applicationName;
         self.persistenceService = [[PersistenceService alloc] init];
         self.networkService = [[NetworkService alloc] init];
@@ -43,6 +45,37 @@
     }
 
     return self;
+}
+
+-(NSArray *)getRecommendedItems:(int)limit {
+    NSString *userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    NSString *requestUrl = [NSString stringWithFormat: @"%@%@%@/%@/%@/%d",
+                            URL,
+                            ENDPOINT_RECOMMENDATION,
+                            self.companyName,
+                            self.applicationName,
+                            userId,
+                            limit];
+
+    NSDictionary *headers = [self addSecurityInformation:nil];
+    
+    [self.networkService
+     httpRequest:
+     requestUrl:
+     HTTP_GET:
+     nil:
+     headers:
+     nil:
+     ^(NSArray *result){
+         NSLog(@"recommendation result - %@", result);
+     }:
+     ^(NSError *result){
+         WazzaError *error = [[WazzaError alloc] initWithMessage:@"error"];
+         NSLog(@"recommendation error - %@", error);
+     }
+     ];
+    
+    return nil;
 }
 
 -(void)fetchItems:(int)offset {

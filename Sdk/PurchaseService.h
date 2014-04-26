@@ -14,8 +14,7 @@
 
 @property (nonatomic, weak) id<PurchaseDelegate> delegate;
 
-
--(id)initWithAppName:(NSString *)appName;
+-(id)initWithAppName:(NSString *)companyName :(NSString *)appName;
 
 -(BOOL)canMakePurchase;
 

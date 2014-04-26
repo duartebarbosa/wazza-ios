@@ -24,10 +24,10 @@
 
 @synthesize delegate;
 
--(id)initWithAppName:(NSString *)appName {
+-(id)initWithAppName:(NSString *)companyName :(NSString *)appName {
     self = [super init];
     if (self) {
-        self.itemService = [[ItemService alloc] initWithAppName:appName];
+        self.itemService = [[ItemService alloc] initWithAppName:companyName :appName];
         self.items = [[NSMutableArray alloc] init];
     }
     return self;

@@ -15,7 +15,8 @@
 
 @property (nonatomic, weak) id<WazzaSDKDelegate> delegate;
 
--(id)initWithCredentials:(NSString *)name
+-(id)initWithCredentials:(NSString *)companyName
+                        :(NSString *)applicationName
                         :(NSString *)secretKey;
 
 -(void)allowGeoLocation;
@@ -28,9 +29,11 @@
 
 #pragma Items and purchases
 
+-(NSArray *)getRecommendedItems:(int)limit;
+
 -(Item *)getItem:(NSString *)name;
 
--(NSArray *)getItems:(int)offset;
+-(NSArray *)getItems:(int)limit;
 
 -(void)makePurchase:(Item *)item;
 

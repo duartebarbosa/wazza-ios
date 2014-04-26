@@ -35,6 +35,7 @@
 
 @interface SDK() <CLLocationManagerDelegate, ItemDelegate, PurchaseDelegate>
 
+@property(nonatomic) NSString *companyName;
 @property(nonatomic) NSString *applicationName;
 @property(nonatomic) NSString *secret;
 @property(nonatomic, strong) NetworkService *networkService;
@@ -54,20 +55,22 @@
 
 @synthesize delegate;
 
--(id)initWithCredentials:(NSString *)name
+-(id)initWithCredentials:(NSString *)companyName
+                        :(NSString *)applicationName
                         :(NSString *)secretKey {
     
     self = [super init];
     
     if(self) {
-        self.applicationName = name;
+        self.companyName = companyName;
+        self.applicationName = applicationName;
         self.secret = secretKey;
         self.networkService = [[NetworkService alloc] init];
         self.securityService = [[SecurityService alloc] init];
         self.persistenceService = [[PersistenceService alloc] initPersistence];
-        self.itemService = [[ItemService alloc] initWithAppName:name];
-        self.purchaseService = [[PurchaseService alloc] initWithAppName:name];
-        self.sessionService = [[SessionService alloc] initService:@"companyName" :name];
+        self.itemService = [[ItemService alloc] initWithAppName:companyName :applicationName];
+        self.purchaseService = [[PurchaseService alloc] initWithAppName:companyName :applicationName];
+        self.sessionService = [[SessionService alloc] initService:companyName :applicationName];
         self.itemService.delegate = self;
         self.purchaseService.delegate = self;
         self.currentLocation = nil;
@@ -104,12 +107,16 @@
 
 #pragma Items and purchases
 
+-(NSArray *)getRecommendedItems:(int)limit {
+    return [self.itemService getRecommendedItems:limit];
+}
+
 -(Item *)getItem:(NSString *)name {
     return [self.itemService getItem:name];
 }
 
--(NSArray *)getItems:(int)offset {
-    return[self.itemService getItems:offset];
+-(NSArray *)getItems:(int)limit {
+    return[self.itemService getItems:limit];
 }
 
 -(void)makePurchase:(Item *)item {
