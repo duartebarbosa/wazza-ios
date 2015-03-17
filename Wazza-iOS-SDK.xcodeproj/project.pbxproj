@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF23BA931AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF23BA921AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h */; };
+		CF23BA951AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BA941AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m */; };
+		CF23BA9B1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF23BA8F1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CF23BA9C1AB8A7C9003CC6B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF23BA871AB8A7C8003CC6B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF23BA8E1AB8A7C9003CC6B4;
+			remoteInfo = "Wazza-iOS-SDK";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CF23BA8D1AB8A7C9003CC6B4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				CF23BA931AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CF23BA8F1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libWazza-iOS-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF23BA921AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wazza_iOS_SDK.h; sourceTree = "<group>"; };
+		CF23BA941AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wazza_iOS_SDK.m; sourceTree = "<group>"; };
+		CF23BA9A1AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wazza-iOS-SDKTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF23BAA01AB8A7C9003CC6B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF23BA8C1AB8A7C9003CC6B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF23BA971AB8A7C9003CC6B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF23BA9B1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF23BA861AB8A7C8003CC6B4 = {
+			isa = PBXGroup;
+			children = (
+				CF23BA911AB8A7C9003CC6B4 /* Wazza-iOS-SDK */,
+				CF23BA9E1AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests */,
+				CF23BA901AB8A7C9003CC6B4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF23BA901AB8A7C9003CC6B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BA8F1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a */,
+				CF23BA9A1AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF23BA911AB8A7C9003CC6B4 /* Wazza-iOS-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BA921AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h */,
+				CF23BA941AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m */,
+			);
+			path = "Wazza-iOS-SDK";
+			sourceTree = "<group>";
+		};
+		CF23BA9E1AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BA9F1AB8A7C9003CC6B4 /* Supporting Files */,
+			);
+			path = "Wazza-iOS-SDKTests";
+			sourceTree = "<group>";
+		};
+		CF23BA9F1AB8A7C9003CC6B4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BAA01AB8A7C9003CC6B4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF23BA8E1AB8A7C9003CC6B4 /* Wazza-iOS-SDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF23BAA31AB8A7C9003CC6B4 /* Build configuration list for PBXNativeTarget "Wazza-iOS-SDK" */;
+			buildPhases = (
+				CF23BA8B1AB8A7C9003CC6B4 /* Sources */,
+				CF23BA8C1AB8A7C9003CC6B4 /* Frameworks */,
+				CF23BA8D1AB8A7C9003CC6B4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Wazza-iOS-SDK";
+			productName = "Wazza-iOS-SDK";
+			productReference = CF23BA8F1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		CF23BA991AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF23BAA61AB8A7C9003CC6B4 /* Build configuration list for PBXNativeTarget "Wazza-iOS-SDKTests" */;
+			buildPhases = (
+				CF23BA961AB8A7C9003CC6B4 /* Sources */,
+				CF23BA971AB8A7C9003CC6B4 /* Frameworks */,
+				CF23BA981AB8A7C9003CC6B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF23BA9D1AB8A7C9003CC6B4 /* PBXTargetDependency */,
+			);
+			name = "Wazza-iOS-SDKTests";
+			productName = "Wazza-iOS-SDKTests";
+			productReference = CF23BA9A1AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF23BA871AB8A7C8003CC6B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = Wazza;
+				TargetAttributes = {
+					CF23BA8E1AB8A7C9003CC6B4 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					CF23BA991AB8A7C9003CC6B4 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = CF23BA8A1AB8A7C8003CC6B4 /* Build configuration list for PBXProject "Wazza-iOS-SDK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF23BA861AB8A7C8003CC6B4;
+			productRefGroup = CF23BA901AB8A7C9003CC6B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF23BA8E1AB8A7C9003CC6B4 /* Wazza-iOS-SDK */,
+				CF23BA991AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF23BA981AB8A7C9003CC6B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF23BA8B1AB8A7C9003CC6B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF23BA951AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF23BA961AB8A7C9003CC6B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF23BA9D1AB8A7C9003CC6B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF23BA8E1AB8A7C9003CC6B4 /* Wazza-iOS-SDK */;
+			targetProxy = CF23BA9C1AB8A7C9003CC6B4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CF23BAA11AB8A7C9003CC6B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CF23BAA21AB8A7C9003CC6B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CF23BAA41AB8A7C9003CC6B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CF23BAA51AB8A7C9003CC6B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		CF23BAA71AB8A7C9003CC6B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Wazza-iOS-SDKTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CF23BAA81AB8A7C9003CC6B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Wazza-iOS-SDKTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF23BA8A1AB8A7C8003CC6B4 /* Build configuration list for PBXProject "Wazza-iOS-SDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF23BAA11AB8A7C9003CC6B4 /* Debug */,
+				CF23BAA21AB8A7C9003CC6B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF23BAA31AB8A7C9003CC6B4 /* Build configuration list for PBXNativeTarget "Wazza-iOS-SDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF23BAA41AB8A7C9003CC6B4 /* Debug */,
+				CF23BAA51AB8A7C9003CC6B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CF23BAA61AB8A7C9003CC6B4 /* Build configuration list for PBXNativeTarget "Wazza-iOS-SDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF23BAA71AB8A7C9003CC6B4 /* Debug */,
+				CF23BAA81AB8A7C9003CC6B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF23BA871AB8A7C8003CC6B4 /* Project object */;
+}
