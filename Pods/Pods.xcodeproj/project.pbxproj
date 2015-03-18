@@ -1,0 +1,511 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		166401A6E5A9E7245D7D7D6C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A3CCD53C3E60C1806A7E7A /* MessageUI.framework */; };
+		1C34948D47AC5A3ABAA0A168 /* CardIOView.h in Headers */ = {isa = PBXBuildFile; fileRef = 246CEF158999BFF3095B7649 /* CardIOView.h */; };
+		2091ED53C67B913C16D5F402 /* PayPalPayment.h in Headers */ = {isa = PBXBuildFile; fileRef = 03650AE5812627117C1C88E6 /* PayPalPayment.h */; };
+		2357FBEB139F1F3EA5EFF133 /* Pods-PayPal-iOS-SDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0FA22F607AEEDE89B3E570 /* Pods-PayPal-iOS-SDK-dummy.m */; };
+		29FC94110CA23B40AA92B6F6 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5696A2FAF09E9A19E8314A /* Pods-dummy.m */; };
+		2BA7EEBAB3A1B6700F62980C /* PayPalMobile.h in Headers */ = {isa = PBXBuildFile; fileRef = 77713CEC5AF3D72E03AD6F8A /* PayPalMobile.h */; };
+		394E77A9F68B78B37E44B6EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6551ED7C09F16D515B1C5428 /* SystemConfiguration.framework */; };
+		427F7693BA5816373B681B92 /* CardIOPaymentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2C0FC8EAEA737FC8C841AE6 /* CardIOPaymentViewController.h */; };
+		44C88C0483CB45D3D57D4735 /* CardIOCreditCardInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 266361768303EFCF298823E6 /* CardIOCreditCardInfo.h */; };
+		49C1BC63D483ABD07EDE47E2 /* CardIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 04738FEC2C4742CB8835CFC4 /* CardIO.h */; };
+		4DF2509F18E5FEDA0592A3F5 /* CardIOPaymentViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 592C5C52C1D8CF1C92219E83 /* CardIOPaymentViewControllerDelegate.h */; };
+		580C4A4E93521BD77D2A77A5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34CE2C7B725501CA331CDD1A /* MobileCoreServices.framework */; };
+		5FBC1B112281234899CF9CA7 /* CardIODetectionMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DBE2797E83923571DEE318C /* CardIODetectionMode.h */; };
+		72311B6F3545F8AE9C7DEF03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C015E54E028CF88D89090947 /* Foundation.framework */; };
+		78396F7381B52B86D49A9755 /* PayPalConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 73E80C995A0946A3D0EAC560 /* PayPalConfiguration.h */; };
+		7D79F2D7C3D55BA629393CA8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5F22E5D49AC616F10C38DF /* CoreMedia.framework */; };
+		7E7AD00D2BCC3B97119BA0C7 /* PayPalFuturePaymentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E178AE605C235EBDD17D7670 /* PayPalFuturePaymentViewController.h */; };
+		82C399EC57A20A8DD4EBB399 /* PayPalOAuthScopes.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C3123E293C7097655428A4 /* PayPalOAuthScopes.h */; };
+		AFC368D5B6C7AA4A003279B6 /* PayPalProfileSharingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E27B2BD09FE795C613D1217 /* PayPalProfileSharingViewController.h */; };
+		B9D72CEBB95CF3B7EABF4F60 /* CardIOViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A4052E265CCFF4D348120582 /* CardIOViewDelegate.h */; };
+		CA36CE4CD1F09D6A1D8F54C5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C015E54E028CF88D89090947 /* Foundation.framework */; };
+		CE7FCC2FBEE4697E44A7C17F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53783527990DD193589E4A49 /* AudioToolbox.framework */; };
+		D78CC2EAF310595E356DA1FE /* CardIOUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F04C286B2D3F5662F8CD6769 /* CardIOUtilities.h */; };
+		E6286E31108AD5783094F5BF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A5F3E85F810202F599E8C1 /* AVFoundation.framework */; };
+		F700029D7E8A83661DA98E40 /* PayPalPaymentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7589C9A1875E92D6816BEBAD /* PayPalPaymentViewController.h */; };
+		FDC0894553BD8171C7F6B4DB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 336A9657BED9BBC928E9E5CB /* CoreLocation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		320F2720A839AF43A52992FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11C64F252EDE587D2FB5E373 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69D703DBE088722914747E81;
+			remoteInfo = "Pods-PayPal-iOS-SDK";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03650AE5812627117C1C88E6 /* PayPalPayment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalPayment.h; path = PayPalMobile/PayPalPayment.h; sourceTree = "<group>"; };
+		04738FEC2C4742CB8835CFC4 /* CardIO.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIO.h; path = PayPalMobile/CardIO.h; sourceTree = "<group>"; };
+		0A3E25267854D5E3D9D8757F /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
+		0E27B2BD09FE795C613D1217 /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalProfileSharingViewController.h; path = PayPalMobile/PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
+		1BF1D8259722356E83B933BD /* Pods-PayPal-iOS-SDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PayPal-iOS-SDK-prefix.pch"; sourceTree = "<group>"; };
+		246CEF158999BFF3095B7649 /* CardIOView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOView.h; path = PayPalMobile/CardIOView.h; sourceTree = "<group>"; };
+		266361768303EFCF298823E6 /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOCreditCardInfo.h; path = PayPalMobile/CardIOCreditCardInfo.h; sourceTree = "<group>"; };
+		29A5F3E85F810202F599E8C1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		2DBE2797E83923571DEE318C /* CardIODetectionMode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIODetectionMode.h; path = PayPalMobile/CardIODetectionMode.h; sourceTree = "<group>"; };
+		336A9657BED9BBC928E9E5CB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		34CE2C7B725501CA331CDD1A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		51A3CCD53C3E60C1806A7E7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
+		53783527990DD193589E4A49 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		5464EBFF7ED6BBF710B9F89E /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		592C5C52C1D8CF1C92219E83 /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewControllerDelegate.h; path = PayPalMobile/CardIOPaymentViewControllerDelegate.h; sourceTree = "<group>"; };
+		6551ED7C09F16D515B1C5428 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		68B8CCAC78AF02117B17CDE8 /* Pods-PayPal-iOS-SDK-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PayPal-iOS-SDK-Private.xcconfig"; sourceTree = "<group>"; };
+		6F5C55FD501B0C9FBB755051 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7032EF213AD7480EE11C052D /* libPods-PayPal-iOS-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PayPal-iOS-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		73E80C995A0946A3D0EAC560 /* PayPalConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalConfiguration.h; path = PayPalMobile/PayPalConfiguration.h; sourceTree = "<group>"; };
+		7589C9A1875E92D6816BEBAD /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalPaymentViewController.h; path = PayPalMobile/PayPalPaymentViewController.h; sourceTree = "<group>"; };
+		77713CEC5AF3D72E03AD6F8A /* PayPalMobile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalMobile.h; path = PayPalMobile/PayPalMobile.h; sourceTree = "<group>"; };
+		A4052E265CCFF4D348120582 /* CardIOViewDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOViewDelegate.h; path = PayPalMobile/CardIOViewDelegate.h; sourceTree = "<group>"; };
+		A87F8C30892F8E3652E667DB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		AA5696A2FAF09E9A19E8314A /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		AD5F22E5D49AC616F10C38DF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
+		AE0FA22F607AEEDE89B3E570 /* Pods-PayPal-iOS-SDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PayPal-iOS-SDK-dummy.m"; sourceTree = "<group>"; };
+		B04CF9395E0596AE76072123 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		B2C0FC8EAEA737FC8C841AE6 /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewController.h; path = PayPalMobile/CardIOPaymentViewController.h; sourceTree = "<group>"; };
+		C015E54E028CF88D89090947 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CF1E90B8C3E1FF699DAAB637 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		E178AE605C235EBDD17D7670 /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalFuturePaymentViewController.h; path = PayPalMobile/PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
+		E3C3123E293C7097655428A4 /* PayPalOAuthScopes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayPalOAuthScopes.h; path = PayPalMobile/PayPalOAuthScopes.h; sourceTree = "<group>"; };
+		EE4758928CC2B961E08A7C36 /* Pods-PayPal-iOS-SDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PayPal-iOS-SDK.xcconfig"; sourceTree = "<group>"; };
+		F04C286B2D3F5662F8CD6769 /* CardIOUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOUtilities.h; path = PayPalMobile/CardIOUtilities.h; sourceTree = "<group>"; };
+		F8169D63A5CA83CCE0D1667F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F83C7E7AC5AD81E5C40FE38A /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A7ECBDA88FF10EE052C5EA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6286E31108AD5783094F5BF /* AVFoundation.framework in Frameworks */,
+				CE7FCC2FBEE4697E44A7C17F /* AudioToolbox.framework in Frameworks */,
+				FDC0894553BD8171C7F6B4DB /* CoreLocation.framework in Frameworks */,
+				7D79F2D7C3D55BA629393CA8 /* CoreMedia.framework in Frameworks */,
+				72311B6F3545F8AE9C7DEF03 /* Foundation.framework in Frameworks */,
+				166401A6E5A9E7245D7D7D6C /* MessageUI.framework in Frameworks */,
+				580C4A4E93521BD77D2A77A5 /* MobileCoreServices.framework in Frameworks */,
+				394E77A9F68B78B37E44B6EF /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		844503A9032B3CD9F4887085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA36CE4CD1F09D6A1D8F54C5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1ADD2D44350A6ED27EB85AFE = {
+			isa = PBXGroup;
+			children = (
+				6F5C55FD501B0C9FBB755051 /* Podfile */,
+				5E2CBECDBAC6C8696E09B258 /* Frameworks */,
+				623369CB5A595AB377851D58 /* Pods */,
+				E52DC846D6E8ABB21ABD164D /* Products */,
+				ABDF4DA52E9DD326C128A33C /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		4C5CAE220C9E96A7F9BA0E5E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EE4758928CC2B961E08A7C36 /* Pods-PayPal-iOS-SDK.xcconfig */,
+				68B8CCAC78AF02117B17CDE8 /* Pods-PayPal-iOS-SDK-Private.xcconfig */,
+				AE0FA22F607AEEDE89B3E570 /* Pods-PayPal-iOS-SDK-dummy.m */,
+				1BF1D8259722356E83B933BD /* Pods-PayPal-iOS-SDK-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-PayPal-iOS-SDK";
+			sourceTree = "<group>";
+		};
+		5E2CBECDBAC6C8696E09B258 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				652A338B5A9716ED670AD95C /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		623369CB5A595AB377851D58 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B9E952FAD5B996FA3686215A /* PayPal-iOS-SDK */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		652A338B5A9716ED670AD95C /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				29A5F3E85F810202F599E8C1 /* AVFoundation.framework */,
+				53783527990DD193589E4A49 /* AudioToolbox.framework */,
+				336A9657BED9BBC928E9E5CB /* CoreLocation.framework */,
+				AD5F22E5D49AC616F10C38DF /* CoreMedia.framework */,
+				C015E54E028CF88D89090947 /* Foundation.framework */,
+				51A3CCD53C3E60C1806A7E7A /* MessageUI.framework */,
+				34CE2C7B725501CA331CDD1A /* MobileCoreServices.framework */,
+				6551ED7C09F16D515B1C5428 /* SystemConfiguration.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		ABDF4DA52E9DD326C128A33C /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C56FBF1400527B87D5A5A8CB /* Pods */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		B9E952FAD5B996FA3686215A /* PayPal-iOS-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				04738FEC2C4742CB8835CFC4 /* CardIO.h */,
+				266361768303EFCF298823E6 /* CardIOCreditCardInfo.h */,
+				2DBE2797E83923571DEE318C /* CardIODetectionMode.h */,
+				B2C0FC8EAEA737FC8C841AE6 /* CardIOPaymentViewController.h */,
+				592C5C52C1D8CF1C92219E83 /* CardIOPaymentViewControllerDelegate.h */,
+				F04C286B2D3F5662F8CD6769 /* CardIOUtilities.h */,
+				246CEF158999BFF3095B7649 /* CardIOView.h */,
+				A4052E265CCFF4D348120582 /* CardIOViewDelegate.h */,
+				73E80C995A0946A3D0EAC560 /* PayPalConfiguration.h */,
+				E178AE605C235EBDD17D7670 /* PayPalFuturePaymentViewController.h */,
+				77713CEC5AF3D72E03AD6F8A /* PayPalMobile.h */,
+				E3C3123E293C7097655428A4 /* PayPalOAuthScopes.h */,
+				03650AE5812627117C1C88E6 /* PayPalPayment.h */,
+				7589C9A1875E92D6816BEBAD /* PayPalPaymentViewController.h */,
+				0E27B2BD09FE795C613D1217 /* PayPalProfileSharingViewController.h */,
+				4C5CAE220C9E96A7F9BA0E5E /* Support Files */,
+			);
+			path = "PayPal-iOS-SDK";
+			sourceTree = "<group>";
+		};
+		C56FBF1400527B87D5A5A8CB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F83C7E7AC5AD81E5C40FE38A /* Pods-acknowledgements.markdown */,
+				5464EBFF7ED6BBF710B9F89E /* Pods-acknowledgements.plist */,
+				AA5696A2FAF09E9A19E8314A /* Pods-dummy.m */,
+				0A3E25267854D5E3D9D8757F /* Pods-environment.h */,
+				B04CF9395E0596AE76072123 /* Pods-resources.sh */,
+				A87F8C30892F8E3652E667DB /* Pods.debug.xcconfig */,
+				CF1E90B8C3E1FF699DAAB637 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
+		E52DC846D6E8ABB21ABD164D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8169D63A5CA83CCE0D1667F /* libPods.a */,
+				7032EF213AD7480EE11C052D /* libPods-PayPal-iOS-SDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DF88C344BD3AC6F4CDF46B80 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49C1BC63D483ABD07EDE47E2 /* CardIO.h in Headers */,
+				44C88C0483CB45D3D57D4735 /* CardIOCreditCardInfo.h in Headers */,
+				5FBC1B112281234899CF9CA7 /* CardIODetectionMode.h in Headers */,
+				427F7693BA5816373B681B92 /* CardIOPaymentViewController.h in Headers */,
+				4DF2509F18E5FEDA0592A3F5 /* CardIOPaymentViewControllerDelegate.h in Headers */,
+				D78CC2EAF310595E356DA1FE /* CardIOUtilities.h in Headers */,
+				1C34948D47AC5A3ABAA0A168 /* CardIOView.h in Headers */,
+				B9D72CEBB95CF3B7EABF4F60 /* CardIOViewDelegate.h in Headers */,
+				78396F7381B52B86D49A9755 /* PayPalConfiguration.h in Headers */,
+				7E7AD00D2BCC3B97119BA0C7 /* PayPalFuturePaymentViewController.h in Headers */,
+				2BA7EEBAB3A1B6700F62980C /* PayPalMobile.h in Headers */,
+				82C399EC57A20A8DD4EBB399 /* PayPalOAuthScopes.h in Headers */,
+				2091ED53C67B913C16D5F402 /* PayPalPayment.h in Headers */,
+				F700029D7E8A83661DA98E40 /* PayPalPaymentViewController.h in Headers */,
+				AFC368D5B6C7AA4A003279B6 /* PayPalProfileSharingViewController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1F34C1E35E12A983DD59557B /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33078B166A535FE4C465F913 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				C15855A35983F94BF740601E /* Sources */,
+				844503A9032B3CD9F4887085 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1664778F93FF55D416688990 /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = F8169D63A5CA83CCE0D1667F /* libPods.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		69D703DBE088722914747E81 /* Pods-PayPal-iOS-SDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01BF10D518AFB9120EBC8FF5 /* Build configuration list for PBXNativeTarget "Pods-PayPal-iOS-SDK" */;
+			buildPhases = (
+				611D02967E1CD37FAF469C20 /* Sources */,
+				1A7ECBDA88FF10EE052C5EA5 /* Frameworks */,
+				DF88C344BD3AC6F4CDF46B80 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-PayPal-iOS-SDK";
+			productName = "Pods-PayPal-iOS-SDK";
+			productReference = 7032EF213AD7480EE11C052D /* libPods-PayPal-iOS-SDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11C64F252EDE587D2FB5E373 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 255D06B9DE9472F1103A6B98 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1ADD2D44350A6ED27EB85AFE;
+			productRefGroup = E52DC846D6E8ABB21ABD164D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1F34C1E35E12A983DD59557B /* Pods */,
+				69D703DBE088722914747E81 /* Pods-PayPal-iOS-SDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		611D02967E1CD37FAF469C20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2357FBEB139F1F3EA5EFF133 /* Pods-PayPal-iOS-SDK-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C15855A35983F94BF740601E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29FC94110CA23B40AA92B6F6 /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1664778F93FF55D416688990 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-PayPal-iOS-SDK";
+			target = 69D703DBE088722914747E81 /* Pods-PayPal-iOS-SDK */;
+			targetProxy = 320F2720A839AF43A52992FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		253B1F6173BE3825ED64CEAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF1E90B8C3E1FF699DAAB637 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2DE46D15AD7BB5E5CED6B8B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68B8CCAC78AF02117B17CDE8 /* Pods-PayPal-iOS-SDK-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-PayPal-iOS-SDK/Pods-PayPal-iOS-SDK-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A4AA0422A72EE2C685E2C323 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AE3C3C4714A7E84FC4FB2644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		CCE5FB85553E3BA1A6A85445 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68B8CCAC78AF02117B17CDE8 /* Pods-PayPal-iOS-SDK-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-PayPal-iOS-SDK/Pods-PayPal-iOS-SDK-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E9E0F63DE876B3D48B4F241E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A87F8C30892F8E3652E667DB /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		01BF10D518AFB9120EBC8FF5 /* Build configuration list for PBXNativeTarget "Pods-PayPal-iOS-SDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCE5FB85553E3BA1A6A85445 /* Debug */,
+				2DE46D15AD7BB5E5CED6B8B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		255D06B9DE9472F1103A6B98 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE3C3C4714A7E84FC4FB2644 /* Debug */,
+				A4AA0422A72EE2C685E2C323 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33078B166A535FE4C465F913 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9E0F63DE876B3D48B4F241E /* Debug */,
+				253B1F6173BE3825ED64CEAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 11C64F252EDE587D2FB5E373 /* Project object */;
+}
