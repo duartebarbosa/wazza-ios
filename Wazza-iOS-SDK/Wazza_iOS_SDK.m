@@ -8,9 +8,10 @@
 
 #import "WZCore.h"
 #import "Wazza_iOS_SDK.h"
+#import "WazzaDelegate.h"
 
 static WZCore *_core = nil;
-//static id<WazzaPurchaseDelegate> _delegate = nil;
+static id<WazzaDelegate> _delegate = nil;
 
 @implementation Wazza_iOS_SDK
 
@@ -32,42 +33,26 @@ static WZCore *_core = nil;
 
 #pragma Session functions
 
-/**
- *  Creates a new session and stores it locally
- */
 +(void)newSession {
-
+    (_core == nil) ? NSLog(@"") : [_core newSession];
 }
 
++(void)resumeSession {
+    (_core == nil) ? NSLog(@"") : [_core resumeSession];
+}
 
-/**
- *  Sends the current session to the server
- *  TODO: write when to call this
- */
 +(void)endSession {
-
+    (_core == nil) ? NSLog(@"") : [_core endSession];
 }
 
-#pragma Payments functions
+#pragma Purchases functions
 
-/**
- *  Makes an in-app purchase request
- *
- *  @param item in-app purchase product ID
- */
 +(void)makePurchase:(NSString *)item {
-
+    (_core == nil) ? NSLog(@"") : [_core makePurchase:item];
 }
 
-
-/**
- *  Simulates a purchase action by sending the info directely to Wazza's server
- *
- *  @param itemid item's identification
- *  @param price  item's price
- */
 +(void)purchaseMock:(NSString *)itemid :(double)price {
-
+    (_core == nil) ? NSLog(@"") : [_core purchaseMock:itemid :price];
 }
 
 #pragma PayPal logic
@@ -92,20 +77,22 @@ static WZCore *_core = nil;
 
 #pragma Other stuff
 
-/**
- *  Activates geolocation. Used on session and purchases
- */
 +(void)allowGeoLocation {
-
+    (_core == nil) ? NSLog(@"") : [_core allowGeoLocation];
 }
 
-/**
- *  <#Description#>
- *
- *  @param delegate <#delegate description#>
- */
 +(void)setPurchaseDelegate:(id)delegate {
+    _delegate = delegate;
+}
 
+#pragma SDKCore Delegate methods
+
++(void)corePurchaseSuccess:(WZPaymentInfo *)info {
+    (_delegate != nil) ? [_delegate purchaseSuccess:info] : NSLog(@"");
+}
+
++(void)corePurchaseFailure:(NSError *)error {
+    (_delegate != nil) ? [_delegate PurchaseFailure:error]: NSLog(@"");
 }
 
 @end

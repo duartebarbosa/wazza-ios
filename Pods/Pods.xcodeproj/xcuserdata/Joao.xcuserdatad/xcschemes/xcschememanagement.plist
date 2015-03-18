@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-PayPal-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1F34C1E35E12A983DD59557B</key>
+		<key>1AA7C19AE1DCDB5A5D36DC49</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>69D703DBE088722914747E81</key>
+		<key>5CC3A14902CCB3496109A950</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A83C51B2E35543E13B4AF003</key>
 		<dict>
 			<key>primary</key>
 			<true/>

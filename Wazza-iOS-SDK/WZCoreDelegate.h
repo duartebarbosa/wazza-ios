@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "WZPurchaseInfo.h"
+#import "WZPaymentInfo.h"
 
 @protocol WZCoreDelegate <NSObject>
 
 @required
-//+(void)corePurchaseSuccess:(WZPurchaseInfo *)info;
++(void)corePurchaseSuccess:(WZPaymentInfo *)info;
 
 @required
 +(void)corePurchaseFailure:(NSError *)error;

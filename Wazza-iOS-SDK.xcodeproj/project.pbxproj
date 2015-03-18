@@ -95,6 +95,7 @@
 		CF23BC9D1AB8FB0B003CC6B4 /* IAPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPService.h; sourceTree = "<group>"; };
 		CF23BC9E1AB8FB0B003CC6B4 /* IAPService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPService.m; sourceTree = "<group>"; };
 		CF23BCA01AB8FB60003CC6B4 /* WZPaymentDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZPaymentDelegate.h; sourceTree = "<group>"; };
+		CF23BCA11AB90C48003CC6B4 /* WazzaDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WazzaDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +166,7 @@
 				CF23BAAA1AB8A904003CC6B4 /* Services */,
 				CF23BA921AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h */,
 				CF23BA941AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m */,
+				CF23BCA11AB90C48003CC6B4 /* WazzaDelegate.h */,
 			);
 			path = "Wazza-iOS-SDK";
 			sourceTree = "<group>";

@@ -8,29 +8,30 @@
 
 #import <Foundation/Foundation.h>
 
-//#import "WZNetworkService.h"
-//#import "WZSecurityService.h"
-//#import "WZPersistenceService.h"
-//#import "WZPurchaseService.h"
-//#import "WZSessionInfo.h"
-//#import "WZLocationInfo.h"
-//#import "WZPurchaseDelegate.h"
-//#import "WZSessionService.h"
-//#import "WZLocationService.h"
+#import "WZNetworkService.h"
+#import "WZSecurityService.h"
+#import "WZPersistenceService.h"
+#import "IAPService.h"
+#import "WZSessionInfo.h"
+#import "WZLocationInfo.h"
+#import "WZPaymentDelegate.h"
+#import "WZSessionService.h"
+#import "WZLocationService.h"
 #import "WZCoreDelegate.h"
 #import "WZPayPalService.h"
+#import "WZPaymentInfo.h"
 
 @interface WZCore : NSObject
 
-@property (nonatomic, weak) id<WZCoreDelegate> delegate;
+@property(nonatomic, weak) id<WZCoreDelegate> delegate;
 @property(nonatomic) NSString *secret;
 @property(nonatomic) NSString *userId;
-//@property(nonatomic, strong) WZNetworkService *networkService;
-//@property(nonatomic, strong) WZSecurityService *securityService;
-//@property(nonatomic, strong) WZPersistenceService *persistenceService;
-//@property(nonatomic, strong) WZPurchaseService *purchaseService;
-//@property(nonatomic, strong) WZSessionService *sessionService;
-//@property(nonatomic, strong) WZLocationService *locationService;
+@property(nonatomic, strong) WZNetworkService *networkService;
+@property(nonatomic, strong) WZSecurityService *securityService;
+@property(nonatomic, strong) WZPersistenceService *persistenceService;
+@property(nonatomic, strong) IAPService *purchaseService;
+@property(nonatomic, strong) WZSessionService *sessionService;
+@property(nonatomic, strong) WZLocationService *locationService;
 @property(nonatomic, strong) NSArray *skInfo;
 @property(atomic, strong) WZPayPalService *payPalService;
 

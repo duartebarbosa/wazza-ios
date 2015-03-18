@@ -8,7 +8,7 @@
 
 #import "WZNetworkService.h"
 #import "WZHttpCodes.h"
-//#import "AFHTTPRequestOperationManager.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface WZNetworkService ()
 
@@ -34,23 +34,23 @@
                :(OnSuccess)success
                :(OnFailure)failure
 {
-    //    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //    manager.securityPolicy.allowInvalidCertificates = YES;
-    //    for (NSString* headerId in headers) {
-    //        [manager.requestSerializer setValue:headerId forHTTPHeaderField:[headers objectForKey:headerId]];
-    //    }
-    //    dispatch_async(self.networkQueue, ^{
-    //        [manager POST:[self escapeURL:url] parameters:data success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    //            NSLog(@"%@", responseObject);
-    //            dispatch_async(dispatch_get_main_queue(), ^{
-    //                success([self parseResponse:nil :nil]);
-    //            });
-    //        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    //            dispatch_async(dispatch_get_main_queue(), ^{
-    //                failure(error);
-    //            });
-    //        }];
-    //    });
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.securityPolicy.allowInvalidCertificates = YES;
+        for (NSString* headerId in headers) {
+            [manager.requestSerializer setValue:headerId forHTTPHeaderField:[headers objectForKey:headerId]];
+        }
+        dispatch_async(self.networkQueue, ^{
+            [manager POST:[self escapeURL:url] parameters:data success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSLog(@"%@", responseObject);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success([self parseResponse:nil :nil]);
+                });
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    failure(error);
+                });
+            }];
+        });
     //    NSMutableURLRequest *request = [self buildRequest:url :httpMethod :params :headers :data];
     //
     //    dispatch_async(self.networkQueue, ^{
