@@ -10,15 +10,17 @@
 #import <Foundation/Foundation.h>
 #import <StoreKit/StoreKit.h>
 #import "WZPaymentDelegate.h"
+#import "WZInAppPurchasePaymentRequest.h"
 
-@interface IAPService : NSObject
+@interface WZInAppPurchaseService : NSObject
 
 @property (nonatomic, weak) id<WZPaymentDelegate> delegate;
 @property (nonatomic, strong) NSString *userId;
+@property(strong) NSString *sdkToken;
 
--(id)initService:(NSString *)userId;
+-(instancetype)initService:(NSString *)userId :(NSString *)token;
 
--(void)purchaseItem:(NSString *)itemId;
+-(void)requestPayment:(WZInAppPurchasePaymentRequest *)request;
 
 -(void)mockPurchase:(NSString *)userId :(NSString *)itemid :(double)price;
 

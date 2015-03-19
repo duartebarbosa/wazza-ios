@@ -28,14 +28,18 @@
                                   :(double)price
                                   :(NSString *)userId;
 
+
+
 /**
- *  Creates a mock of a purchase object
+ *  Builds a model for a specific In-App Purchase
  *
- *  @param itemId id of the item
- *  @param price  item's price
+ *  @param userId   id of buyer
+ *  @param itemId   SKU of the item to be bought
+ *  @param price    Item's price
+ *  @param quantity Number of items to buy
  *
- *  @return WZPurchaseInfo instance
+ *  @return IAP model for purchase
  */
--(instancetype)initMockPurchase:(NSString *)userId :(NSString *)itemId :(double)price;
+-(instancetype)initForPurchase:(NSString *)userId :(NSString *)itemId :(double)price :(NSInteger)quantity;
 
 @end

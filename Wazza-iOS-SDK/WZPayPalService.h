@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PayPalMobile.h"
+#import "WZPayPalPaymentRequest.h"
 
 @interface WZPayPalService : NSObject
 
@@ -15,6 +16,8 @@
 
 -(id)initService:(NSString *)productionClientID
                 :(NSString *)sandboxClientID
+                :(NSString *)APIClientID
+                :(NSString *)APISecret
                 :(NSString *)merchantName
                 :(NSString *)privacyPolicyURL
                 :(NSString *)userAgreementURL
@@ -31,13 +34,6 @@
                                       :(NSString *)currency
                                       :(NSString *)sku;
 
--(void)requestPayment:(NSString *)itemName
-                     :(NSString *)description
-                     :(NSString *)sku
-                     :(int)quantity
-                     :(double)price
-                     :(NSString *)currency
-                     :(double)taxCost
-                     :(double)shippingCost;
+-(void)requestPayment:(WZPayPalPaymentRequest *)request;
 
 @end

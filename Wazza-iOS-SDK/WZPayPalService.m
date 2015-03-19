@@ -9,6 +9,8 @@
 #import "WZPayPalService.h"
 #import "PayPalMobile.h"
 #import <QuartzCore/QuartzCore.h>
+#import "WZPayPalInfo.h"
+#import "UtilsService.h"
 
 #define MAX_PAY_PAL_ITEM_NAME 127
 #define MAX_PAY_PAL_ITEM_QUANTITY 10
@@ -19,6 +21,9 @@
 @property(nonatomic, strong, readwrite) NSString *environment;
 @property(nonatomic, strong) UIViewController *parentController;
 @property(nonatomic, strong, readwrite) PayPalConfiguration *payPalConfig;
+@property(atomic, strong) NSString *apiClientID;
+@property(atomic, strong) NSString *apiSecret;
+@property(strong) NSString *userId;
 
 @end
 
@@ -26,6 +31,8 @@
 
 -(id)initService:(NSString *)productionClientID
                 :(NSString *)sandboxClientID
+                :(NSString *)APIClientID
+                :(NSString *)APISecret
                 :(NSString *)merchantName
                 :(NSString *)privacyPolicyURL
                 :(NSString *)userAgreementURL
@@ -134,20 +141,20 @@
     return payment;
 }
 
--(void)requestPayment:(NSString *)itemName
-                     :(NSString *)description
-                     :(NSString *)sku
-                     :(int)quantity
-                     :(double)price
-                     :(NSString *)currency
-                     :(double)taxCost
-                     :(double)shippingCost {
+-(void)requestPayment:(WZPayPalPaymentRequest *)request {
     
-    NSDecimalNumber * _price = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f", price]];
-    BOOL validateInput = [self validateRequestPaymentArguments:itemName :quantity :_price :currency :sku];
+    NSDecimalNumber * _price = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f", request.price]];
+    BOOL validateInput = [self validateRequestPaymentArguments:request.itemName :request.quantity :_price :request.currency :request.sku];
     
     if (validateInput) {
-        PayPalPayment *payment = [self generatePayment:itemName :description :sku :quantity :price :currency :taxCost :shippingCost];
+        PayPalPayment *payment = [self generatePayment:request.itemName
+                                                      :request.description
+                                                      :request.sku
+                                                      :request.quantity
+                                                      :request.price
+                                                      :request.currency
+                                                      :request.taxCost
+                                                      :request.shippingCost];
         self.payPalConfig.acceptCreditCards = true;
         if (payment.processable) {
             PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
@@ -166,6 +173,8 @@
 
 - (void)payPalPaymentViewController:(PayPalPaymentViewController *)paymentViewController didCompletePayment:(PayPalPayment *)completedPayment {
     NSLog(@"PayPal Payment Success!");
+    NSLog(@"%@", completedPayment);
+    WZPayPalInfo *info = [[WZPayPalInfo alloc] initWithPayPalPayment:completedPayment :self.userId];
     [self.parentController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -173,6 +182,31 @@
     NSLog(@"PayPal Payment Canceled");
     PayPalPayment *failedPayment = self.currentPayment;
     [self.parentController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma Validation methods
+
+-(void)validatePayment:(WZPayPalInfo *)paymentInfo {
+    NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:[paymentInfo toJson], @"payment", nil];
+//    NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, ENDPOINT_SESSION_NEW];
+//    NSString *content = [UtilsService createStringFromJSON:dic];
+//    NSDictionary *headers = [self addSecurityInformation:content];
+//    NSDictionary *requestData = [self createContentForHttpPost:content :requestUrl];
+//    
+//    [self.networkService sendData:
+//                       requestUrl:
+//                          headers:
+//                      requestData:
+//     ^(NSArray *result){
+//         NSLog(@"session update ok");
+//         [self.persistenceService clearContent:SESSION_INFO];
+//         [self.persistenceService clearContent:CURRENT_SESSION];
+//         [self.persistenceService clearContent:PURCHASE_INFO];
+//     }:
+//     ^(NSError *error){
+//         NSLog(@"%@", error);
+//     }
+//     ];
 }
 
 @end

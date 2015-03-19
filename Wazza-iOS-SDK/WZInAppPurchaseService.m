@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Wazza. All rights reserved.
 //
 
-#import "IAPService.h"
+#import "WZInAppPurchaseService.h"
 #import <StoreKit/StoreKit.h>
 #import "WZError.h"
 #import "WZPaymentInfo.h"
 #import "WZPersistenceService.h"
 
-@interface IAPService() <SKPaymentTransactionObserver, SKProductsRequestDelegate>
+@interface WZInAppPurchaseService() <SKPaymentTransactionObserver, SKProductsRequestDelegate>
 
 @property(nonatomic, strong) SKProductsRequest *productRequest;
 @property(nonatomic, strong) NSMutableArray *items;
@@ -20,22 +20,23 @@
 
 @end
 
-@implementation IAPService
+@implementation WZInAppPurchaseService
 
 @synthesize delegate;
 
--(id)initService:(NSString *)userId {
+-(instancetype)initService:(NSString *)userId :(NSString *)token {
     self = [super init];
     if (self) {
         self.userId = userId;
+        self.sdkToken = token;
         self.items = [[NSMutableArray alloc] init];
         self.persistenceService = [[WZPersistenceService alloc] initPersistence];
     }
     return self;
 }
 
--(void)purchaseItem:(NSString *)item {
-    
+-(void)requestPayment:(WZInAppPurchasePaymentRequest *)request {
+    NSString *item = request.itemId;
     if ([SKPaymentQueue canMakePayments]) {
         SKProductsRequest *productRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObjects:item, nil]];
         productRequest.delegate = self;
@@ -48,7 +49,7 @@
 }
 
 -(void)mockPurchase:(NSString *)userId :(NSString *)itemid :(double)price {
-    WZPaymentInfo *purchaseInfo = [[WZPaymentInfo alloc] initMockPurchase:userId :itemid :price];
+    WZPaymentInfo *purchaseInfo = nil;//[[WZPaymentInfo alloc] initMockPurchase:userId :itemid :price];
     [self.delegate onPurchaseSuccess: purchaseInfo];
 }
 
@@ -98,7 +99,7 @@
     }
     
     [self.delegate onPurchaseSuccess:
-     [[WZPaymentInfo alloc] initFromTransaction:transaction :price :self.userId]
+     nil//[[WZPaymentInfo alloc] initFromTransaction:transaction :price :self.userId]
      ];
 }
 

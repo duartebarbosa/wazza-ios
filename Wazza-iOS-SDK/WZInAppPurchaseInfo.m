@@ -47,7 +47,7 @@
     return self;
 }
 
--(instancetype)initMockPurchase:(NSString *)userId :(NSString *)itemId :(double)price {
+-(instancetype)initForPurchase:(NSString *)userId :(NSString *)itemId :(double)price :(NSInteger)quantity {
     self = [super init];
     
     if (self) {
@@ -57,7 +57,7 @@
         self.userId = userId;
         self.itemId = itemId;
         self.price = price;
-        self.quantity = 1;
+        self.quantity = quantity;
     }
     
     return self;
