@@ -32,7 +32,7 @@
  *
  *  @return <#return value description#>
  */
--(instancetype)initWithPayment:(PayPalPayment *)payment :(NSString *)userId;
+-(instancetype)initWithPayPalPayment:(PayPalPayment *)payment :(NSString *)userId;
 
 @end
 

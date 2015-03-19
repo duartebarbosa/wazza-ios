@@ -64,6 +64,8 @@
 
 +(void)initPayPalModule:(NSString *)productionClientID
                        :(NSString *)sandboxClientID
+                       :(NSString *)APIClientID
+                       :(NSString *)APISecret
                        :(NSString *)merchantName
                        :(NSString *)privacyPolicyURL
                        :(NSString *)userAgreementURL

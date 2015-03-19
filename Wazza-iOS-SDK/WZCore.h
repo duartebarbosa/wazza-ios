@@ -11,7 +11,7 @@
 #import "WZNetworkService.h"
 #import "WZSecurityService.h"
 #import "WZPersistenceService.h"
-#import "IAPService.h"
+#import "WZInAppPurchaseService.h"
 #import "WZSessionInfo.h"
 #import "WZLocationInfo.h"
 #import "WZPaymentDelegate.h"
@@ -29,7 +29,7 @@
 @property(nonatomic, strong) WZNetworkService *networkService;
 @property(nonatomic, strong) WZSecurityService *securityService;
 @property(nonatomic, strong) WZPersistenceService *persistenceService;
-@property(nonatomic, strong) IAPService *purchaseService;
+@property(nonatomic, strong) WZInAppPurchaseService *purchaseService;
 @property(nonatomic, strong) WZSessionService *sessionService;
 @property(nonatomic, strong) WZLocationService *locationService;
 @property(nonatomic, strong) NSArray *skInfo;
@@ -55,6 +55,8 @@
 
 -(void)initPayPalService:(NSString *)productionClientID
                         :(NSString *)sandboxClientID
+                        :(NSString *)APIClientID
+                        :(NSString *)APISecret
                         :(NSString *)merchantName
                         :(NSString *)privacyPolicyURL
                         :(NSString *)userAgreementURL
@@ -63,7 +65,7 @@
 
 -(void)connectToPayPal:(UIViewController *)currentView;
 
--(void)fakePayPalPayment;
+//-(void)fakePayPalPayment;
 
 
 #pragma Other stuff

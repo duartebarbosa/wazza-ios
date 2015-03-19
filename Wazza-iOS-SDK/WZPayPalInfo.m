@@ -11,7 +11,7 @@
 @implementation WZPayPalInfo
 
 
--(instancetype)initWithPayment:(PayPalPayment *)payment :(NSString *)userId {    
+-(instancetype)initWithPayPalPayment:(PayPalPayment *)payment :(NSString *)userId {    
     // Convert string to date object
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"EE, d LLLL yyyy HH:mm:ss Z"];

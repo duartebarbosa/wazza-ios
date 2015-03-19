@@ -63,12 +63,14 @@ static id<WazzaDelegate> _delegate = nil;
 
 +(void)initPayPalModule:(NSString *)productionClientID
                        :(NSString *)sandboxClientID
+                       :(NSString *)APIClientID
+                       :(NSString *)APISecret
                        :(NSString *)merchantName
                        :(NSString *)privacyPolicyURL
                        :(NSString *)userAgreementURL
                        :(BOOL)acceptCreditCards
                        :(BOOL)testFlag {
-    (_core == nil) ? NSLog(@"") : [_core initPayPalService:productionClientID :sandboxClientID :merchantName :privacyPolicyURL :userAgreementURL : acceptCreditCards :testFlag];
+    (_core == nil) ? NSLog(@"") : [_core initPayPalService:productionClientID :sandboxClientID :APIClientID :APISecret :merchantName :privacyPolicyURL :userAgreementURL : acceptCreditCards :testFlag];
 }
 
 +(void)fakePayPalPayment {

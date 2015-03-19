@@ -96,4 +96,9 @@
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
 
++(NSDictionary *)createContentForHttpPost:(NSString *)content :(NSString *)requestUrl {
+    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
+    return body;
+}
+
 @end

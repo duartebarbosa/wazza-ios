@@ -12,6 +12,16 @@
 
 @implementation WZSecurityService
 
+-(instancetype)initService:(NSString *)token {
+    self = [super init];
+    
+    if (self) {
+        self.token = token;
+    }
+    
+    return self;
+}
+
 - (NSData *)AES256EncryptWithKey:(NSString *)key :(NSString *)content {
     
     // 'key' should be 32 bytes for AES256, will be null-padded otherwise
@@ -93,12 +103,17 @@
     return ret;
 }
 
--(NSDictionary *)addSecurityInformation:(NSString *)content :(NSString *)applicationName{
-    NSMutableDictionary *securityHeaders = [NSMutableDictionary dictionaryWithObjectsAndKeys: applicationName,@"AppName", nil];
-    
-    if (content) {
-        [securityHeaders setValue:[self hashContent:content] forKey:@"Digest"];
-    }
+//-(NSDictionary *)addSecurityInformation:(NSString *)content :(NSString *)applicationName{
+//    NSMutableDictionary *securityHeaders = [NSMutableDictionary dictionaryWithObjectsAndKeys: applicationName,@"AppName", nil];
+//    
+//    if (content) {
+//        [securityHeaders setValue:[self hashContent:content] forKey:@"Digest"];
+//    }
+//    return securityHeaders;
+//}
+
+-(NSDictionary *)addSecurityInformation:(NSString *)content {
+    NSMutableDictionary *securityHeaders = [NSMutableDictionary dictionaryWithObjectsAndKeys:[self token], @"SDK-TOKEN", nil];
     return securityHeaders;
 }
 

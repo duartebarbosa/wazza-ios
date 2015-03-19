@@ -21,4 +21,7 @@ typedef void (^OnFailure)(NSError *);
                :(NSDictionary *)data
                :(OnSuccess)success
                :(OnFailure)failure;
+
++(NSDictionary *)createContentForHttpPost:(NSString *)content :(NSString *)requestUrl;
+
 @end

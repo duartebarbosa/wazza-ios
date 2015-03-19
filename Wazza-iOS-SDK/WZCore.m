@@ -40,7 +40,7 @@
         self.networkService = [[WZNetworkService alloc] initService];
         self.securityService = [[WZSecurityService alloc] init];
         self.persistenceService = [[WZPersistenceService alloc] initPersistence];
-        self.purchaseService = [[IAPService alloc] initService :self.userId];
+        self.purchaseService = [[WZInAppPurchaseService alloc] initService :self.userId :self.secret];
         self.sessionService = [[WZSessionService alloc] initService :self.userId :token];
         self.purchaseService.delegate = self;
         self.locationService = nil;
@@ -143,6 +143,8 @@
 #pragma PayPal Logic
 -(void)initPayPalService:(NSString *)productionClientID
                         :(NSString *)sandboxClientID
+                        :(NSString *)APIClientID
+                        :(NSString *)APISecret
                         :(NSString *)merchantName
                         :(NSString *)privacyPolicyURL
                         :(NSString *)userAgreementURL
@@ -150,6 +152,8 @@
                         :(BOOL)testFlag {
     self.payPalService = [[WZPayPalService alloc] initService:productionClientID
                                                              :sandboxClientID
+                                                             :APIClientID
+                                                             :APISecret
                                                              :merchantName
                                                              :privacyPolicyURL
                                                              :userAgreementURL
@@ -167,13 +171,13 @@
     }
 }
 
--(void)fakePayPalPayment {
-    if (self.payPalService != nil) {
-        [self.payPalService requestPayment:@"testItem" :@"description" :@"SKU" :1 :2.99 :@"EUR" :0 :0];
-    } else {
-        //TODO error message
-        NSLog(@"WZError: need to init PayPal service first");
-    }
-}
+//-(void)fakePayPalPayment {
+//    if (self.payPalService != nil) {
+//        [self.payPalService requestPayment:@"testItem" :@"description" :@"SKU" :1 :2.99 :@"EUR" :0 :0];
+//    } else {
+//        //TODO error message
+//        NSLog(@"WZError: need to init PayPal service first");
+//    }
+//}
 
 @end

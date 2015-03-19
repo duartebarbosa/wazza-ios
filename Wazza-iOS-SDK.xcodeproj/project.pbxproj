@@ -27,7 +27,13 @@
 		CF23BC941AB8F456003CC6B4 /* WZNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC931AB8F456003CC6B4 /* WZNetworkService.m */; };
 		CF23BC971AB8F489003CC6B4 /* WZHttpCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC961AB8F489003CC6B4 /* WZHttpCodes.m */; };
 		CF23BC9B1AB8F556003CC6B4 /* WZLocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC9A1AB8F556003CC6B4 /* WZLocationService.m */; };
-		CF23BC9F1AB8FB0B003CC6B4 /* IAPService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC9E1AB8FB0B003CC6B4 /* IAPService.m */; };
+		CF23BC9F1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC9E1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m */; };
+		CF23BCA51AB9A9D3003CC6B4 /* WZPayPalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BCA41AB9A9D3003CC6B4 /* WZPayPalInfo.m */; };
+		CF2DB7711AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB7701AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.m */; };
+		CF2DB7761ABAE9700007C9C4 /* UtilsService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB7751ABAE9700007C9C4 /* UtilsService.m */; };
+		CF2DB7791ABAECC80007C9C4 /* WZPaymentService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB7781ABAECC80007C9C4 /* WZPaymentService.m */; };
+		CF2DB77D1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB77C1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m */; };
+		CF2DB7801ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB77F1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,10 +98,23 @@
 		CF23BC961AB8F489003CC6B4 /* WZHttpCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZHttpCodes.m; sourceTree = "<group>"; };
 		CF23BC991AB8F556003CC6B4 /* WZLocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLocationService.h; sourceTree = "<group>"; };
 		CF23BC9A1AB8F556003CC6B4 /* WZLocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZLocationService.m; sourceTree = "<group>"; };
-		CF23BC9D1AB8FB0B003CC6B4 /* IAPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPService.h; sourceTree = "<group>"; };
-		CF23BC9E1AB8FB0B003CC6B4 /* IAPService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPService.m; sourceTree = "<group>"; };
+		CF23BC9D1AB8FB0B003CC6B4 /* WZInAppPurchaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZInAppPurchaseService.h; sourceTree = "<group>"; };
+		CF23BC9E1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZInAppPurchaseService.m; sourceTree = "<group>"; };
 		CF23BCA01AB8FB60003CC6B4 /* WZPaymentDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZPaymentDelegate.h; sourceTree = "<group>"; };
 		CF23BCA11AB90C48003CC6B4 /* WazzaDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WazzaDelegate.h; sourceTree = "<group>"; };
+		CF23BCA31AB9A9D3003CC6B4 /* WZPayPalInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPayPalInfo.h; sourceTree = "<group>"; };
+		CF23BCA41AB9A9D3003CC6B4 /* WZPayPalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPayPalInfo.m; sourceTree = "<group>"; };
+		CF2DB76F1AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZInAppPurchaseInfo.h; sourceTree = "<group>"; };
+		CF2DB7701AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZInAppPurchaseInfo.m; sourceTree = "<group>"; };
+		CF2DB7741ABAE9700007C9C4 /* UtilsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsService.h; sourceTree = "<group>"; };
+		CF2DB7751ABAE9700007C9C4 /* UtilsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilsService.m; sourceTree = "<group>"; };
+		CF2DB7771ABAECC80007C9C4 /* WZPaymentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPaymentService.h; sourceTree = "<group>"; };
+		CF2DB7781ABAECC80007C9C4 /* WZPaymentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPaymentService.m; sourceTree = "<group>"; };
+		CF2DB77B1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPayPalPaymentRequest.h; sourceTree = "<group>"; };
+		CF2DB77C1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPayPalPaymentRequest.m; sourceTree = "<group>"; };
+		CF2DB77E1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZInAppPurchasePaymentRequest.h; sourceTree = "<group>"; };
+		CF2DB77F1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZInAppPurchasePaymentRequest.m; sourceTree = "<group>"; };
+		CF2DB7811ABAF6F30007C9C4 /* WZPaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPaymentRequest.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +209,7 @@
 		CF23BAAA1AB8A904003CC6B4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CF2DB7731ABAE9670007C9C4 /* Utils */,
 				CF23BC981AB8F543003CC6B4 /* Location */,
 				CF23BC8E1AB8F41D003CC6B4 /* Sessions */,
 				CF23BC661AB8EE1D003CC6B4 /* Network */,
@@ -202,9 +222,11 @@
 		CF23BAAB1AB8A90D003CC6B4 /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				CF23BCA01AB8FB60003CC6B4 /* WZPaymentDelegate.h */,
+				CF2DB7771ABAECC80007C9C4 /* WZPaymentService.h */,
+				CF2DB7781ABAECC80007C9C4 /* WZPaymentService.m */,
 				CF23BC9C1AB8F591003CC6B4 /* In-App Purchases */,
 				CF23BAAC1AB8A911003CC6B4 /* PayPal */,
-				CF23BCA01AB8FB60003CC6B4 /* WZPaymentDelegate.h */,
 			);
 			name = Payments;
 			sourceTree = "<group>";
@@ -292,10 +314,13 @@
 		CF23BC7D1AB8F2B4003CC6B4 /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				CF2DB76E1AB9DC9D0007C9C4 /* In-App Purchases */,
+				CF23BCA21AB9A9C2003CC6B4 /* PayPal */,
 				CF23BC7E1AB8F2C0003CC6B4 /* WZPaymentInfo.h */,
 				CF23BC7F1AB8F2C0003CC6B4 /* WZPaymentInfo.m */,
 				CF23BC811AB8F2DA003CC6B4 /* WZCurrency.h */,
 				CF23BC821AB8F2DA003CC6B4 /* WZCurrency.m */,
+				CF2DB7811ABAF6F30007C9C4 /* WZPaymentRequest.h */,
 			);
 			name = Payments;
 			sourceTree = "<group>";
@@ -330,10 +355,41 @@
 		CF23BC9C1AB8F591003CC6B4 /* In-App Purchases */ = {
 			isa = PBXGroup;
 			children = (
-				CF23BC9D1AB8FB0B003CC6B4 /* IAPService.h */,
-				CF23BC9E1AB8FB0B003CC6B4 /* IAPService.m */,
+				CF23BC9D1AB8FB0B003CC6B4 /* WZInAppPurchaseService.h */,
+				CF23BC9E1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m */,
 			);
 			name = "In-App Purchases";
+			sourceTree = "<group>";
+		};
+		CF23BCA21AB9A9C2003CC6B4 /* PayPal */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BCA41AB9A9D3003CC6B4 /* WZPayPalInfo.m */,
+				CF23BCA31AB9A9D3003CC6B4 /* WZPayPalInfo.h */,
+				CF2DB77B1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.h */,
+				CF2DB77C1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m */,
+			);
+			name = PayPal;
+			sourceTree = "<group>";
+		};
+		CF2DB76E1AB9DC9D0007C9C4 /* In-App Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				CF2DB76F1AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.h */,
+				CF2DB7701AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.m */,
+				CF2DB77E1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.h */,
+				CF2DB77F1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m */,
+			);
+			name = "In-App Purchases";
+			sourceTree = "<group>";
+		};
+		CF2DB7731ABAE9670007C9C4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CF2DB7741ABAE9700007C9C4 /* UtilsService.h */,
+				CF2DB7751ABAE9700007C9C4 /* UtilsService.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,17 +547,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF2DB7711AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.m in Sources */,
+				CF2DB7761ABAE9700007C9C4 /* UtilsService.m in Sources */,
 				CF23BAB41AB8AA42003CC6B4 /* WZCore.m in Sources */,
 				CF23BC8D1AB8F3EA003CC6B4 /* WZPersistenceService.m in Sources */,
-				CF23BC9F1AB8FB0B003CC6B4 /* IAPService.m in Sources */,
+				CF23BC9F1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m in Sources */,
+				CF2DB7791ABAECC80007C9C4 /* WZPaymentService.m in Sources */,
 				CF23BC941AB8F456003CC6B4 /* WZNetworkService.m in Sources */,
+				CF2DB7801ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m in Sources */,
 				CF23BA951AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m in Sources */,
 				CF23BC861AB8F34E003CC6B4 /* WZSecurityService.m in Sources */,
 				CF23BC791AB8F19D003CC6B4 /* WZSessionInfo.m in Sources */,
 				CF23BC831AB8F2DA003CC6B4 /* WZCurrency.m in Sources */,
+				CF23BCA51AB9A9D3003CC6B4 /* WZPayPalInfo.m in Sources */,
 				CF23BC971AB8F489003CC6B4 /* WZHttpCodes.m in Sources */,
 				CF23BC801AB8F2C0003CC6B4 /* WZPaymentInfo.m in Sources */,
 				CF23BC911AB8F432003CC6B4 /* WZSessionService.m in Sources */,
+				CF2DB77D1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m in Sources */,
 				CF23BC731AB8F10A003CC6B4 /* WZDeviceInfo.m in Sources */,
 				CF23BAAF1AB8A926003CC6B4 /* WZPayPalService.m in Sources */,
 				CF23BC7C1AB8F1DB003CC6B4 /* WZLocationInfo.m in Sources */,
@@ -606,6 +668,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5CB61294C7864B80FB924433 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -620,6 +683,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A5E0D6F05E79736192FC0184 /* Pods.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
