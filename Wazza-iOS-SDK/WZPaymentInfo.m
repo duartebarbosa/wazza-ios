@@ -10,47 +10,29 @@
 #import "WZPaymentInfo.h"
 #import "WZLocationInfo.h"
 #import "WZSecurityService.h"
+#import "WZDeviceInfo.h"
 
 @implementation WZPaymentInfo
 
--(id)initFromTransaction:(SKPaymentTransaction *)transaction
-                        : (double)price
-                        :(NSString *)userId {
-    
-    //    NSString*(^generateID)(void) = ^NSString* {
-    //        WZSecurityService *securityService = [[WZSecurityService alloc] init];
-    //        NSString *idValue = [[NSString alloc] initWithFormat:@"%@-%@-%@", self.itemId, [self dateToString], [self deviceInfo]];
-    //        return [securityService hashContent:idValue];
-    //    };
-    
-    if (self) {
-        self.location = Nil; //TODO fetch most recent location if geo-location is active
-        self._id = [self generateID];
-        self.deviceInfo = [[WZDeviceInfo alloc] initDeviceInfo];
-        self.userId = userId;
-        self.itemId = transaction.payment.productIdentifier;
-        self.price = price;
-        self.time = transaction.transactionDate;
-        self.transaction = transaction;
-        self.quantity = transaction.payment.quantity;
-    }
-    
-    return self;
-}
-
--(id)initMockPurchase:(NSString *)userId :(NSString *)itemId :(double)price {
+-(instancetype)initPayment:(NSString *)_id
+                          :(NSString *)userId
+                          :(double)price
+                          :(NSDate *)date
+                          :(NSInteger)quantity
+                          :(NSString *)hash
+                          :(NSUInteger)systemType {
     self = [super init];
-    
     if (self) {
-        self.time = [NSDate date];
-        self._id = [self generateID];
-        self.deviceInfo = [[WZDeviceInfo alloc] initDeviceInfo];
+        self._id = _id;
         self.userId = userId;
-        self.itemId = itemId;
         self.price = price;
-        self.quantity = 1;
+        self.time = date;
+        self.deviceInfo = [[WZDeviceInfo alloc] initDeviceInfo];
+        self.location = nil; //TODO
+        self.quantity = quantity;
+        self.sessionHash = hash;
+        self.paymentSystem = systemType;
     }
-    
     return self;
 }
 
@@ -59,10 +41,15 @@
  **/
 -(NSString *)generateID {
     WZSecurityService *securityService = [[WZSecurityService alloc] init];
-    NSString *idValue = [[NSString alloc] initWithFormat:@"%@-%@-%@", self.itemId, [self dateToString], [self deviceInfo]];
+    NSString *idValue = [[NSString alloc] initWithFormat:@"%@-%@", [self dateToString], [self deviceInfo]];
     return [securityService hashContent:idValue];
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @return <#return value description#>
+ */
 -(NSString *)dateToString {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss Z";
@@ -74,9 +61,9 @@
     NSMutableDictionary *json = [[NSMutableDictionary alloc] init];
     NSString *time = [self dateToString];
     
+    [json setObject:[NSNumber numberWithInteger:self.paymentSystem] forKey:@"system"];
     [json setObject:self._id forKey:@"id"];
     [json setObject:self.userId forKey:@"userId"];
-    [json setObject:self.itemId forKey:@"itemId"];
     [json setObject:[[NSNumber alloc] initWithDouble:self.price] forKey:@"price"];
     [json setObject:time forKey:@"time"];
     [json setObject:[self.deviceInfo toJson] forKey:@"deviceInfo"];

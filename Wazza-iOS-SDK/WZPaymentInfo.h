@@ -12,33 +12,37 @@
 #import "WZDeviceInfo.h"
 #import <StoreKit/StoreKit.h>
 
+typedef enum : NSUInteger {
+    IAP,
+    Stripe,
+    PayPal,
+} PaymentSystem;
+
 @interface WZPaymentInfo : NSObject
 
 @property(nonatomic) NSString *_id;
 @property(nonatomic) NSString *userId;
-@property(nonatomic) NSString *itemId;
 @property(nonatomic) double price;
 @property(nonatomic) NSDate *time;
 @property(nonatomic, strong) WZLocationInfo *location;
 @property(nonatomic, strong) WZDeviceInfo *deviceInfo;
-@property(nonatomic, strong) SKPaymentTransaction *transaction;
 @property(nonatomic) NSInteger quantity;
 @property(nonatomic) NSString *sessionHash;
+@property NSUInteger paymentSystem;
 
--(id)initFromTransaction:(SKPaymentTransaction *)transaction
-                        :(double)price
-                        :(NSString *)userId;
+-(instancetype)initPayment:(NSString *)_id
+                          :(NSString *)userId
+                          :(double)price
+                          :(NSDate *)date
+                          :(NSInteger)quantity
+                          :(NSString *)hash
+                          :(NSUInteger)systemType;
+
+-(NSString *)generateID;
+
+-(NSString *)dateToString;
 
 -(NSDictionary *)toJson;
 
-/**
- *  Creates a mock of a purchase object
- *
- *  @param itemId id of the item
- *  @param price  item's price
- *
- *  @return WZPurchaseInfo instance
- */
--(id)initMockPurchase:(NSString *)userId :(NSString *)itemId :(double)price;
 
 @end
