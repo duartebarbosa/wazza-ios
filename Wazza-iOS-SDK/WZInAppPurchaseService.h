@@ -20,8 +20,6 @@
 
 -(instancetype)initService:(NSString *)userId :(NSString *)token;
 
--(void)requestPayment:(WZInAppPurchasePaymentRequest *)request;
-
--(void)mockPurchase:(NSString *)userId :(NSString *)itemid :(double)price;
+-(void)makePayment:(WZInAppPurchasePaymentRequest *)request;
 
 @end

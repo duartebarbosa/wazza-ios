@@ -10,8 +10,9 @@
 #import "WZPayPalService.h"
 #import "WZInAppPurchaseService.h"
 #import "WZPaymentRequest.h"
+#import "WZPaymentSystemsDelegate.h"
 
-@interface WZPaymentService : NSObject
+@interface WZPaymentService : NSObject <WZPaymentSystemsDelegate>
 
 @property(strong) WZPayPalService *payPalService;
 @property(strong) WZInAppPurchaseService *iapService;
@@ -26,6 +27,13 @@
  */
 -(instancetype)initPaymentService:(NSString *)sdkToken :(NSString *)userId;
 
+
+/**
+ *  <#Description#>
+ *
+ *  @param info <#info description#>
+ */
+-(void)makePayment:(WZPaymentRequest *)info;
 
 /**
  *  <#Description#>
@@ -50,6 +58,11 @@
                            :(BOOL)acceptCreditCards
                            :(BOOL)testFlag;
 
--(void)makePayment:(WZPaymentRequest *)info;
+/**
+ *  <#Description#>
+ *
+ *  @param view <#view description#>
+ */
+-(void)connectToPayPal:(UIViewController *)view;
 
 @end

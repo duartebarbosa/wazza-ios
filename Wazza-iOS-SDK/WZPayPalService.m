@@ -11,10 +11,14 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WZPayPalInfo.h"
 #import "UtilsService.h"
+#import "WZNetworkService.h"
+#import "WZSecurityService.h"
 
 #define MAX_PAY_PAL_ITEM_NAME 127
 #define MAX_PAY_PAL_ITEM_QUANTITY 10
 #define MAX_PAY_PAL_ITEM_PRICE 10
+
+#define VERIFY_PAYMENT_URL @"/payment/verify"
 
 @interface WZPayPalService () <PayPalPaymentDelegate>
 
@@ -24,12 +28,15 @@
 @property(atomic, strong) NSString *apiClientID;
 @property(atomic, strong) NSString *apiSecret;
 @property(strong) NSString *userId;
+@property(strong) WZNetworkService *networkService;
+@property(strong) NSString *sdkToken;
 
 @end
 
 @implementation WZPayPalService
 
--(id)initService:(NSString *)productionClientID
+-(id)initService:(NSString *)token
+                :(NSString *)productionClientID
                 :(NSString *)sandboxClientID
                 :(NSString *)APIClientID
                 :(NSString *)APISecret
@@ -40,6 +47,8 @@
                 :(BOOL)testFlag {
     self = [super init];
     if (self) {
+        self.networkService = [[WZNetworkService alloc] initService];
+        self.sdkToken = token;
         NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
         if (productionClientID != nil) {
             [args setObject:productionClientID forKey:PayPalEnvironmentProduction];
@@ -141,7 +150,7 @@
     return payment;
 }
 
--(void)requestPayment:(WZPayPalPaymentRequest *)request {
+-(void)makePayment:(WZPayPalPaymentRequest *)request {
     
     NSDecimalNumber * _price = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f", request.price]];
     BOOL validateInput = [self validateRequestPaymentArguments:request.itemName :request.quantity :_price :request.currency :request.sku];
@@ -175,38 +184,43 @@
     NSLog(@"PayPal Payment Success!");
     NSLog(@"%@", completedPayment);
     WZPayPalInfo *info = [[WZPayPalInfo alloc] initWithPayPalPayment:completedPayment :self.userId];
-    [self.parentController dismissViewControllerAnimated:YES completion:nil];
+    [self validatePayment:info :paymentViewController];
 }
 
 - (void)payPalPaymentDidCancel:(PayPalPaymentViewController *)paymentViewController {
     NSLog(@"PayPal Payment Canceled");
-    PayPalPayment *failedPayment = self.currentPayment;
+//    PayPalPayment *failedPayment = self.currentPayment;
     [self.parentController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma Validation methods
 
--(void)validatePayment:(WZPayPalInfo *)paymentInfo {
-    NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:[paymentInfo toJson], @"payment", nil];
-//    NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, ENDPOINT_SESSION_NEW];
-//    NSString *content = [UtilsService createStringFromJSON:dic];
-//    NSDictionary *headers = [self addSecurityInformation:content];
-//    NSDictionary *requestData = [self createContentForHttpPost:content :requestUrl];
-//    
-//    [self.networkService sendData:
-//                       requestUrl:
-//                          headers:
-//                      requestData:
-//     ^(NSArray *result){
-//         NSLog(@"session update ok");
-//         [self.persistenceService clearContent:SESSION_INFO];
-//         [self.persistenceService clearContent:CURRENT_SESSION];
-//         [self.persistenceService clearContent:PURCHASE_INFO];
-//     }:
-//     ^(NSError *error){
-//         NSLog(@"%@", error);
-//     }
-//     ];
+-(void)validatePayment:(WZPayPalInfo *)paymentInfo :(PayPalPaymentViewController *)paymentViewController {
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[paymentInfo toJson], @"payment", nil];
+    
+    [dic setObject:self.apiClientID forKey:@"apiClientId"];
+    [dic setObject:self.apiSecret forKey:@"apiSecret"];
+    
+//    [self.parentController dismissViewControllerAnimated:YES completion:nil];
+    NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, VERIFY_PAYMENT_URL];
+    NSString *content = [UtilsService createStringFromJSON:dic];
+    NSDictionary *headers = [WZSecurityService addSecurityInformation:content :self.sdkToken];
+    NSDictionary *requestData = [WZNetworkService createContentForHttpPost:content :requestUrl];
+    
+    NSLog(@"%@", dic);
+
+    [self.networkService sendData:
+                       requestUrl:
+                          headers:
+                      requestData:
+     ^(NSArray *result){
+        [self.parentController dismissViewControllerAnimated:YES completion:nil];
+         NSLog(@"RESULT OK");
+     }:
+     ^(NSError *error){
+         NSLog(@"%@", error);
+     }
+     ];
 }
 
 @end

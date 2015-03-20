@@ -9,12 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "PayPalMobile.h"
 #import "WZPayPalPaymentRequest.h"
+#import "WZPaymentSystemsDelegate.h"
 
 @interface WZPayPalService : NSObject
 
+@property (nonatomic, weak) id<WZPaymentSystemsDelegate> delegate;
 @property(nonatomic, strong) PayPalPayment *currentPayment;
 
--(id)initService:(NSString *)productionClientID
+-(id)initService:(NSString *)token
+                :(NSString *)productionClientID
                 :(NSString *)sandboxClientID
                 :(NSString *)APIClientID
                 :(NSString *)APISecret
@@ -34,6 +37,6 @@
                                       :(NSString *)currency
                                       :(NSString *)sku;
 
--(void)requestPayment:(WZPayPalPaymentRequest *)request;
+-(void)makePayment:(WZPayPalPaymentRequest *)request;
 
 @end

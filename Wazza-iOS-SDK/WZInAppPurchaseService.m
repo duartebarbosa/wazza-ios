@@ -35,7 +35,7 @@
     return self;
 }
 
--(void)requestPayment:(WZInAppPurchasePaymentRequest *)request {
+-(void)makePayment:(WZInAppPurchasePaymentRequest *)request {
     NSString *item = request.itemId;
     if ([SKPaymentQueue canMakePayments]) {
         SKProductsRequest *productRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObjects:item, nil]];
@@ -46,11 +46,6 @@
         WZError *error = [[WZError alloc] initWithMessage:errorMsg];
         [self.delegate onPurchaseFailure:error];
     }
-}
-
--(void)mockPurchase:(NSString *)userId :(NSString *)itemid :(double)price {
-    WZPaymentInfo *purchaseInfo = nil;//[[WZPaymentInfo alloc] initMockPurchase:userId :itemid :price];
-    [self.delegate onPurchaseSuccess: purchaseInfo];
 }
 
 -(void)executePaymentRequest:(SKProduct *)item {

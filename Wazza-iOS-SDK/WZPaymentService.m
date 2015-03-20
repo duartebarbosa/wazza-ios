@@ -10,6 +10,7 @@
 #import "WZPaymentRequest.h"
 #import "WZInAppPurchasePaymentRequest.h"
 #import "WZPayPalPaymentRequest.h"
+#import "WZPaymentInfo.h"
 
 @interface WZPaymentService ()
 
@@ -31,6 +32,29 @@
     return self;
 }
 
+-(void)makePayment:(WZPaymentRequest *)info {
+    if ([info isMemberOfClass:[WZInAppPurchasePaymentRequest class]]) {
+        [self.iapService makePayment:(WZInAppPurchasePaymentRequest *)info];
+    } else if ([info isMemberOfClass:[WZPayPalPaymentRequest class]]) {
+        [self.payPalService makePayment:(WZPayPalPaymentRequest *)info];
+    }
+}
+
+#pragma PayPal functions
+
+/**
+ *  <#Description#>
+ *
+ *  @param productionClientID <#productionClientID description#>
+ *  @param sandboxClientID    <#sandboxClientID description#>
+ *  @param APIClientID        <#APIClientID description#>
+ *  @param APISecret          <#APISecret description#>
+ *  @param merchantName       <#merchantName description#>
+ *  @param privacyPolicyURL   <#privacyPolicyURL description#>
+ *  @param userAgreementURL   <#userAgreementURL description#>
+ *  @param acceptCreditCards  <#acceptCreditCards description#>
+ *  @param testFlag           <#testFlag description#>
+ */
 -(void)activatePayPalModule:(NSString *)productionClientID
                            :(NSString *)sandboxClientID
                            :(NSString *)APIClientID
@@ -41,29 +65,45 @@
                            :(BOOL)acceptCreditCards
                            :(BOOL)testFlag {
     if (self._sdkToken != nil) {
-        self.payPalService = [[WZPayPalService alloc] initService:productionClientID :sandboxClientID :APIClientID :APISecret :merchantName :privacyPolicyURL :userAgreementURL :acceptCreditCards :testFlag];
+        self.payPalService = [[WZPayPalService alloc] initService:self._sdkToken
+                                                                 :productionClientID
+                                                                 :sandboxClientID
+                                                                 :APIClientID
+                                                                 :APISecret
+                                                                 :merchantName
+                                                                 :privacyPolicyURL
+                                                                 :userAgreementURL
+                                                                 :acceptCreditCards
+                                                                 :testFlag];
+        self.payPalService.delegate = self;
     } else {
         NSLog(@"Need to call initPaymentService first");
     }
 }
 
--(void)makePayment:(WZPaymentRequest *)info {
-    if ([info isMemberOfClass:[WZInAppPurchasePaymentRequest class]]) {
-        //send to IAP
-    } else if ([info isMemberOfClass:[WZPayPalPaymentRequest class]]) {
-        //sent to PayPal
-        /**
-         
-         -(void)requestPayment:(NSString *)itemName
-         :(NSString *)description
-         :(NSString *)sku
-         :(int)quantity
-         :(double)price
-         :(NSString *)currency
-         :(double)taxCost
-         :(double)shippingCost
-         */
-    }
+/**
+ *  <#Description#>
+ *
+ *  @param view <#view description#>
+ */
+-(void)connectToPayPal:(UIViewController *)view {
+    self.payPalService != nil ? [self.payPalService connect:view] : NSLog(@"");
+}
+
+#pragma WZPaymentSystemsDelegate
+
+/**
+ *  <#Description#>
+ */
+-(void)paymentSuccess:(WZPaymentInfo *)info {
+    NSLog(@"PAYEMNT SUCCESS: %@", info);
+}
+
+/**
+ *  <#Description#>
+ */
+-(void)paymentFailure:(NSError *)error {
+
 }
 
 @end

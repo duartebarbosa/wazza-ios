@@ -112,8 +112,8 @@
 //    return securityHeaders;
 //}
 
--(NSDictionary *)addSecurityInformation:(NSString *)content {
-    NSMutableDictionary *securityHeaders = [NSMutableDictionary dictionaryWithObjectsAndKeys:[self token], @"SDK-TOKEN", nil];
++(NSDictionary *)addSecurityInformation:(NSString *)content :(NSString *)token{
+    NSMutableDictionary *securityHeaders = [NSMutableDictionary dictionaryWithObjectsAndKeys:token, @"SDK-TOKEN", nil];
     return securityHeaders;
 }
 
