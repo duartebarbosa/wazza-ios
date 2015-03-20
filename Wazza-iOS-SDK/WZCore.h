@@ -18,8 +18,9 @@
 #import "WZSessionService.h"
 #import "WZLocationService.h"
 #import "WZCoreDelegate.h"
-#import "WZPayPalService.h"
+#import "WZPaymentService.h"
 #import "WZPaymentInfo.h"
+#import "WZPaymentRequest.h"
 
 @interface WZCore : NSObject
 
@@ -33,7 +34,7 @@
 @property(nonatomic, strong) WZSessionService *sessionService;
 @property(nonatomic, strong) WZLocationService *locationService;
 @property(nonatomic, strong) NSArray *skInfo;
-@property(atomic, strong) WZPayPalService *payPalService;
+@property(atomic, strong) WZPaymentService *paymentService;
 
 -(instancetype)initCore:(NSString *)secretKey;
 
@@ -45,11 +46,14 @@
 
 -(void)endSession;
 
-#pragma Purchases functions
+#pragma Payments functions
 
--(void)makePurchase:(NSString *)item;
-
--(void)purchaseMock:(NSString *)itemid :(double)price;
+/**
+ *  <#Description#>
+ *
+ *  @param info <#info description#>
+ */
+-(void)makePayment:(WZPaymentRequest *)info;
 
 #pragma PayPal logic
 
@@ -64,9 +68,6 @@
                         :(BOOL)testFlag;
 
 -(void)connectToPayPal:(UIViewController *)currentView;
-
-//-(void)fakePayPalPayment;
-
 
 #pragma Other stuff
 

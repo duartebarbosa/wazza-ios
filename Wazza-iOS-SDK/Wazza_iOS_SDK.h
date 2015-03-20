@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WZCoreDelegate.h"
+#import "WZPaymentRequest.h"
 
-@interface Wazza_iOS_SDK : NSObject
+@interface Wazza_iOS_SDK : NSObject <WZCoreDelegate>
 
 /**
  *  Inits Wazza using a secret token
@@ -43,20 +45,12 @@
 #pragma Payments functions
 
 /**
- *  Makes an in-app purchase request
+ *  <#Description#>
  *
- *  @param item in-app purchase product ID
+ *  @param info <#info description#>
  */
-+(void)makePurchase:(NSString *)item;
++(void)makePayment:(WZPaymentRequest *)info;
 
-
-/**
- *  Simulates a purchase action by sending the info directely to Wazza's server
- *
- *  @param itemid item's identification
- *  @param price  item's price
- */
-+(void)purchaseMock:(NSString *)itemid :(double)price;
 
 #pragma PayPal logic
 

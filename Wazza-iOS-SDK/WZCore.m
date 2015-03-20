@@ -7,6 +7,7 @@
 //
 
 #import "WZCore.h"
+#import "UtilsService.h"
 
 //Server endpoints
 #define ENDPOINT_AUTH @"auth"
@@ -44,7 +45,7 @@
         self.sessionService = [[WZSessionService alloc] initService :self.userId :token];
         self.purchaseService.delegate = self;
         self.locationService = nil;
-        self.payPalService = nil;
+        self.paymentService = nil;
         [self bootstrap];
     }
     
@@ -68,43 +69,13 @@
     [self.sessionService endSession];
 }
 
--(void)makePurchase:(NSString *)item {
-    [self.purchaseService purchaseItem:item];
-}
-
--(void)purchaseMock:(NSString *)itemid :(double)price {
-    [self.purchaseService mockPurchase:self.userId :itemid :price];
+-(void)makePayment:(WZPaymentRequest *)info {
+    [self.paymentService makePayment:info];
 }
 
 -(void)allowGeoLocation {
     //TODO
 }
-
-#pragma mark HTTP private methods
-    
--(NSString *)createStringFromJSON:(NSDictionary *)dic {
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
-                                                       options:0
-                                                         error:&error];
-    if (!jsonData) {
-        NSLog(@"Got an error: %@", error);
-        return nil;
-    } else {
-        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
-}
-
--(NSDictionary *)createContentForHttpPost:(NSString *)content :(NSString *)requestUrl {
-    NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
-    return body;
-}
-
--(NSDictionary *)addSecurityInformation {
-    NSMutableDictionary *securityHeaders = [NSMutableDictionary dictionaryWithObjectsAndKeys:[self secret], @"SDK-TOKEN", nil];
-    return securityHeaders;
-}
-
     
 #pragma PurchaseDelegate
     
@@ -121,9 +92,9 @@
     NSDictionary *json = [purchaseInfo toJson];
     
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, ENDPOINT_PURCHASE];
-    NSString *content = [self createStringFromJSON:json];
-    NSDictionary *headers = [self addSecurityInformation];
-    NSDictionary *requestData = [self createContentForHttpPost:content :requestUrl];
+    NSString *content = [UtilsService createStringFromJSON:json];
+    NSDictionary *headers = [WZSecurityService addSecurityInformation:content :self.secret];
+    NSDictionary *requestData = [WZNetworkService createContentForHttpPost:content :requestUrl];
     
     [self.networkService sendData:
                        requestUrl:
@@ -150,34 +121,22 @@
                         :(NSString *)userAgreementURL
                         :(BOOL)acceptCreditCards
                         :(BOOL)testFlag {
-    self.payPalService = [[WZPayPalService alloc] initService:productionClientID
-                                                             :sandboxClientID
-                                                             :APIClientID
-                                                             :APISecret
-                                                             :merchantName
-                                                             :privacyPolicyURL
-                                                             :userAgreementURL
-                                                             :acceptCreditCards
-                                                             :testFlag];
+    [self.paymentService activatePayPalModule:productionClientID
+                                             :sandboxClientID
+                                             :APIClientID
+                                             :APISecret
+                                             :merchantName
+                                             :privacyPolicyURL
+                                             :userAgreementURL
+                                             :acceptCreditCards
+                                             :testFlag];
+
 }
 
 
 -(void)connectToPayPal:(UIViewController *)currentView {
-    if (self.payPalService != nil) {
-        [self.payPalService connect:currentView];
-    } else {
-        //TODO error message
-        NSLog(@"WZError: need to init PayPal service first");
-    }
+    [self.paymentService connectToPayPal:currentView];
 }
 
-//-(void)fakePayPalPayment {
-//    if (self.payPalService != nil) {
-//        [self.payPalService requestPayment:@"testItem" :@"description" :@"SKU" :1 :2.99 :@"EUR" :0 :0];
-//    } else {
-//        //TODO error message
-//        NSLog(@"WZError: need to init PayPal service first");
-//    }
-//}
 
 @end

@@ -34,6 +34,7 @@
 		CF2DB7791ABAECC80007C9C4 /* WZPaymentService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB7781ABAECC80007C9C4 /* WZPaymentService.m */; };
 		CF2DB77D1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB77C1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m */; };
 		CF2DB7801ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB77F1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m */; };
+		CF2DB7891ABC4B4A0007C9C4 /* WZPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB7881ABC4B4A0007C9C4 /* WZPaymentRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,7 +115,10 @@
 		CF2DB77C1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPayPalPaymentRequest.m; sourceTree = "<group>"; };
 		CF2DB77E1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZInAppPurchasePaymentRequest.h; sourceTree = "<group>"; };
 		CF2DB77F1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZInAppPurchasePaymentRequest.m; sourceTree = "<group>"; };
-		CF2DB7811ABAF6F30007C9C4 /* WZPaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPaymentRequest.h; sourceTree = "<group>"; };
+		CF2DB7831ABAFD890007C9C4 /* WZPaymentSystemsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPaymentSystemsDelegate.h; sourceTree = "<group>"; };
+		CF2DB7861ABB37910007C9C4 /* ServerRestEndpoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerRestEndpoints.h; sourceTree = "<group>"; };
+		CF2DB7871ABC4B4A0007C9C4 /* WZPaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPaymentRequest.h; sourceTree = "<group>"; };
+		CF2DB7881ABC4B4A0007C9C4 /* WZPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPaymentRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,9 +226,9 @@
 		CF23BAAB1AB8A90D003CC6B4 /* Payments */ = {
 			isa = PBXGroup;
 			children = (
-				CF23BCA01AB8FB60003CC6B4 /* WZPaymentDelegate.h */,
 				CF2DB7771ABAECC80007C9C4 /* WZPaymentService.h */,
 				CF2DB7781ABAECC80007C9C4 /* WZPaymentService.m */,
+				CF2DB7821ABAFD140007C9C4 /* Protocols */,
 				CF23BC9C1AB8F591003CC6B4 /* In-App Purchases */,
 				CF23BAAC1AB8A911003CC6B4 /* PayPal */,
 			);
@@ -320,7 +324,8 @@
 				CF23BC7F1AB8F2C0003CC6B4 /* WZPaymentInfo.m */,
 				CF23BC811AB8F2DA003CC6B4 /* WZCurrency.h */,
 				CF23BC821AB8F2DA003CC6B4 /* WZCurrency.m */,
-				CF2DB7811ABAF6F30007C9C4 /* WZPaymentRequest.h */,
+				CF2DB7871ABC4B4A0007C9C4 /* WZPaymentRequest.h */,
+				CF2DB7881ABC4B4A0007C9C4 /* WZPaymentRequest.m */,
 			);
 			name = Payments;
 			sourceTree = "<group>";
@@ -387,9 +392,19 @@
 			isa = PBXGroup;
 			children = (
 				CF2DB7741ABAE9700007C9C4 /* UtilsService.h */,
+				CF2DB7861ABB37910007C9C4 /* ServerRestEndpoints.h */,
 				CF2DB7751ABAE9700007C9C4 /* UtilsService.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		CF2DB7821ABAFD140007C9C4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BCA01AB8FB60003CC6B4 /* WZPaymentDelegate.h */,
+				CF2DB7831ABAFD890007C9C4 /* WZPaymentSystemsDelegate.h */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,6 +564,7 @@
 			files = (
 				CF2DB7711AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.m in Sources */,
 				CF2DB7761ABAE9700007C9C4 /* UtilsService.m in Sources */,
+				CF2DB7891ABC4B4A0007C9C4 /* WZPaymentRequest.m in Sources */,
 				CF23BAB41AB8AA42003CC6B4 /* WZCore.m in Sources */,
 				CF23BC8D1AB8F3EA003CC6B4 /* WZPersistenceService.m in Sources */,
 				CF23BC9F1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m in Sources */,

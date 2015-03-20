@@ -45,20 +45,16 @@ static id<WazzaDelegate> _delegate = nil;
     (_core == nil) ? NSLog(@"") : [_core endSession];
 }
 
-#pragma Purchases functions
+#pragma Payments functions
 
-+(void)makePurchase:(NSString *)item {
-    (_core == nil) ? NSLog(@"") : [_core makePurchase:item];
-}
-
-+(void)purchaseMock:(NSString *)itemid :(double)price {
-    (_core == nil) ? NSLog(@"") : [_core purchaseMock:itemid :price];
++(void)makePayment:(WZPaymentRequest *)info {
+    (_core == nil) ? NSLog(@"") : [_core makePayment:info];
 }
 
 #pragma PayPal logic
 
 +(void)connectToPayPal:(UIViewController *)currentView {
-    (_core == nil) ? NSLog(@"") : [_core.payPalService connect:currentView];
+    (_core == nil) ? NSLog(@"") : [_core.paymentService connectToPayPal:currentView];
 }
 
 +(void)initPayPalModule:(NSString *)productionClientID
@@ -71,10 +67,6 @@ static id<WazzaDelegate> _delegate = nil;
                        :(BOOL)acceptCreditCards
                        :(BOOL)testFlag {
     (_core == nil) ? NSLog(@"") : [_core initPayPalService:productionClientID :sandboxClientID :APIClientID :APISecret :merchantName :privacyPolicyURL :userAgreementURL : acceptCreditCards :testFlag];
-}
-
-+(void)fakePayPalPayment {
-    [_core.payPalService requestPayment:@"example item" :@"description" :@"sku" :1 : 2 : @"USD" :1 :0];
 }
 
 #pragma Other stuff
