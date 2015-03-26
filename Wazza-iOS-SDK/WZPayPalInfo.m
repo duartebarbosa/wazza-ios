@@ -14,7 +14,7 @@
 -(instancetype)initWithPayPalPayment:(PayPalPayment *)payment :(NSString *)userId {    
     // Convert string to date object
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"EE, d LLLL yyyy HH:mm:ss Z"];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
     NSDate *date = [dateFormat dateFromString:payment.confirmation[@"response"][@"create_time"]];
     
     //TODO session hash
@@ -22,7 +22,7 @@
     
     if (self) {
         self.currencyCode = payment.currencyCode;
-        self.description = payment.description;
+        self.shortDescription = payment.description;
         self.intent = payment.confirmation[@"response"][@"intent"];
         self.processable = payment.processable;
         self.responseID = payment.confirmation[@"response"][@"id"];
@@ -34,9 +34,9 @@
 }
 
 -(NSDictionary *)toJson {
-    NSMutableArray *json = (NSMutableArray *)[super toJson];
+    NSMutableDictionary *json = (NSMutableDictionary *)[super toJson];
     [json setValue:self.currencyCode forKey:@"currencyCode"];
-    [json setValue:self.description forKey:@"description"];
+//    [json setValue:self.shortDescription forKey:@"description"];
     [json setValue:self.intent forKey:@"intent"];
     [json setValue:[NSNumber numberWithBool: self.processable] forKey:@"processable"];
     [json setValue:self.responseID forKey:@"responseID"];

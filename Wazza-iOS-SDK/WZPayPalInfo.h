@@ -13,7 +13,7 @@
 @interface WZPayPalInfo : WZPaymentInfo
 
 @property NSString *currencyCode;
-@property NSString *description;
+@property NSString *shortDescription;
 @property NSString *intent;
 @property BOOL processable;
 

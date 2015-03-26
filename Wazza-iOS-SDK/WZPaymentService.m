@@ -15,6 +15,7 @@
 @interface WZPaymentService ()
 
 @property(strong) NSString *_sdkToken;
+@property(strong) NSString *userId;
 
 @end
 
@@ -26,6 +27,7 @@
     
     if (self) {
         self._sdkToken = sdkToken;
+        self.userId = userId;
         self.iapService = [[WZInAppPurchaseService alloc] initService:userId :sdkToken];
     }
     
@@ -43,7 +45,7 @@
 #pragma PayPal functions
 
 /**
- *  <#Description#>
+ *  Description
  *
  *  @param productionClientID <#productionClientID description#>
  *  @param sandboxClientID    <#sandboxClientID description#>
@@ -66,6 +68,7 @@
                            :(BOOL)testFlag {
     if (self._sdkToken != nil) {
         self.payPalService = [[WZPayPalService alloc] initService:self._sdkToken
+                                                                 :self.userId
                                                                  :productionClientID
                                                                  :sandboxClientID
                                                                  :APIClientID
@@ -103,7 +106,7 @@
  *  <#Description#>
  */
 -(void)paymentFailure:(NSError *)error {
-
+    NSLog(@"PAYMENT ERROR:");
 }
 
 @end

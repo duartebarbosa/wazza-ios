@@ -18,7 +18,7 @@
 #define MAX_PAY_PAL_ITEM_QUANTITY 10
 #define MAX_PAY_PAL_ITEM_PRICE 10
 
-#define VERIFY_PAYMENT_URL @"/payment/verify"
+#define VERIFY_PAYMENT_URL @"payment/verify"
 
 @interface WZPayPalService () <PayPalPaymentDelegate>
 
@@ -36,6 +36,7 @@
 @implementation WZPayPalService
 
 -(id)initService:(NSString *)token
+                :(NSString *)userId
                 :(NSString *)productionClientID
                 :(NSString *)sandboxClientID
                 :(NSString *)APIClientID
@@ -49,6 +50,9 @@
     if (self) {
         self.networkService = [[WZNetworkService alloc] initService];
         self.sdkToken = token;
+        self.userId = userId;
+        self.apiClientID = APIClientID;
+        self.apiSecret = APISecret;
         NSMutableDictionary *args = [[NSMutableDictionary alloc] init];
         if (productionClientID != nil) {
             [args setObject:productionClientID forKey:PayPalEnvironmentProduction];
@@ -68,7 +72,8 @@
             _payPalConfig.merchantPrivacyPolicyURL = [NSURL URLWithString:privacyPolicyURL];
             _payPalConfig.merchantUserAgreementURL = [NSURL URLWithString:userAgreementURL];
             
-            testFlag ? (self.environment = PayPalEnvironmentNoNetwork) : (self.environment = PayPalEnvironmentProduction);
+//            testFlag ? (self.environment = PayPalEnvironmentNoNetwork) : (self.environment = PayPalEnvironmentProduction);
+            self.environment = PayPalEnvironmentNoNetwork;
             
             // Setting the languageOrLocale property is optional.
             //
@@ -88,7 +93,7 @@
             //
             // See PayPalConfiguration.h for details.
             
-            _payPalConfig.payPalShippingAddressOption = PayPalShippingAddressOptionPayPal;
+//            _payPalConfig.payPalShippingAddressOption = PayPalShippingAddressOptionPayPal;
         }
     }
     return self;
@@ -137,38 +142,47 @@
                                       withPrice:_price
                                    withCurrency:currency
                                         withSku:sku];
-    
-    NSDecimalNumber *subtotal = [PayPalItem totalPriceForItems:@[item]];
-    //    PayPalPaymentDetails *paymentDetails = [PayPalPaymentDetails paymentDetailsWithSubtotal:subtotal withShipping:[NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f", shippingCost]] withTax:[NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f", taxCost]]];
+    NSArray *items = @[item];//, item2, item3];
+    NSDecimalNumber *subtotal = [PayPalItem totalPriceForItems:items];
+
     
     PayPalPayment *payment = [[PayPalPayment alloc] init];
     payment.amount = subtotal;
     payment.currencyCode = currency;
     payment.shortDescription = description;
-    payment.paymentDetails = nil;//paymentDetails;
+    payment.items = items;
     self.currentPayment = payment;
     return payment;
 }
 
 -(void)makePayment:(WZPayPalPaymentRequest *)request {
-    
     NSDecimalNumber * _price = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f", request.price]];
     BOOL validateInput = [self validateRequestPaymentArguments:request.itemName :request.quantity :_price :request.currency :request.sku];
     
     if (validateInput) {
         PayPalPayment *payment = [self generatePayment:request.itemName
-                                                      :request.description
+                                                      :request.shortDescription
                                                       :request.sku
                                                       :request.quantity
                                                       :request.price
                                                       :request.currency
                                                       :request.taxCost
                                                       :request.shippingCost];
+        
+        // Optional: include payment details
+        //  NSDecimalNumber *shipping = [[NSDecimalNumber alloc] initWithString:@"5.99"];
+        //  NSDecimalNumber *tax = [[NSDecimalNumber alloc] initWithString:@"2.50"];
+        //  PayPalPaymentDetails *paymentDetails = [PayPalPaymentDetails paymentDetailsWithSubtotal:subtotal
+        //                                                                             withShipping:shipping
+        //                                                                                  withTax:tax];
+        //
+        //  NSDecimalNumber *total = [[subtotal decimalNumberByAdding:shipping] decimalNumberByAdding:tax];
         self.payPalConfig.acceptCreditCards = true;
         if (payment.processable) {
             PayPalPaymentViewController *paymentViewController = [[PayPalPaymentViewController alloc] initWithPayment:payment
                                                                                                         configuration:_payPalConfig
                                                                                                              delegate:self];
+//            paymentViewController.title = request.itemName;
             [self.parentController presentViewController:paymentViewController animated:YES completion:nil];
         } else {
             //TODO not processable: send error message
@@ -183,42 +197,38 @@
 - (void)payPalPaymentViewController:(PayPalPaymentViewController *)paymentViewController didCompletePayment:(PayPalPayment *)completedPayment {
     NSLog(@"PayPal Payment Success!");
     NSLog(@"%@", completedPayment);
+//    completedPayment.processable
+    //TODO check if the payment was already processable or not
     WZPayPalInfo *info = [[WZPayPalInfo alloc] initWithPayPalPayment:completedPayment :self.userId];
     [self validatePayment:info :paymentViewController];
 }
 
 - (void)payPalPaymentDidCancel:(PayPalPaymentViewController *)paymentViewController {
     NSLog(@"PayPal Payment Canceled");
-//    PayPalPayment *failedPayment = self.currentPayment;
+    PayPalPayment *failedPayment = self.currentPayment;
     [self.parentController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma Validation methods
 
 -(void)validatePayment:(WZPayPalInfo *)paymentInfo :(PayPalPaymentViewController *)paymentViewController {
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[paymentInfo toJson], @"payment", nil];
-    
-    [dic setObject:self.apiClientID forKey:@"apiClientId"];
-    [dic setObject:self.apiSecret forKey:@"apiSecret"];
-    
-//    [self.parentController dismissViewControllerAnimated:YES completion:nil];
+    NSMutableDictionary *content = (NSMutableDictionary *)[paymentInfo toJson];
+    [content setObject:self.apiClientID forKey:@"apiClientId"];
+    [content setObject:self.apiSecret forKey:@"apiSecret"];
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, VERIFY_PAYMENT_URL];
-    NSString *content = [UtilsService createStringFromJSON:dic];
-    NSDictionary *headers = [WZSecurityService addSecurityInformation:content :self.sdkToken];
-    NSDictionary *requestData = [WZNetworkService createContentForHttpPost:content :requestUrl];
-    
-    NSLog(@"%@", dic);
-
-    [self.networkService sendData:
-                       requestUrl:
+    NSDictionary *headers = [WZSecurityService addSecurityInformation:self.sdkToken];
+    [self.networkService sendData:requestUrl:
                           headers:
-                      requestData:
+                          content:
      ^(NSArray *result){
         [self.parentController dismissViewControllerAnimated:YES completion:nil];
          NSLog(@"RESULT OK");
+         [self.delegate paymentSuccess:paymentInfo];
      }:
      ^(NSError *error){
          NSLog(@"%@", error);
+        [self.parentController dismissViewControllerAnimated:YES completion:nil];
+        [self.delegate paymentFailure:error];
      }
      ];
 }

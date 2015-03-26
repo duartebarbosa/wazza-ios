@@ -17,6 +17,7 @@
 @property(nonatomic, strong) PayPalPayment *currentPayment;
 
 -(id)initService:(NSString *)token
+                :(NSString *)userId
                 :(NSString *)productionClientID
                 :(NSString *)sandboxClientID
                 :(NSString *)APIClientID

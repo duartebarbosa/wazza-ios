@@ -23,13 +23,13 @@
     
     if (self) {
         self.itemName = itemName;
-        self.description = description;
+        self.shortDescription = description;
         self.sku = sku;
         self.quantity = quantity;
         self.price = price;
         self.currency = currency;
         self.taxCost = taxCost;
-        self.shippingCost;
+        self.shippingCost = shippingCost;
     }
     
     return self;

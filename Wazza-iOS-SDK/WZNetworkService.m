@@ -32,25 +32,35 @@
                :(NSDictionary *)headers
                :(NSDictionary *)data
                :(OnSuccess)success
-               :(OnFailure)failure
-{
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        manager.securityPolicy.allowInvalidCertificates = YES;
-        for (NSString* headerId in headers) {
-            [manager.requestSerializer setValue:headerId forHTTPHeaderField:[headers objectForKey:headerId]];
-        }
-        dispatch_async(self.networkQueue, ^{
-            [manager POST:[self escapeURL:url] parameters:data success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSLog(@"%@", responseObject);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    success([self parseResponse:nil :nil]);
-                });
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    failure(error);
-                });
-            }];
-        });
+               :(OnFailure)failure {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
+    manager.responseSerializer = responseSerializer;
+    
+    for (NSString* headerId in headers) {
+        [manager.requestSerializer setValue:[headers objectForKey:headerId] forHTTPHeaderField:headerId];
+    }
+    
+    NSLog(@"data to post: %@", data);
+    NSLog(@"URL: %@", url);
+    
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    NSLog(@"HEADERS: %@", manager.requestSerializer.HTTPRequestHeaders);
+    dispatch_async(self.networkQueue, ^{
+        [manager POST:[self escapeURL:url] parameters:data success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@", responseObject);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success(responseObject);
+            });
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(error);
+            });
+        }];
+    });
     //    NSMutableURLRequest *request = [self buildRequest:url :httpMethod :params :headers :data];
     //
     //    dispatch_async(self.networkQueue, ^{
@@ -96,7 +106,7 @@
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
 
-+(NSDictionary *)createContentForHttpPost:(NSString *)content :(NSString *)requestUrl {
++(NSDictionary *)createContentForHttpPost:(NSString *)content {
     NSDictionary *body = [[NSDictionary alloc] initWithObjectsAndKeys:content,@"content", nil];
     return body;
 }

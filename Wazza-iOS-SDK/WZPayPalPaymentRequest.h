@@ -12,7 +12,7 @@
 @interface WZPayPalPaymentRequest : WZPaymentRequest
 
 @property NSString *itemName;
-@property NSString *description;
+@property(strong) NSString *shortDescription;
 @property NSString *sku;
 @property int quantity;
 @property double price;

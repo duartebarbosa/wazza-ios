@@ -20,6 +20,6 @@
 
 - (NSString *)hashContent:(NSString *)input;
 
-+(NSDictionary *)addSecurityInformation:(NSString *)content :(NSString *)token;
++(NSDictionary *)addSecurityInformation:(NSString *)token;
 
 @end
