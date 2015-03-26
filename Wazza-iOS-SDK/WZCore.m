@@ -36,7 +36,7 @@
     self = [super init];
     
     if (self) {
-        self.userId = (userId == NULL) ? [[[UIDevice currentDevice] identifierForVendor] UUIDString] : userId;
+        self.userId = (userId == nil) ? [[[UIDevice currentDevice] identifierForVendor] UUIDString] : userId;
         self.secret = token;
         self.networkService = [[WZNetworkService alloc] initService];
         self.securityService = [[WZSecurityService alloc] init];
@@ -45,7 +45,7 @@
         self.sessionService = [[WZSessionService alloc] initService :self.userId :token];
         self.purchaseService.delegate = self;
         self.locationService = nil;
-        self.paymentService = nil;
+        self.paymentService = [[WZPaymentService alloc] initPaymentService:self.secret :self.userId];
         [self bootstrap];
     }
     
@@ -93,8 +93,8 @@
     
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, ENDPOINT_PURCHASE];
     NSString *content = [UtilsService createStringFromJSON:json];
-    NSDictionary *headers = [WZSecurityService addSecurityInformation:content :self.secret];
-    NSDictionary *requestData = [WZNetworkService createContentForHttpPost:content :requestUrl];
+    NSDictionary *headers = [WZSecurityService addSecurityInformation:self.secret];
+    NSDictionary *requestData = [WZNetworkService createContentForHttpPost:content];
     
     [self.networkService sendData:
                        requestUrl:

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "WZCoreDelegate.h"
 #import "WZPaymentRequest.h"
+#import "WZPayPalPaymentRequest.h"
+#import "WZInAppPurchasePaymentRequest.h"
 
 @interface Wazza_iOS_SDK : NSObject <WZCoreDelegate>
 
@@ -65,8 +67,6 @@
                        :(NSString *)userAgreementURL
                        :(BOOL)acceptCreditCards
                        :(BOOL)testFlag;
-
-+(void)fakePayPalPayment;
 
 #pragma Other stuff
 

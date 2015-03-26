@@ -16,7 +16,7 @@ static id<WazzaDelegate> _delegate = nil;
 @implementation Wazza_iOS_SDK
 
 +(void)initWithSecret:(NSString *)secretToken {
-    [self coreInit:secretToken :NULL];
+    [self coreInit:secretToken :nil];
 }
 
 +(void)initWithSecret:(NSString *)secretToken andUserId:(NSString *)userId {
@@ -26,7 +26,7 @@ static id<WazzaDelegate> _delegate = nil;
 +(void)coreInit:(NSString *)secretToken :(NSString *)userId {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _core = (userId == NULL) ? [[WZCore alloc] initCore:secretToken] : [[WZCore alloc] initCore:secretToken andUserId:userId];
+        _core = (userId == nil) ? [[WZCore alloc] initCore:secretToken] : [[WZCore alloc] initCore:secretToken andUserId:userId];
         _core.delegate = [Wazza_iOS_SDK class];
     });
 }
