@@ -29,10 +29,11 @@
  *
  *  @param payment <#payment description#>
  *  @param userId  <#userId description#>
+ *  @param success <#success description#>
  *
  *  @return <#return value description#>
  */
--(instancetype)initWithPayPalPayment:(PayPalPayment *)payment :(NSString *)userId;
+-(instancetype)initWithPayPalPayment:(PayPalPayment *)payment :(NSString *)userId :(bool)success;
 
 @end
 

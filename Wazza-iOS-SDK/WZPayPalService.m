@@ -199,7 +199,8 @@
     NSLog(@"%@", completedPayment);
 //    completedPayment.processable
     //TODO check if the payment was already processable or not
-    WZPayPalInfo *info = [[WZPayPalInfo alloc] initWithPayPalPayment:completedPayment :self.userId];
+    bool success = true;
+    WZPayPalInfo *info = [[WZPayPalInfo alloc] initWithPayPalPayment:completedPayment :self.userId :success];
     [self validatePayment:info :paymentViewController];
 }
 

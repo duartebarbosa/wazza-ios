@@ -11,15 +11,22 @@
 #import "WZInAppPurchasePaymentRequest.h"
 #import "WZPayPalPaymentRequest.h"
 #import "WZPaymentInfo.h"
+#import "WZNetworkService.h"
+#import "WZSecurityService.h"
+
+#define SUBMIT_PAYMENT_URL @"purchase"
 
 @interface WZPaymentService ()
 
 @property(strong) NSString *_sdkToken;
 @property(strong) NSString *userId;
+@property(strong) WZNetworkService *networkService;
 
 @end
 
 @implementation WZPaymentService
+
+@synthesize delegate;
 
 -(instancetype)initPaymentService:(NSString *)sdkToken :(NSString *)userId {
     
@@ -29,6 +36,7 @@
         self._sdkToken = sdkToken;
         self.userId = userId;
         self.iapService = [[WZInAppPurchaseService alloc] initService:userId :sdkToken];
+        self.networkService = [[WZNetworkService alloc] initService];
     }
     
     return self;
@@ -100,6 +108,21 @@
  */
 -(void)paymentSuccess:(WZPaymentInfo *)info {
     NSLog(@"PAYEMNT SUCCESS: %@", info);
+    NSDictionary *content = [info toJson];
+    NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, SUBMIT_PAYMENT_URL];
+    NSDictionary *headers = [WZSecurityService addSecurityInformation:self._sdkToken];
+    [self.networkService sendData:requestUrl:
+                          headers:
+                          content:
+     ^(NSArray *result){
+         NSLog(@"RESULT OK");
+         [self.delegate onPurchaseSuccess:info];
+     }:
+     ^(NSError *error){
+         NSLog(@"%@", error);
+         [self.delegate onPurchaseFailure:[[WZError alloc]initWithMessage:error.description]];
+     }
+     ];
 }
 
 /**

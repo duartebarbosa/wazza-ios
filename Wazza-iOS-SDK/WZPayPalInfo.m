@@ -11,14 +11,15 @@
 @implementation WZPayPalInfo
 
 
--(instancetype)initWithPayPalPayment:(PayPalPayment *)payment :(NSString *)userId {    
+-(instancetype)initWithPayPalPayment:(PayPalPayment *)payment :(NSString *)userId :(bool)success {
     // Convert string to date object
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
     NSDate *date = [dateFormat dateFromString:payment.confirmation[@"response"][@"create_time"]];
     
     //TODO session hash
-    self = [super initPayment:[self generateID] :userId :payment.amount.doubleValue :date :1 :@"HASH" :PayPal];
+    NSString *itemName = ((PayPalItem *)payment.items[0]).name;
+    self = [super initPayment:[self generateID] :itemName :userId :payment.amount.doubleValue :date :1 :@"HASH" :PayPal :success];
     
     if (self) {
         self.currencyCode = payment.currencyCode;
@@ -42,6 +43,7 @@
     [json setValue:self.responseID forKey:@"responseID"];
     [json setValue:self.state forKey:@"state"];
     [json setValue:self.responseType forKey:@"responseType"];
+    [json setValue:[NSNumber numberWithLong:self.quantity] forKey:@"quantity"];
     return (NSDictionary *)json;
 }
 

@@ -15,15 +15,18 @@
 @implementation WZPaymentInfo
 
 -(instancetype)initPayment:(NSString *)_id
+                          :(NSString *)name
                           :(NSString *)userId
                           :(double)price
                           :(NSDate *)date
                           :(NSInteger)quantity
                           :(NSString *)hash
-                          :(NSUInteger)systemType {
+                          :(NSUInteger)systemType
+                          :(bool)success {
     self = [super init];
     if (self) {
         self._id = _id;
+        self.name = name;
         self.userId = userId;
         self.price = price;
         self.time = date;
@@ -32,6 +35,7 @@
         self.quantity = quantity;
         self.sessionHash = hash;
         self.paymentSystem = systemType;
+        self.success = success;
     }
     return self;
 }
@@ -61,13 +65,15 @@
     NSMutableDictionary *json = [[NSMutableDictionary alloc] init];
     NSString *time = [self dateToString];
     
-    [json setObject:[NSNumber numberWithInteger:self.paymentSystem] forKey:@"system"];
+    [json setObject:[NSNumber numberWithInteger:self.paymentSystem] forKey:@"paymentSystem"];
     [json setObject:self._id forKey:@"id"];
+    [json setObject:self.name forKey:@"itemId"];
     [json setObject:self.userId forKey:@"userId"];
     [json setObject:[[NSNumber alloc] initWithDouble:self.price] forKey:@"price"];
     [json setObject:time forKey:@"time"];
     [json setObject:[self.deviceInfo toJson] forKey:@"deviceInfo"];
     [json setObject:self.sessionHash forKey:@"sessionId"];
+    [json setValue:[NSNumber numberWithBool: self.success] forKey:@"success"];
     
     return json;
 }

@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#define URL @"http://192.168.1.65:9000/api/"
+//#define URL @"http://192.168.1.65:9000/api/"
+#define URL @"http://146.193.224.154:9000/api/"
 
 typedef void (^OnSuccess)(NSArray *);
 typedef void (^OnFailure)(NSError *);

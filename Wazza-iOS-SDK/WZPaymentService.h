@@ -18,6 +18,11 @@
 @property(strong) WZInAppPurchaseService *iapService;
 
 /**
+ *  Delegate to send results to Core module
+ */
+@property (nonatomic, weak) id<WZPaymentDelegate> delegate;
+
+/**
  *  <#Description#>
  *
  *  @param sdkToken <#sdkToken description#>

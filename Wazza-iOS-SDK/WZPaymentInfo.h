@@ -21,6 +21,7 @@ typedef enum : NSUInteger {
 @interface WZPaymentInfo : NSObject
 
 @property(nonatomic) NSString *_id;
+@property NSString *name;
 @property(nonatomic) NSString *userId;
 @property(nonatomic) double price;
 @property(nonatomic) NSDate *time;
@@ -28,15 +29,18 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) WZDeviceInfo *deviceInfo;
 @property(nonatomic) NSInteger quantity;
 @property(nonatomic) NSString *sessionHash;
+@property bool success;
 @property NSUInteger paymentSystem;
 
 -(instancetype)initPayment:(NSString *)_id
+                          :(NSString *)name
                           :(NSString *)userId
                           :(double)price
                           :(NSDate *)date
                           :(NSInteger)quantity
                           :(NSString *)hash
-                          :(NSUInteger)systemType;
+                          :(NSUInteger)systemType
+                          :(bool)success;
 
 -(NSString *)generateID;
 

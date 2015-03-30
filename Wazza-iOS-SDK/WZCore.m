@@ -46,6 +46,7 @@
         self.purchaseService.delegate = self;
         self.locationService = nil;
         self.paymentService = [[WZPaymentService alloc] initPaymentService:self.secret :self.userId];
+        self.paymentService.delegate = self;
         [self bootstrap];
     }
     
@@ -87,27 +88,28 @@
 
 
 -(void)onPurchaseSuccess:(WZPaymentInfo *)purchaseInfo {
-    purchaseInfo.sessionHash = [self.sessionService getCurrentSessionHash];
-    [self.sessionService addPurchasesToCurrentSession:purchaseInfo._id];
-    NSDictionary *json = [purchaseInfo toJson];
-    
-    NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, ENDPOINT_PURCHASE];
-    NSString *content = [UtilsService createStringFromJSON:json];
-    NSDictionary *headers = [WZSecurityService addSecurityInformation:self.secret];
-    NSDictionary *requestData = [WZNetworkService createContentForHttpPost:content];
-    
-    [self.networkService sendData:
-                       requestUrl:
-                          headers:
-                      requestData:
-     ^(NSArray *result){
-         NSLog(@"PURCHASE SUCCESS! %@", purchaseInfo);
-         [self.delegate corePurchaseSuccess:purchaseInfo];
-     }:
-     ^(NSError *error){
-         [self.delegate corePurchaseFailure:error];
-     }
-     ];
+    NSLog(@"PURCHASE SUCCESS: %@", purchaseInfo);
+//    purchaseInfo.sessionHash = [self.sessionService getCurrentSessionHash];
+//    [self.sessionService addPurchasesToCurrentSession:purchaseInfo._id];
+//    NSDictionary *json = [purchaseInfo toJson];
+//    
+//    NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, ENDPOINT_PURCHASE];
+//    NSString *content = [UtilsService createStringFromJSON:json];
+//    NSDictionary *headers = [WZSecurityService addSecurityInformation:self.secret];
+//    NSDictionary *requestData = [WZNetworkService createContentForHttpPost:content];
+//    
+//    [self.networkService sendData:
+//                       requestUrl:
+//                          headers:
+//                      requestData:
+//     ^(NSArray *result){
+//         NSLog(@"PURCHASE SUCCESS! %@", purchaseInfo);
+//         [self.delegate corePurchaseSuccess:purchaseInfo];
+//     }:
+//     ^(NSError *error){
+//         [self.delegate corePurchaseFailure:error];
+//     }
+//     ];
 }
     
     

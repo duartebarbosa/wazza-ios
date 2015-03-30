@@ -38,7 +38,7 @@
                                   : (double)price
                                   :(NSString *)userId {
     //TODO HASH
-    self = [super initPayment:[self generateID] :userId :price :transaction.transactionDate :transaction.payment.quantity :@"" :IAP];
+    self = [super initPayment:[self generateID] :transaction.payment.description :userId :price :transaction.transactionDate :transaction.payment.quantity :@"" :IAP :(transaction.error == nil)];
     if (self) {
         self.itemId = transaction.payment.productIdentifier;
         self.transaction = transaction;
