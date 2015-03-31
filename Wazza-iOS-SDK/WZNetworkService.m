@@ -9,10 +9,12 @@
 #import "WZNetworkService.h"
 #import "WZHttpCodes.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "WZPersistenceService.h"
 
 @interface WZNetworkService ()
 
 @property (nonatomic, strong) dispatch_queue_t networkQueue;
+@property(strong) WZPersistenceService *persistenceService;
 
 @end
 
@@ -23,16 +25,17 @@
     
     if (self) {
         self.networkQueue = dispatch_queue_create("Wazza Network Queue", NULL);
+        self.persistenceService = [[WZPersistenceService alloc] initPersistence];
     }
     
     return self;
 }
-
 -(void)sendData:(NSString *)url
                :(NSDictionary *)headers
                :(NSDictionary *)data
                :(OnSuccess)success
                :(OnFailure)failure {
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.securityPolicy.allowInvalidCertificates = YES;
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -43,12 +46,8 @@
         [manager.requestSerializer setValue:[headers objectForKey:headerId] forHTTPHeaderField:headerId];
     }
     
-    NSLog(@"data to post: %@", data);
-    NSLog(@"URL: %@", url);
-    
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    NSLog(@"HEADERS: %@", manager.requestSerializer.HTTPRequestHeaders);
     dispatch_async(self.networkQueue, ^{
         [manager POST:[self escapeURL:url] parameters:data success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"%@", responseObject);

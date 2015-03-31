@@ -35,6 +35,7 @@
 		CF2DB77D1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB77C1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m */; };
 		CF2DB7801ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB77F1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m */; };
 		CF2DB7891ABC4B4A0007C9C4 /* WZPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB7881ABC4B4A0007C9C4 /* WZPaymentRequest.m */; };
+		CF69800E1ACAAE2E00E7A1A4 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = CF69800D1ACAAE2E00E7A1A4 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		CF2DB7861ABB37910007C9C4 /* ServerRestEndpoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerRestEndpoints.h; sourceTree = "<group>"; };
 		CF2DB7871ABC4B4A0007C9C4 /* WZPaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPaymentRequest.h; sourceTree = "<group>"; };
 		CF2DB7881ABC4B4A0007C9C4 /* WZPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPaymentRequest.m; sourceTree = "<group>"; };
+		CF69800D1ACAAE2E00E7A1A4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 				CF23BAAA1AB8A904003CC6B4 /* Services */,
 				CF23BA921AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h */,
 				CF23BA941AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m */,
+				CF69800D1ACAAE2E00E7A1A4 /* README.md */,
 				CF23BCA11AB90C48003CC6B4 /* WazzaDelegate.h */,
 			);
 			path = "Wazza-iOS-SDK";
@@ -568,6 +571,7 @@
 				CF23BAB41AB8AA42003CC6B4 /* WZCore.m in Sources */,
 				CF23BC8D1AB8F3EA003CC6B4 /* WZPersistenceService.m in Sources */,
 				CF23BC9F1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m in Sources */,
+				CF69800E1ACAAE2E00E7A1A4 /* README.md in Sources */,
 				CF2DB7791ABAECC80007C9C4 /* WZPaymentService.m in Sources */,
 				CF23BC941AB8F456003CC6B4 /* WZNetworkService.m in Sources */,
 				CF2DB7801ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m in Sources */,

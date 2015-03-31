@@ -8,13 +8,17 @@
 
 #import "WZCore.h"
 #import "UtilsService.h"
+#import "WZSecurityService.h"
+#import "WZDeviceInfo.h"
 
 //Server endpoints
-#define ENDPOINT_AUTH @"auth"
 #define ENDPOINT_ITEM_LIST @"items/"
 #define ENDPOINT_ITEM_DETAILED_LIST @"items/details/"
 #define ENDPOINT_DETAILS @"item/"
 #define ENDPOINT_PURCHASE @"purchase"
+#define ENDPOINT_AUTH @"auth"
+
+#define USER_EXISTS_FLAG @"WZ_USER_EXISTS"
 
 @interface WZCore () <WZPaymentDelegate>
 
@@ -55,7 +59,27 @@
 
 #pragma mark Init methods
 -(void)bootstrap {
-    //    [self newSession];
+    NSMutableDictionary *content = [[NSMutableDictionary alloc] init];
+    [content setObject:self.userId forKey:@"userId"];
+    [content setObject:[[[WZDeviceInfo alloc] initDeviceInfo] toJson] forKey:@"device"];
+   
+    NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, ENDPOINT_AUTH];
+    NSMutableDictionary *headers = [[NSMutableDictionary alloc] initWithDictionary:[WZSecurityService addSecurityInformation:self.secret]];
+    if([self.persistenceService contentExists: USER_EXISTS_FLAG]) {
+        [headers setObject:[[NSNumber alloc] initWithBool:YES] forKey:@"X-UserExists"];
+    }
+    
+    [self.networkService sendData:requestUrl:
+                          headers:
+                          content:
+     ^(NSArray *result){
+         [self newSession];
+     }:
+     ^(NSError *error){
+         NSLog(@"%@", error);
+         [NSException raise:@"Wazza Authentication error" format:@"Please check your Wazza credentials"];
+     }
+     ];
 }
 
 -(void)newSession {
@@ -88,28 +112,7 @@
 
 
 -(void)onPurchaseSuccess:(WZPaymentInfo *)purchaseInfo {
-    NSLog(@"PURCHASE SUCCESS: %@", purchaseInfo);
-//    purchaseInfo.sessionHash = [self.sessionService getCurrentSessionHash];
-//    [self.sessionService addPurchasesToCurrentSession:purchaseInfo._id];
-//    NSDictionary *json = [purchaseInfo toJson];
-//    
-//    NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, ENDPOINT_PURCHASE];
-//    NSString *content = [UtilsService createStringFromJSON:json];
-//    NSDictionary *headers = [WZSecurityService addSecurityInformation:self.secret];
-//    NSDictionary *requestData = [WZNetworkService createContentForHttpPost:content];
-//    
-//    [self.networkService sendData:
-//                       requestUrl:
-//                          headers:
-//                      requestData:
-//     ^(NSArray *result){
-//         NSLog(@"PURCHASE SUCCESS! %@", purchaseInfo);
-//         [self.delegate corePurchaseSuccess:purchaseInfo];
-//     }:
-//     ^(NSError *error){
-//         [self.delegate corePurchaseFailure:error];
-//     }
-//     ];
+    [self.delegate corePurchaseSuccess:purchaseInfo];
 }
     
     

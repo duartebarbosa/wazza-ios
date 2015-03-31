@@ -36,6 +36,7 @@
         self._sdkToken = sdkToken;
         self.userId = userId;
         self.iapService = [[WZInAppPurchaseService alloc] initService:userId :sdkToken];
+        self.iapService.delegate = self;
         self.networkService = [[WZNetworkService alloc] initService];
     }
     
@@ -89,6 +90,7 @@
         self.payPalService.delegate = self;
     } else {
         NSLog(@"Need to call initPaymentService first");
+        [NSException raise:@"PayPal module not initialized" format:@"Need to call init PayPal first"];
     }
 }
 
@@ -107,7 +109,6 @@
  *  <#Description#>
  */
 -(void)paymentSuccess:(WZPaymentInfo *)info {
-    NSLog(@"PAYEMNT SUCCESS: %@", info);
     NSDictionary *content = [info toJson];
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@/", URL, SUBMIT_PAYMENT_URL];
     NSDictionary *headers = [WZSecurityService addSecurityInformation:self._sdkToken];
@@ -130,6 +131,7 @@
  */
 -(void)paymentFailure:(NSError *)error {
     NSLog(@"PAYMENT ERROR:");
+    [self.delegate onPurchaseFailure:[[WZError alloc]initWithMessage:error.description]];
 }
 
 @end

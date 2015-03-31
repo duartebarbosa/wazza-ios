@@ -34,27 +34,27 @@ static id<WazzaDelegate> _delegate = nil;
 #pragma Session functions
 
 +(void)newSession {
-    (_core == nil) ? NSLog(@"") : [_core newSession];
+    (_core == nil) ? [self coreModuleNotInitialized] : [_core newSession];
 }
 
 +(void)resumeSession {
-    (_core == nil) ? NSLog(@"") : [_core resumeSession];
+    (_core == nil) ? [self coreModuleNotInitialized] : [_core resumeSession];
 }
 
 +(void)endSession {
-    (_core == nil) ? NSLog(@"") : [_core endSession];
+    (_core == nil) ? [self coreModuleNotInitialized] : [_core endSession];
 }
 
 #pragma Payments functions
 
 +(void)makePayment:(WZPaymentRequest *)info {
-    (_core == nil) ? NSLog(@"") : [_core makePayment:info];
+    (_core == nil) ? [self coreModuleNotInitialized] : [_core makePayment:info];
 }
 
 #pragma PayPal logic
 
 +(void)connectToPayPal:(UIViewController *)currentView {
-    (_core == nil) ? NSLog(@"") : [_core.paymentService connectToPayPal:currentView];
+    (_core == nil) ? [self coreModuleNotInitialized] : [_core.paymentService connectToPayPal:currentView];
 }
 
 +(void)initPayPalModule:(NSString *)productionClientID
@@ -66,27 +66,32 @@ static id<WazzaDelegate> _delegate = nil;
                        :(NSString *)userAgreementURL
                        :(BOOL)acceptCreditCards
                        :(BOOL)testFlag {
-    (_core == nil) ? NSLog(@"") : [_core initPayPalService:productionClientID :sandboxClientID :APIClientID :APISecret :merchantName :privacyPolicyURL :userAgreementURL : acceptCreditCards :testFlag];
+    (_core == nil) ? [self coreModuleNotInitialized] : [_core initPayPalService:productionClientID :sandboxClientID :APIClientID :APISecret :merchantName :privacyPolicyURL :userAgreementURL : acceptCreditCards :testFlag];
 }
 
 #pragma Other stuff
 
 +(void)allowGeoLocation {
-    (_core == nil) ? NSLog(@"") : [_core allowGeoLocation];
+    (_core == nil) ? [self coreModuleNotInitialized] : [_core allowGeoLocation];
 }
 
-+(void)setPurchaseDelegate:(id)delegate {
++(void)setPaymentDelegate:(id)delegate {
     _delegate = delegate;
+}
+
++(void)coreModuleNotInitialized {
+    NSLog(@"Wazza not initialized");
+    [NSException raise:@"Wazza not initialized" format:@"Need to call Wazza init methods"];
 }
 
 #pragma SDKCore Delegate methods
 
 +(void)corePurchaseSuccess:(WZPaymentInfo *)info {
-    (_delegate != nil) ? [_delegate purchaseSuccess:info] : NSLog(@"");
+    (_delegate != nil) ? [_delegate purchaseSuccess:info] : [self coreModuleNotInitialized];
 }
 
 +(void)corePurchaseFailure:(NSError *)error {
-    (_delegate != nil) ? [_delegate PurchaseFailure:error]: NSLog(@"");
+    (_delegate != nil) ? [_delegate PurchaseFailure:error]: [self coreModuleNotInitialized];
 }
 
 @end

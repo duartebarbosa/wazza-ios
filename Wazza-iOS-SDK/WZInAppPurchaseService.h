@@ -11,10 +11,11 @@
 #import <StoreKit/StoreKit.h>
 #import "WZPaymentDelegate.h"
 #import "WZInAppPurchasePaymentRequest.h"
+#import "WZPaymentSystemsDelegate.h"
 
 @interface WZInAppPurchaseService : NSObject
 
-@property (nonatomic, weak) id<WZPaymentDelegate> delegate;
+@property (nonatomic, weak) id<WZPaymentSystemsDelegate> delegate;
 @property (nonatomic, strong) NSString *userId;
 @property(strong) NSString *sdkToken;
 

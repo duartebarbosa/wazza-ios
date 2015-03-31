@@ -11,6 +11,7 @@
 #import "WZError.h"
 #import "WZPaymentInfo.h"
 #import "WZPersistenceService.h"
+#import "WZInAppPurchaseInfo.h"
 
 @interface WZInAppPurchaseService() <SKPaymentTransactionObserver, SKProductsRequestDelegate>
 
@@ -43,8 +44,10 @@
         [productRequest start];
     } else {
         NSString *errorMsg = [[NSString alloc] initWithFormat:@"%@",@"Purchases disabled"];
-        WZError *error = [[WZError alloc] initWithMessage:errorMsg];
-        [self.delegate onPurchaseFailure:error];
+        NSMutableDictionary* details = [NSMutableDictionary dictionary];
+        [details setValue:errorMsg forKey:NSLocalizedDescriptionKey];
+        NSError *error = [NSError errorWithDomain:@"io.wazza" code:200 userInfo:details];
+        [self.delegate paymentFailure:error];
     }
 }
 
@@ -64,8 +67,10 @@
     
     if (invalid.count > 0) {
         NSString *errorMsg = [[NSString alloc] initWithFormat:@"%@",@"request item is invalid"];
-        WZError *error = [[WZError alloc] initWithMessage:errorMsg];
-        [self.delegate onPurchaseFailure:error];
+        NSMutableDictionary* details = [NSMutableDictionary dictionary];
+        [details setValue:errorMsg forKey:NSLocalizedDescriptionKey];
+        NSError *error = [NSError errorWithDomain:@"io.wazza" code:200 userInfo:details];
+        [self.delegate paymentFailure:error];
         return;
     }
     
@@ -75,8 +80,10 @@
         return;
     } else {
         NSString *errorMsg = [[NSString alloc] initWithFormat:@"%@",@"No product found"];
-        WZError *error = [[WZError alloc] initWithMessage:errorMsg];
-        [self.delegate onPurchaseFailure:error];
+        NSMutableDictionary* details = [NSMutableDictionary dictionary];
+        [details setValue:errorMsg forKey:NSLocalizedDescriptionKey];
+        NSError *error = [NSError errorWithDomain:@"io.wazza" code:200 userInfo:details];
+        [self.delegate paymentFailure:error];
         return;
     }
 }
@@ -92,30 +99,34 @@
             break;
         }
     }
-    
-    [self.delegate onPurchaseSuccess:
-     nil//[[WZPaymentInfo alloc] initFromTransaction:transaction :price :self.userId]
-     ];
+    WZInAppPurchaseInfo *paymentInfo = [[WZInAppPurchaseInfo alloc] initFromTransaction:transaction :price :self.userId];
+    [self.delegate paymentSuccess:paymentInfo];
 }
 
--(void)paymentQueue:(SKPaymentQueue *)queue
-updatedTransactions:(NSArray *)transactions {
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
     for (SKPaymentTransaction *transaction in transactions) {
         switch (transaction.transactionState) {
-            case SKPaymentTransactionStatePurchasing:
+            case SKPaymentTransactionStatePurchasing: {
                 NSLog(@"Transaction of item %@ being purchased", transaction.payment.productIdentifier);
                 break;
-            case SKPaymentTransactionStateRestored:
+            }
+            case SKPaymentTransactionStateRestored: {
                 NSLog(@"Restored ");
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
-            case SKPaymentTransactionStateFailed:
+            }
+            case SKPaymentTransactionStateFailed: {
                 NSLog(@"Transaction ERROR %@ | item: %@", transaction.error, transaction.payment.productIdentifier);
-                [self.delegate onPurchaseFailure:[[WZError alloc] initWithMessage:transaction.error.localizedDescription]];
+                NSMutableDictionary* details = [NSMutableDictionary dictionary];
+                [details setValue:transaction.error.localizedDescription forKey:NSLocalizedDescriptionKey];
+                NSError *error = [NSError errorWithDomain:@"io.wazza" code:200 userInfo:details];
+                [self.delegate paymentFailure:error];
                 break;
-            case SKPaymentTransactionStatePurchased:
+            }
+            case SKPaymentTransactionStatePurchased: {
                 [self handleTransactionSuccess:transaction];
                 break;
+            }
             default:
                 break;
         }

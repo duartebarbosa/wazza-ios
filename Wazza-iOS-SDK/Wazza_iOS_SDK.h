@@ -80,7 +80,7 @@
  *
  *  @param delegate <#delegate description#>
  */
-+(void)setPurchaseDelegate:(id)delegate;
++(void)setPaymentDelegate:(id)delegate;
 
 
 @end
