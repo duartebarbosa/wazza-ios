@@ -1,0 +1,782 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		17C4159B09BBC3FA1652DF83 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C68EA37D899C8F13CF813E7 /* libPods.a */; };
+		7F97F5CC559193803AAF3BE4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C68EA37D899C8F13CF813E7 /* libPods.a */; };
+		CF23BA931AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF23BA921AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h */; };
+		CF23BA951AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BA941AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m */; };
+		CF23BA9B1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF23BA8F1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a */; };
+		CF23BAAF1AB8A926003CC6B4 /* WZPayPalService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BAAE1AB8A926003CC6B4 /* WZPayPalService.m */; };
+		CF23BAB41AB8AA42003CC6B4 /* WZCore.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BAB31AB8AA42003CC6B4 /* WZCore.m */; };
+		CF23BC1E1AB8CDF9003CC6B4 /* libPods-PayPal-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF23BC1D1AB8CDF9003CC6B4 /* libPods-PayPal-iOS-SDK.a */; };
+		CF23BC731AB8F10A003CC6B4 /* WZDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC721AB8F10A003CC6B4 /* WZDeviceInfo.m */; };
+		CF23BC791AB8F19D003CC6B4 /* WZSessionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC781AB8F19D003CC6B4 /* WZSessionInfo.m */; };
+		CF23BC7C1AB8F1DB003CC6B4 /* WZLocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC7B1AB8F1DB003CC6B4 /* WZLocationInfo.m */; };
+		CF23BC801AB8F2C0003CC6B4 /* WZPaymentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC7F1AB8F2C0003CC6B4 /* WZPaymentInfo.m */; };
+		CF23BC831AB8F2DA003CC6B4 /* WZCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC821AB8F2DA003CC6B4 /* WZCurrency.m */; };
+		CF23BC861AB8F34E003CC6B4 /* WZSecurityService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC851AB8F34E003CC6B4 /* WZSecurityService.m */; };
+		CF23BC8A1AB8F39D003CC6B4 /* WZError.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC891AB8F39D003CC6B4 /* WZError.m */; };
+		CF23BC8D1AB8F3EA003CC6B4 /* WZPersistenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC8C1AB8F3EA003CC6B4 /* WZPersistenceService.m */; };
+		CF23BC911AB8F432003CC6B4 /* WZSessionService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC901AB8F432003CC6B4 /* WZSessionService.m */; };
+		CF23BC941AB8F456003CC6B4 /* WZNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC931AB8F456003CC6B4 /* WZNetworkService.m */; };
+		CF23BC971AB8F489003CC6B4 /* WZHttpCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC961AB8F489003CC6B4 /* WZHttpCodes.m */; };
+		CF23BC9B1AB8F556003CC6B4 /* WZLocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC9A1AB8F556003CC6B4 /* WZLocationService.m */; };
+		CF23BC9F1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BC9E1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m */; };
+		CF23BCA51AB9A9D3003CC6B4 /* WZPayPalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CF23BCA41AB9A9D3003CC6B4 /* WZPayPalInfo.m */; };
+		CF2DB7711AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB7701AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.m */; };
+		CF2DB7761ABAE9700007C9C4 /* UtilsService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB7751ABAE9700007C9C4 /* UtilsService.m */; };
+		CF2DB7791ABAECC80007C9C4 /* WZPaymentService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB7781ABAECC80007C9C4 /* WZPaymentService.m */; };
+		CF2DB77D1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB77C1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m */; };
+		CF2DB7801ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB77F1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m */; };
+		CF2DB7891ABC4B4A0007C9C4 /* WZPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2DB7881ABC4B4A0007C9C4 /* WZPaymentRequest.m */; };
+		CF69800E1ACAAE2E00E7A1A4 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = CF69800D1ACAAE2E00E7A1A4 /* README.md */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CF23BA9C1AB8A7C9003CC6B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF23BA871AB8A7C8003CC6B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF23BA8E1AB8A7C9003CC6B4;
+			remoteInfo = "Wazza-iOS-SDK";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CF23BA8D1AB8A7C9003CC6B4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				CF23BA931AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5C68EA37D899C8F13CF813E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CB61294C7864B80FB924433 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A5E0D6F05E79736192FC0184 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CF23BA8F1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libWazza-iOS-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF23BA921AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wazza_iOS_SDK.h; sourceTree = "<group>"; };
+		CF23BA941AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wazza_iOS_SDK.m; sourceTree = "<group>"; };
+		CF23BA9A1AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wazza-iOS-SDKTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF23BAA01AB8A7C9003CC6B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF23BAAD1AB8A926003CC6B4 /* WZPayPalService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPayPalService.h; sourceTree = "<group>"; };
+		CF23BAAE1AB8A926003CC6B4 /* WZPayPalService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPayPalService.m; sourceTree = "<group>"; };
+		CF23BAB21AB8AA42003CC6B4 /* WZCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZCore.h; sourceTree = "<group>"; };
+		CF23BAB31AB8AA42003CC6B4 /* WZCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZCore.m; sourceTree = "<group>"; };
+		CF23BAB51AB8AFE0003CC6B4 /* WZCoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZCoreDelegate.h; sourceTree = "<group>"; };
+		CF23BC1D1AB8CDF9003CC6B4 /* libPods-PayPal-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-PayPal-iOS-SDK.a"; path = "Pods/../build/Debug-iphoneos/libPods-PayPal-iOS-SDK.a"; sourceTree = "<group>"; };
+		CF23BC711AB8F10A003CC6B4 /* WZDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZDeviceInfo.h; sourceTree = "<group>"; };
+		CF23BC721AB8F10A003CC6B4 /* WZDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZDeviceInfo.m; sourceTree = "<group>"; };
+		CF23BC771AB8F19D003CC6B4 /* WZSessionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZSessionInfo.h; sourceTree = "<group>"; };
+		CF23BC781AB8F19D003CC6B4 /* WZSessionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZSessionInfo.m; sourceTree = "<group>"; };
+		CF23BC7A1AB8F1DB003CC6B4 /* WZLocationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLocationInfo.h; sourceTree = "<group>"; };
+		CF23BC7B1AB8F1DB003CC6B4 /* WZLocationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZLocationInfo.m; sourceTree = "<group>"; };
+		CF23BC7E1AB8F2C0003CC6B4 /* WZPaymentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPaymentInfo.h; sourceTree = "<group>"; };
+		CF23BC7F1AB8F2C0003CC6B4 /* WZPaymentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPaymentInfo.m; sourceTree = "<group>"; };
+		CF23BC811AB8F2DA003CC6B4 /* WZCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZCurrency.h; sourceTree = "<group>"; };
+		CF23BC821AB8F2DA003CC6B4 /* WZCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZCurrency.m; sourceTree = "<group>"; };
+		CF23BC841AB8F34E003CC6B4 /* WZSecurityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZSecurityService.h; sourceTree = "<group>"; };
+		CF23BC851AB8F34E003CC6B4 /* WZSecurityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZSecurityService.m; sourceTree = "<group>"; };
+		CF23BC881AB8F39D003CC6B4 /* WZError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZError.h; sourceTree = "<group>"; };
+		CF23BC891AB8F39D003CC6B4 /* WZError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZError.m; sourceTree = "<group>"; };
+		CF23BC8B1AB8F3EA003CC6B4 /* WZPersistenceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPersistenceService.h; sourceTree = "<group>"; };
+		CF23BC8C1AB8F3EA003CC6B4 /* WZPersistenceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPersistenceService.m; sourceTree = "<group>"; };
+		CF23BC8F1AB8F432003CC6B4 /* WZSessionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZSessionService.h; sourceTree = "<group>"; };
+		CF23BC901AB8F432003CC6B4 /* WZSessionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZSessionService.m; sourceTree = "<group>"; };
+		CF23BC921AB8F456003CC6B4 /* WZNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZNetworkService.h; sourceTree = "<group>"; };
+		CF23BC931AB8F456003CC6B4 /* WZNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZNetworkService.m; sourceTree = "<group>"; };
+		CF23BC951AB8F489003CC6B4 /* WZHttpCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZHttpCodes.h; sourceTree = "<group>"; };
+		CF23BC961AB8F489003CC6B4 /* WZHttpCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZHttpCodes.m; sourceTree = "<group>"; };
+		CF23BC991AB8F556003CC6B4 /* WZLocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZLocationService.h; sourceTree = "<group>"; };
+		CF23BC9A1AB8F556003CC6B4 /* WZLocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZLocationService.m; sourceTree = "<group>"; };
+		CF23BC9D1AB8FB0B003CC6B4 /* WZInAppPurchaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZInAppPurchaseService.h; sourceTree = "<group>"; };
+		CF23BC9E1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZInAppPurchaseService.m; sourceTree = "<group>"; };
+		CF23BCA01AB8FB60003CC6B4 /* WZPaymentDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZPaymentDelegate.h; sourceTree = "<group>"; };
+		CF23BCA11AB90C48003CC6B4 /* WazzaDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WazzaDelegate.h; sourceTree = "<group>"; };
+		CF23BCA31AB9A9D3003CC6B4 /* WZPayPalInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPayPalInfo.h; sourceTree = "<group>"; };
+		CF23BCA41AB9A9D3003CC6B4 /* WZPayPalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPayPalInfo.m; sourceTree = "<group>"; };
+		CF2DB76F1AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZInAppPurchaseInfo.h; sourceTree = "<group>"; };
+		CF2DB7701AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZInAppPurchaseInfo.m; sourceTree = "<group>"; };
+		CF2DB7741ABAE9700007C9C4 /* UtilsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsService.h; sourceTree = "<group>"; };
+		CF2DB7751ABAE9700007C9C4 /* UtilsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilsService.m; sourceTree = "<group>"; };
+		CF2DB7771ABAECC80007C9C4 /* WZPaymentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPaymentService.h; sourceTree = "<group>"; };
+		CF2DB7781ABAECC80007C9C4 /* WZPaymentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPaymentService.m; sourceTree = "<group>"; };
+		CF2DB77B1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPayPalPaymentRequest.h; sourceTree = "<group>"; };
+		CF2DB77C1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPayPalPaymentRequest.m; sourceTree = "<group>"; };
+		CF2DB77E1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZInAppPurchasePaymentRequest.h; sourceTree = "<group>"; };
+		CF2DB77F1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZInAppPurchasePaymentRequest.m; sourceTree = "<group>"; };
+		CF2DB7831ABAFD890007C9C4 /* WZPaymentSystemsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPaymentSystemsDelegate.h; sourceTree = "<group>"; };
+		CF2DB7861ABB37910007C9C4 /* ServerRestEndpoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerRestEndpoints.h; sourceTree = "<group>"; };
+		CF2DB7871ABC4B4A0007C9C4 /* WZPaymentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPaymentRequest.h; sourceTree = "<group>"; };
+		CF2DB7881ABC4B4A0007C9C4 /* WZPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPaymentRequest.m; sourceTree = "<group>"; };
+		CF69800D1ACAAE2E00E7A1A4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF23BA8C1AB8A7C9003CC6B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF23BC1E1AB8CDF9003CC6B4 /* libPods-PayPal-iOS-SDK.a in Frameworks */,
+				7F97F5CC559193803AAF3BE4 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF23BA971AB8A7C9003CC6B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF23BA9B1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a in Frameworks */,
+				17C4159B09BBC3FA1652DF83 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2D8DE69789AC5A2C5E516C76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5CB61294C7864B80FB924433 /* Pods.debug.xcconfig */,
+				A5E0D6F05E79736192FC0184 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B82B042BA45E11DFC70FEB66 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BC1D1AB8CDF9003CC6B4 /* libPods-PayPal-iOS-SDK.a */,
+				5C68EA37D899C8F13CF813E7 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF23BA861AB8A7C8003CC6B4 = {
+			isa = PBXGroup;
+			children = (
+				CF23BA911AB8A7C9003CC6B4 /* Wazza-iOS-SDK */,
+				CF23BA9E1AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests */,
+				CF23BA901AB8A7C9003CC6B4 /* Products */,
+				2D8DE69789AC5A2C5E516C76 /* Pods */,
+				B82B042BA45E11DFC70FEB66 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CF23BA901AB8A7C9003CC6B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BA8F1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a */,
+				CF23BA9A1AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF23BA911AB8A7C9003CC6B4 /* Wazza-iOS-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BAB11AB8AA30003CC6B4 /* Core */,
+				CF23BAB01AB8A97A003CC6B4 /* Models */,
+				CF23BAAA1AB8A904003CC6B4 /* Services */,
+				CF23BA921AB8A7C9003CC6B4 /* Wazza_iOS_SDK.h */,
+				CF23BA941AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m */,
+				CF69800D1ACAAE2E00E7A1A4 /* README.md */,
+				CF23BCA11AB90C48003CC6B4 /* WazzaDelegate.h */,
+			);
+			path = "Wazza-iOS-SDK";
+			sourceTree = "<group>";
+		};
+		CF23BA9E1AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BA9F1AB8A7C9003CC6B4 /* Supporting Files */,
+			);
+			path = "Wazza-iOS-SDKTests";
+			sourceTree = "<group>";
+		};
+		CF23BA9F1AB8A7C9003CC6B4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BAA01AB8A7C9003CC6B4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CF23BAAA1AB8A904003CC6B4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CF2DB7731ABAE9670007C9C4 /* Utils */,
+				CF23BC981AB8F543003CC6B4 /* Location */,
+				CF23BC8E1AB8F41D003CC6B4 /* Sessions */,
+				CF23BC661AB8EE1D003CC6B4 /* Network */,
+				CF23BC651AB8EE01003CC6B4 /* LocalStorage */,
+				CF23BAAB1AB8A90D003CC6B4 /* Payments */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		CF23BAAB1AB8A90D003CC6B4 /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				CF2DB7771ABAECC80007C9C4 /* WZPaymentService.h */,
+				CF2DB7781ABAECC80007C9C4 /* WZPaymentService.m */,
+				CF2DB7821ABAFD140007C9C4 /* Protocols */,
+				CF23BC9C1AB8F591003CC6B4 /* In-App Purchases */,
+				CF23BAAC1AB8A911003CC6B4 /* PayPal */,
+			);
+			name = Payments;
+			sourceTree = "<group>";
+		};
+		CF23BAAC1AB8A911003CC6B4 /* PayPal */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BAAD1AB8A926003CC6B4 /* WZPayPalService.h */,
+				CF23BAAE1AB8A926003CC6B4 /* WZPayPalService.m */,
+			);
+			name = PayPal;
+			sourceTree = "<group>";
+		};
+		CF23BAB01AB8A97A003CC6B4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BC871AB8F393003CC6B4 /* Error */,
+				CF23BC7D1AB8F2B4003CC6B4 /* Payments */,
+				CF23BC761AB8F163003CC6B4 /* Location */,
+				CF23BC751AB8F15B003CC6B4 /* Session */,
+				CF23BC701AB8F0FE003CC6B4 /* Device */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		CF23BAB11AB8AA30003CC6B4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BAB21AB8AA42003CC6B4 /* WZCore.h */,
+				CF23BAB51AB8AFE0003CC6B4 /* WZCoreDelegate.h */,
+				CF23BAB31AB8AA42003CC6B4 /* WZCore.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		CF23BC651AB8EE01003CC6B4 /* LocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BC8B1AB8F3EA003CC6B4 /* WZPersistenceService.h */,
+				CF23BC8C1AB8F3EA003CC6B4 /* WZPersistenceService.m */,
+			);
+			name = LocalStorage;
+			sourceTree = "<group>";
+		};
+		CF23BC661AB8EE1D003CC6B4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BC841AB8F34E003CC6B4 /* WZSecurityService.h */,
+				CF23BC851AB8F34E003CC6B4 /* WZSecurityService.m */,
+				CF23BC921AB8F456003CC6B4 /* WZNetworkService.h */,
+				CF23BC931AB8F456003CC6B4 /* WZNetworkService.m */,
+				CF23BC951AB8F489003CC6B4 /* WZHttpCodes.h */,
+				CF23BC961AB8F489003CC6B4 /* WZHttpCodes.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		CF23BC701AB8F0FE003CC6B4 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BC711AB8F10A003CC6B4 /* WZDeviceInfo.h */,
+				CF23BC721AB8F10A003CC6B4 /* WZDeviceInfo.m */,
+			);
+			name = Device;
+			sourceTree = "<group>";
+		};
+		CF23BC751AB8F15B003CC6B4 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BC771AB8F19D003CC6B4 /* WZSessionInfo.h */,
+				CF23BC781AB8F19D003CC6B4 /* WZSessionInfo.m */,
+			);
+			name = Session;
+			sourceTree = "<group>";
+		};
+		CF23BC761AB8F163003CC6B4 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BC7A1AB8F1DB003CC6B4 /* WZLocationInfo.h */,
+				CF23BC7B1AB8F1DB003CC6B4 /* WZLocationInfo.m */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
+		CF23BC7D1AB8F2B4003CC6B4 /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				CF2DB76E1AB9DC9D0007C9C4 /* In-App Purchases */,
+				CF23BCA21AB9A9C2003CC6B4 /* PayPal */,
+				CF23BC7E1AB8F2C0003CC6B4 /* WZPaymentInfo.h */,
+				CF23BC7F1AB8F2C0003CC6B4 /* WZPaymentInfo.m */,
+				CF23BC811AB8F2DA003CC6B4 /* WZCurrency.h */,
+				CF23BC821AB8F2DA003CC6B4 /* WZCurrency.m */,
+				CF2DB7871ABC4B4A0007C9C4 /* WZPaymentRequest.h */,
+				CF2DB7881ABC4B4A0007C9C4 /* WZPaymentRequest.m */,
+			);
+			name = Payments;
+			sourceTree = "<group>";
+		};
+		CF23BC871AB8F393003CC6B4 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BC881AB8F39D003CC6B4 /* WZError.h */,
+				CF23BC891AB8F39D003CC6B4 /* WZError.m */,
+			);
+			name = Error;
+			sourceTree = "<group>";
+		};
+		CF23BC8E1AB8F41D003CC6B4 /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BC8F1AB8F432003CC6B4 /* WZSessionService.h */,
+				CF23BC901AB8F432003CC6B4 /* WZSessionService.m */,
+			);
+			name = Sessions;
+			sourceTree = "<group>";
+		};
+		CF23BC981AB8F543003CC6B4 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BC991AB8F556003CC6B4 /* WZLocationService.h */,
+				CF23BC9A1AB8F556003CC6B4 /* WZLocationService.m */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
+		CF23BC9C1AB8F591003CC6B4 /* In-App Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BC9D1AB8FB0B003CC6B4 /* WZInAppPurchaseService.h */,
+				CF23BC9E1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m */,
+			);
+			name = "In-App Purchases";
+			sourceTree = "<group>";
+		};
+		CF23BCA21AB9A9C2003CC6B4 /* PayPal */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BCA41AB9A9D3003CC6B4 /* WZPayPalInfo.m */,
+				CF23BCA31AB9A9D3003CC6B4 /* WZPayPalInfo.h */,
+				CF2DB77B1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.h */,
+				CF2DB77C1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m */,
+			);
+			name = PayPal;
+			sourceTree = "<group>";
+		};
+		CF2DB76E1AB9DC9D0007C9C4 /* In-App Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				CF2DB76F1AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.h */,
+				CF2DB7701AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.m */,
+				CF2DB77E1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.h */,
+				CF2DB77F1ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m */,
+			);
+			name = "In-App Purchases";
+			sourceTree = "<group>";
+		};
+		CF2DB7731ABAE9670007C9C4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CF2DB7741ABAE9700007C9C4 /* UtilsService.h */,
+				CF2DB7861ABB37910007C9C4 /* ServerRestEndpoints.h */,
+				CF2DB7751ABAE9700007C9C4 /* UtilsService.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		CF2DB7821ABAFD140007C9C4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CF23BCA01AB8FB60003CC6B4 /* WZPaymentDelegate.h */,
+				CF2DB7831ABAFD890007C9C4 /* WZPaymentSystemsDelegate.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF23BA8E1AB8A7C9003CC6B4 /* Wazza-iOS-SDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF23BAA31AB8A7C9003CC6B4 /* Build configuration list for PBXNativeTarget "Wazza-iOS-SDK" */;
+			buildPhases = (
+				8C57893D0AFB6BB988B5EE79 /* Check Pods Manifest.lock */,
+				CF23BA8B1AB8A7C9003CC6B4 /* Sources */,
+				CF23BA8C1AB8A7C9003CC6B4 /* Frameworks */,
+				CF23BA8D1AB8A7C9003CC6B4 /* CopyFiles */,
+				526FBF5C98A604E05F852A8B /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Wazza-iOS-SDK";
+			productName = "Wazza-iOS-SDK";
+			productReference = CF23BA8F1AB8A7C9003CC6B4 /* libWazza-iOS-SDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		CF23BA991AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF23BAA61AB8A7C9003CC6B4 /* Build configuration list for PBXNativeTarget "Wazza-iOS-SDKTests" */;
+			buildPhases = (
+				8AFD43E7A28235E51A60639F /* Check Pods Manifest.lock */,
+				CF23BA961AB8A7C9003CC6B4 /* Sources */,
+				CF23BA971AB8A7C9003CC6B4 /* Frameworks */,
+				CF23BA981AB8A7C9003CC6B4 /* Resources */,
+				DBD24FE7CD464BC6F8C5B54B /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF23BA9D1AB8A7C9003CC6B4 /* PBXTargetDependency */,
+			);
+			name = "Wazza-iOS-SDKTests";
+			productName = "Wazza-iOS-SDKTests";
+			productReference = CF23BA9A1AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF23BA871AB8A7C8003CC6B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = Wazza;
+				TargetAttributes = {
+					CF23BA8E1AB8A7C9003CC6B4 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					CF23BA991AB8A7C9003CC6B4 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = CF23BA8A1AB8A7C8003CC6B4 /* Build configuration list for PBXProject "Wazza-iOS-SDK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF23BA861AB8A7C8003CC6B4;
+			productRefGroup = CF23BA901AB8A7C9003CC6B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF23BA8E1AB8A7C9003CC6B4 /* Wazza-iOS-SDK */,
+				CF23BA991AB8A7C9003CC6B4 /* Wazza-iOS-SDKTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF23BA981AB8A7C9003CC6B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		526FBF5C98A604E05F852A8B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8AFD43E7A28235E51A60639F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8C57893D0AFB6BB988B5EE79 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DBD24FE7CD464BC6F8C5B54B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF23BA8B1AB8A7C9003CC6B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF2DB7711AB9DCBC0007C9C4 /* WZInAppPurchaseInfo.m in Sources */,
+				CF2DB7761ABAE9700007C9C4 /* UtilsService.m in Sources */,
+				CF2DB7891ABC4B4A0007C9C4 /* WZPaymentRequest.m in Sources */,
+				CF23BAB41AB8AA42003CC6B4 /* WZCore.m in Sources */,
+				CF23BC8D1AB8F3EA003CC6B4 /* WZPersistenceService.m in Sources */,
+				CF23BC9F1AB8FB0B003CC6B4 /* WZInAppPurchaseService.m in Sources */,
+				CF69800E1ACAAE2E00E7A1A4 /* README.md in Sources */,
+				CF2DB7791ABAECC80007C9C4 /* WZPaymentService.m in Sources */,
+				CF23BC941AB8F456003CC6B4 /* WZNetworkService.m in Sources */,
+				CF2DB7801ABAF5810007C9C4 /* WZInAppPurchasePaymentRequest.m in Sources */,
+				CF23BA951AB8A7C9003CC6B4 /* Wazza_iOS_SDK.m in Sources */,
+				CF23BC861AB8F34E003CC6B4 /* WZSecurityService.m in Sources */,
+				CF23BC791AB8F19D003CC6B4 /* WZSessionInfo.m in Sources */,
+				CF23BC831AB8F2DA003CC6B4 /* WZCurrency.m in Sources */,
+				CF23BCA51AB9A9D3003CC6B4 /* WZPayPalInfo.m in Sources */,
+				CF23BC971AB8F489003CC6B4 /* WZHttpCodes.m in Sources */,
+				CF23BC801AB8F2C0003CC6B4 /* WZPaymentInfo.m in Sources */,
+				CF23BC911AB8F432003CC6B4 /* WZSessionService.m in Sources */,
+				CF2DB77D1ABAF56E0007C9C4 /* WZPayPalPaymentRequest.m in Sources */,
+				CF23BC731AB8F10A003CC6B4 /* WZDeviceInfo.m in Sources */,
+				CF23BAAF1AB8A926003CC6B4 /* WZPayPalService.m in Sources */,
+				CF23BC7C1AB8F1DB003CC6B4 /* WZLocationInfo.m in Sources */,
+				CF23BC8A1AB8F39D003CC6B4 /* WZError.m in Sources */,
+				CF23BC9B1AB8F556003CC6B4 /* WZLocationService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF23BA961AB8A7C9003CC6B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF23BA9D1AB8A7C9003CC6B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF23BA8E1AB8A7C9003CC6B4 /* Wazza-iOS-SDK */;
+			targetProxy = CF23BA9C1AB8A7C9003CC6B4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CF23BAA11AB8A7C9003CC6B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CF23BAA21AB8A7C9003CC6B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CF23BAA41AB8A7C9003CC6B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CB61294C7864B80FB924433 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CF23BAA51AB8A7C9003CC6B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5E0D6F05E79736192FC0184 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		CF23BAA71AB8A7C9003CC6B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CB61294C7864B80FB924433 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Wazza-iOS-SDKTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CF23BAA81AB8A7C9003CC6B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5E0D6F05E79736192FC0184 /* Pods.release.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Wazza-iOS-SDKTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF23BA8A1AB8A7C8003CC6B4 /* Build configuration list for PBXProject "Wazza-iOS-SDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF23BAA11AB8A7C9003CC6B4 /* Debug */,
+				CF23BAA21AB8A7C9003CC6B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF23BAA31AB8A7C9003CC6B4 /* Build configuration list for PBXNativeTarget "Wazza-iOS-SDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF23BAA41AB8A7C9003CC6B4 /* Debug */,
+				CF23BAA51AB8A7C9003CC6B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF23BAA61AB8A7C9003CC6B4 /* Build configuration list for PBXNativeTarget "Wazza-iOS-SDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF23BAA71AB8A7C9003CC6B4 /* Debug */,
+				CF23BAA81AB8A7C9003CC6B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF23BA871AB8A7C8003CC6B4 /* Project object */;
+}
